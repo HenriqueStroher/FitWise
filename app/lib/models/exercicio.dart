@@ -4,6 +4,7 @@ class Exercicio {
   final String nome;
   final String descricao;
   final String musculoPrimario;
+  final String tipo;
   final List<String> musculoSecundario;
   final List<String> equipamento;
   final List<String> frames;
@@ -20,6 +21,7 @@ class Exercicio {
     required this.nome,
     required this.descricao,
     required this.musculoPrimario,
+    required this.tipo,
     required this.musculoSecundario,
     required this.equipamento,
     required this.frames,
@@ -38,6 +40,7 @@ class Exercicio {
       nome: data['nome'] ?? '',
       descricao: data['descricao'] ?? '',
       musculoPrimario: data['musculoPrimario'] ?? '',
+      tipo: data['tipo'] ?? '',
       musculoSecundario: List<String>.from(data['musculoSecundario'] ?? []),
       equipamento: List<String>.from(data['equipamento'] ?? []),
       frames: List<String>.from(data['frames'] ?? []),

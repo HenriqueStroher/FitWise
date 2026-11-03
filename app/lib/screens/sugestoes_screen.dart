@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../models/exercicio.dart';
-import '../models/grupo_muscular.dart';
 import '../services/recomendacao_service.dart';
 import '../services/exercicio_service.dart';
-import 'detalhe_exercicio_screen.dart';
+import '../theme/app_theme.dart';
+import '../widgets/comuns.dart';
+import 'lista_exercicios_screen.dart';
 
 class SugestoesScreen extends StatefulWidget {
   final Exercicio exercicioOrigem;
@@ -21,9 +22,6 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
   List<MapEntry<Exercicio, double>> _sugestoes = [];
   bool _carregando = true;
 
-  static const _bgPrimary = Color(0xFF111111);
-  static const _bgCard    = Color(0xFF1C1C1C);
-
   @override
   void initState() {
     super.initState();
@@ -39,214 +37,126 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
       catalogo,
     );
 
+    if (!mounted) return;
     setState(() {
       _sugestoes = sugestoes;
       _carregando = false;
     });
   }
 
-  Color _corScore(double score) {
-    if (score >= 0.90) return const Color(0xFF4ADE80); // verde
-    if (score >= 0.75) return const Color(0xFFFBBF24); // amarelo
-    return const Color(0xFFEF4444);                    // vermelho
-  }
-
-  String _labelScore(double score) {
-    if (score >= 0.90) return 'Alta compatibilidade';
-    if (score >= 0.75) return 'Boa compatibilidade';
-    return 'Compatibilidade moderada';
-  }
-
   @override
   Widget build(BuildContext context) {
+    final largura = MediaQuery.sizeOf(context).width;
+
     return Scaffold(
-      backgroundColor: _bgPrimary,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF0A0A0A),
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
-          'Sugestões de Variação',
-          style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+      body: SafeArea(
+        child: Conteudo(
+          larguraMaxima: AppLayout.larguraLeitura,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 12),
+              const Align(alignment: Alignment.centerLeft, child: BotaoVoltar()),
+              const SizedBox(height: 28),
+              Text('VARIAÇÕES DE', style: AppTexto.rotulo),
+              const SizedBox(height: 8),
+              Text(widget.exercicioOrigem.nome,
+                  style: AppTexto.titulo(largura >= 720 ? 36 : 28)),
+              const SizedBox(height: 10),
+              Text(
+                _carregando
+                    ? ''
+                    : '${_sugestoes.length} ${_sugestoes.length == 1 ? 'opção' : 'opções'}  ·  ordenadas por similaridade',
+                style: AppTexto.meta,
+              ),
+              const SizedBox(height: 16),
+              Expanded(child: _buildLista()),
+            ],
+          ),
         ),
-      ),
-      body: _carregando
-          ? const Center(child: CircularProgressIndicator(color: Colors.white54))
-          : Column(
-              children: [
-                _cardOrigem(),
-                Expanded(child: _buildLista()),
-              ],
-            ),
-    );
-  }
-
-  Widget _cardOrigem() {
-    final ex = widget.exercicioOrigem;
-    final imagePath = 'assets/images/${ex.slug}-1.webp';
-
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: _bgCard,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white24, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 52,
-            height: 52,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) =>
-                  const Icon(Icons.fitness_center, color: Colors.black54, size: 28),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Base de comparação',
-                  style: TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  ex.nome,
-                  style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              GrupoMuscular.labelDe(ex.musculoPrimario),
-              style: const TextStyle(color: Colors.white70, fontSize: 11, fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
       ),
     );
   }
 
   Widget _buildLista() {
+    if (_carregando) {
+      return Column(
+        children: [
+          for (var i = 0; i < 4; i++)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                children: [
+                  Esqueleto(largura: 72, altura: 72, raio: 4),
+                  SizedBox(width: 16),
+                  Expanded(child: Esqueleto(altura: 14)),
+                  SizedBox(width: 40),
+                  Esqueleto(largura: 44, altura: 20),
+                ],
+              ),
+            ),
+        ],
+      );
+    }
+
     if (_sugestoes.isEmpty) {
-      return const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.search_off, color: Colors.white24, size: 48),
-            SizedBox(height: 12),
-            Text('Nenhuma variação encontrada',
-                style: TextStyle(color: Colors.white54, fontSize: 16)),
-            SizedBox(height: 6),
-            Text('Tente outro exercício como base',
-                style: TextStyle(color: Colors.white38, fontSize: 13)),
-          ],
+      return Padding(
+        padding: const EdgeInsets.only(top: 24),
+        child: Text(
+          'Nenhum exercício do mesmo grupo é parecido o bastante com este.',
+          style: AppTexto.item.copyWith(color: AppCores.textoSuave),
         ),
       );
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      padding: const EdgeInsets.only(bottom: 32),
       itemCount: _sugestoes.length,
       itemBuilder: (context, index) {
         final entry = _sugestoes[index];
-        return _cardSugestao(entry.key, entry.value);
+        return LinhaExercicio(
+          exercicio: entry.key,
+          trailing: _Similaridade(score: entry.value),
+        );
       },
     );
   }
+}
 
-  Widget _cardSugestao(Exercicio ex, double score) {
-    final imagePath = 'assets/images/${ex.slug}-1.webp';
-    final cor = _corScore(score);
-    final label = _labelScore(score);
+class _Similaridade extends StatelessWidget {
+  final double score;
 
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => DetalheExercicioScreen(exercicio: ex)),
-      ),
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          color: _bgCard,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: Colors.white.withOpacity(0.06)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Container(
-                width: 64,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => const Icon(
-                    Icons.fitness_center,
-                    color: Colors.black54,
-                    size: 28,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      ex.nome,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14,
-                        height: 1.3,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      label,
-                      style: TextStyle(color: cor, fontSize: 11, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 4),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: LinearProgressIndicator(
-                        value: score,
-                        backgroundColor: Colors.white.withOpacity(0.08),
-                        valueColor: AlwaysStoppedAnimation<Color>(cor),
-                        minHeight: 4,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 10),
-              const Icon(Icons.chevron_right, color: Colors.white24, size: 20),
-            ],
+  const _Similaridade({required this.score});
+
+  @override
+  Widget build(BuildContext context) {
+    final cor = score >= 0.90
+        ? AppCores.destaque
+        : (score >= 0.75 ? AppCores.texto : AppCores.textoSuave);
+
+    return SizedBox(
+      width: 52,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Text(
+            '${(score * 100).round()}%',
+            style: AppTexto.titulo(18, cor: cor, peso: FontWeight.w700)
+                .copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
           ),
-        ),
+          const SizedBox(height: 6),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(2),
+            child: SizedBox(
+              height: 3,
+              child: LinearProgressIndicator(
+                value: score,
+                backgroundColor: AppCores.linha,
+                valueColor: AlwaysStoppedAnimation<Color>(cor),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

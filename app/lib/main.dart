@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'screens/home_screen.dart';
 import 'screens/lista_exercicios_screen.dart';
+import 'theme/app_theme.dart';
+import 'widgets/comuns.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,10 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FitWise',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-        useMaterial3: true,
-      ),
+      theme: construirTema(),
       home: const MainScreen(),
     );
   }
@@ -36,94 +35,153 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ListaExerciciosScreenState> _listaKey = GlobalKey<ListaExerciciosScreenState>();
+  int _aba = 0;
 
-  static const _bgAppBar = Color(0xFF0A0A0A);
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
+  static const _abas = ['Grupos', 'Exercícios'];
 
   void _navegarParaGrupo(String grupo) {
-    _tabController.animateTo(1);
-    Future.delayed(const Duration(milliseconds: 300), () {
-      _listaKey.currentState?.mudarGrupo(grupo);
-    });
+    setState(() => _aba = 1);
+    _listaKey.currentState?.mudarGrupo(grupo);
   }
 
   @override
   Widget build(BuildContext context) {
+    final largo = MediaQuery.sizeOf(context).width >= 720;
+
     return Scaffold(
-      backgroundColor: const Color(0xFF111111),
-      appBar: AppBar(
-        backgroundColor: _bgAppBar,
-        elevation: 0,
-        titleSpacing: 16,
-        title: Row(
+      body: SafeArea(
+        bottom: false,
+        child: Column(
           children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
+            _buildTopo(largo),
+            Expanded(
+              child: IndexedStack(
+                index: _aba,
+                children: [
+                  HomeScreen(onNavegar: _navegarParaGrupo),
+                  ListaExerciciosScreen(key: _listaKey),
+                ],
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  'assets/images/logo.webp',
-                  fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => const Icon(
-                    Icons.fitness_center,
-                    color: Colors.black,
-                    size: 18,
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: largo ? null : _buildBarraInferior(),
+    );
+  }
+
+  Widget _buildTopo(bool largo) {
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(color: AppCores.linha)),
+      ),
+      child: Conteudo(
+        child: SizedBox(
+          height: 56,
+          child: Row(
+            children: [
+              const _Marca(),
+              const Spacer(),
+              if (largo)
+                for (var i = 0; i < _abas.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 28),
+                    child: _abaTopo(i),
+                  ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _abaTopo(int i) {
+    final ativa = _aba == i;
+    return Pressionavel(
+      onTap: () => setState(() => _aba = i),
+      builder: (_, hover) => Container(
+        height: 56,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: ativa ? AppCores.destaque : Colors.transparent,
+              width: 2,
+            ),
+          ),
+        ),
+        child: Text(
+          _abas[i],
+          style: AppTexto.item.copyWith(
+            fontSize: 14,
+            color: ativa || hover ? AppCores.texto : AppCores.textoSuave,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBarraInferior() {
+    const icones = [Icons.grid_view_rounded, Icons.format_list_bulleted_rounded];
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppCores.fundo,
+        border: Border(top: BorderSide(color: AppCores.linha)),
+      ),
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          height: 64,
+          child: Row(
+            children: [
+              for (var i = 0; i < _abas.length; i++)
+                Expanded(
+                  child: Pressionavel(
+                    onTap: () => setState(() => _aba = i),
+                    builder: (_, _) {
+                      final ativa = _aba == i;
+                      final cor = ativa ? AppCores.texto : AppCores.textoApagado;
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(icones[i], color: cor, size: 22),
+                          const SizedBox(height: 4),
+                          Text(_abas[i],
+                              style: AppTexto.meta.copyWith(
+                                  fontSize: 11,
+                                  color: cor,
+                                  fontWeight: ativa ? FontWeight.w600 : FontWeight.w500)),
+                        ],
+                      );
+                    },
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              'FitWise',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: 20,
-                letterSpacing: 0.5,
-              ),
-            ),
-          ],
-        ),
-        bottom: TabBar(
-          controller: _tabController,
-          indicatorColor: Colors.white,
-          indicatorWeight: 2,
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.white38,
-          labelStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-          unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-          tabs: const [
-            Tab(text: 'Início'),
-            Tab(text: 'Exercícios'),
-          ],
+            ],
+          ),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          HomeScreen(onNavegar: _navegarParaGrupo),
-          ListaExerciciosScreen(key: _listaKey),
-        ],
-      ),
+    );
+  }
+}
+
+class _Marca extends StatelessWidget {
+  const _Marca();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 10,
+          height: 10,
+          color: AppCores.destaque,
+        ),
+        const SizedBox(width: 10),
+        Text('FITWISE', style: AppTexto.display(15).copyWith(letterSpacing: 1.2, height: 1)),
+      ],
     );
   }
 }
