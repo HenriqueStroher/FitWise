@@ -24,6 +24,20 @@ class ExercicioService {
         .toList();
   }
 
+  // Conta quantos exercícios existem em cada grupo muscular
+  Future<Map<String, int>> contarPorGrupo() async {
+    final snapshot = await _db.collection('exercicios').get();
+
+    final contagem = <String, int>{};
+    for (final doc in snapshot.docs) {
+      final grupo = doc.data()['musculoPrimario'];
+      if (grupo is String && grupo.isNotEmpty) {
+        contagem[grupo] = (contagem[grupo] ?? 0) + 1;
+      }
+    }
+    return contagem;
+  }
+
   // Busca exercício por slug
   Future<Exercicio?> buscarPorSlug(String slug) async {
     final doc = await _db.collection('exercicios').doc(slug).get();

@@ -1,12 +1,39 @@
 import 'package:flutter/material.dart';
+import '../models/grupo_muscular.dart';
+import '../services/exercicio_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   final void Function(String grupo) onNavegar;
 
   const HomeScreen({super.key, required this.onNavegar});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final ExercicioService _service = ExercicioService();
+
+  Map<String, int> _contagem = {};
+  bool _carregandoContagem = true;
+
   static const _bgPrimary = Color(0xFF111111);
   static const _bgCard    = Color(0xFF1C1C1C);
+
+  @override
+  void initState() {
+    super.initState();
+    _carregarContagem();
+  }
+
+  Future<void> _carregarContagem() async {
+    final contagem = await _service.contarPorGrupo();
+    if (!mounted) return;
+    setState(() {
+      _contagem = contagem;
+      _carregandoContagem = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +147,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _passo('1', 'Filtre por grupo muscular',
-              'Use as abas da seção "Exercícios" para ver os exercícios de cada grupo.'),
+              'Deslize o filtro no topo da seção "Exercícios" para percorrer os grupos musculares.'),
           _passo('2', 'Busque um exercício',
               'Digite o nome na barra de busca para encontrar rapidamente o que procura.'),
           _passo('3', 'Explore os detalhes',
@@ -184,13 +211,7 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(child: _cardGrupo(Icons.fitness_center, 'Bíceps', '10 exercícios', 'BICEPS')),
-            const SizedBox(width: 10),
-            Expanded(child: _cardGrupo(Icons.fitness_center, 'Tríceps', '10 exercícios', 'TRICEPS')),
-          ],
-        ),
+        _buildGradeGrupos(),
         const SizedBox(height: 10),
         Row(
           children: [
@@ -203,10 +224,41 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Card clicável para Bíceps/Tríceps
-  Widget _cardGrupo(IconData icone, String titulo, String subtitulo, String grupo) {
+  // Grade de dois cards por linha com todos os grupos musculares
+  Widget _buildGradeGrupos() {
+    const grupos = GrupoMuscular.todos;
+    final linhas = <Widget>[];
+
+    for (var i = 0; i < grupos.length; i += 2) {
+      final direita = i + 1 < grupos.length ? grupos[i + 1] : null;
+
+      linhas.add(Padding(
+        padding: EdgeInsets.only(bottom: i + 2 < grupos.length ? 10 : 0),
+        child: Row(
+          children: [
+            Expanded(child: _cardGrupo(grupos[i])),
+            const SizedBox(width: 10),
+            // Mantém a largura das colunas quando a última linha tem um só card
+            Expanded(
+              child: direita == null ? const SizedBox.shrink() : _cardGrupo(direita),
+            ),
+          ],
+        ),
+      ));
+    }
+
+    return Column(children: linhas);
+  }
+
+  // Card clicável de grupo muscular
+  Widget _cardGrupo(GrupoMuscular grupo) {
+    final total = _contagem[grupo.codigo] ?? 0;
+    final subtitulo = _carregandoContagem
+        ? '...'
+        : '$total ${total == 1 ? 'exercício' : 'exercícios'}';
+
     return GestureDetector(
-      onTap: () => onNavegar(grupo),
+      onTap: () => widget.onNavegar(grupo.codigo),
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
@@ -216,13 +268,13 @@ class HomeScreen extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icone, color: Colors.white, size: 22),
+            Icon(grupo.icone, color: Colors.white, size: 22),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(titulo,
+                  Text(grupo.label,
                       style: const TextStyle(
                           color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700)),
                   Text(subtitulo,

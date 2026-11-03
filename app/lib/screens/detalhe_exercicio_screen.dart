@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/exercicio.dart';
+import '../models/grupo_muscular.dart';
 import 'sugestoes_screen.dart';
 
 class DetalheExercicioScreen extends StatefulWidget {
@@ -95,7 +96,7 @@ class _DetalheExercicioScreenState extends State<DetalheExercicioScreen>
             _secao('Sobre o exercício', ex.descricao),
             const SizedBox(height: 16),
 
-            _chip('Músculo alvo', ex.musculoPrimario == 'BICEPS' ? 'Bíceps' : 'Tríceps'),
+            _chip('Músculo alvo', GrupoMuscular.labelDe(ex.musculoPrimario)),
             const SizedBox(height: 16),
 
             _secaoListaCapitalizada('Equipamento', ex.equipamento),

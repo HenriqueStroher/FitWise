@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/exercicio.dart';
+import '../models/grupo_muscular.dart';
 import '../services/recomendacao_service.dart';
 import '../services/exercicio_service.dart';
 import 'detalhe_exercicio_screen.dart';
@@ -133,7 +134,7 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              ex.musculoPrimario == 'BICEPS' ? 'Bíceps' : 'Tríceps',
+              GrupoMuscular.labelDe(ex.musculoPrimario),
               style: const TextStyle(color: Colors.white70, fontSize: 11, fontWeight: FontWeight.w600),
             ),
           ),

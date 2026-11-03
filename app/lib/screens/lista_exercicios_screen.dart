@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/exercicio.dart';
+import '../models/grupo_muscular.dart';
 import '../services/exercicio_service.dart';
 import 'detalhe_exercicio_screen.dart';
 
@@ -18,8 +19,14 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen>
 
   List<Exercicio> _exercicios = [];
   List<Exercicio> _exerciciosFiltrados = [];
-  String _grupoSelecionado = 'BICEPS';
+  String _grupoSelecionado = GrupoMuscular.codigoPadrao;
   bool _carregando = true;
+
+  // Uma chave por chip, para trazer o grupo selecionado para a área visível
+  // quando a troca vem da tela inicial e não de um toque no próprio filtro.
+  final Map<String, GlobalKey> _chavesGrupo = {
+    for (final grupo in GrupoMuscular.todos) grupo.codigo: GlobalKey(),
+  };
 
   static const _bgPrimary = Color(0xFF111111);
   static const _bgCard    = Color(0xFF1C1C1C);
@@ -46,7 +53,20 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen>
     if (_grupoSelecionado == grupo) return;
     setState(() => _grupoSelecionado = grupo);
     _buscaController.clear();
+    _revelarGrupoSelecionado();
     _carregarExercicios();
+  }
+
+  void _revelarGrupoSelecionado() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final contexto = _chavesGrupo[_grupoSelecionado]?.currentContext;
+      if (contexto == null) return;
+      Scrollable.ensureVisible(
+        contexto,
+        alignment: 0.5,
+        duration: const Duration(milliseconds: 250),
+      );
+    });
   }
 
   Future<void> _carregarExercicios() async {
@@ -84,37 +104,43 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen>
   Widget _buildFiltroGrupo() {
     return Container(
       color: const Color(0xFF0A0A0A),
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-      child: Row(
-        children: [
-          _botaoGrupo('BICEPS', 'Bíceps'),
-          const SizedBox(width: 10),
-          _botaoGrupo('TRICEPS', 'Tríceps'),
-        ],
+      padding: const EdgeInsets.only(top: 8, bottom: 12),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            for (final grupo in GrupoMuscular.todos)
+              Padding(
+                padding: EdgeInsets.only(
+                  right: grupo == GrupoMuscular.todos.last ? 0 : 8,
+                ),
+                child: _botaoGrupo(grupo),
+              ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _botaoGrupo(String grupo, String label) {
-    final selecionado = _grupoSelecionado == grupo;
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => mudarGrupo(grupo),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            color: selecionado ? Colors.white : const Color(0xFF2A2A2A),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: selecionado ? Colors.black : Colors.white54,
-              fontWeight: selecionado ? FontWeight.w700 : FontWeight.w500,
-              fontSize: 14,
-            ),
+  Widget _botaoGrupo(GrupoMuscular grupo) {
+    final selecionado = _grupoSelecionado == grupo.codigo;
+    return GestureDetector(
+      key: _chavesGrupo[grupo.codigo],
+      onTap: () => mudarGrupo(grupo.codigo),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        decoration: BoxDecoration(
+          color: selecionado ? Colors.white : const Color(0xFF2A2A2A),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          grupo.label,
+          style: TextStyle(
+            color: selecionado ? Colors.black : Colors.white54,
+            fontWeight: selecionado ? FontWeight.w700 : FontWeight.w500,
+            fontSize: 14,
           ),
         ),
       ),
