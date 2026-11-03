@@ -44,8 +44,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/cable-crossover-1.png",
-        "_images/web/cable-crossover-2.png"
+        "_images/web/cable-crossover-1.webp",
+        "_images/web/cable-crossover-2.webp"
       ],
       "steps": [
         "Ajuste as polias do cabo na altura dos ombros.",
@@ -82,8 +82,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/incline-dumbbell-flys-1.png",
-        "_images/web/incline-dumbbell-flys-2.png"
+        "_images/web/incline-dumbbell-flys-1.webp",
+        "_images/web/incline-dumbbell-flys-2.webp"
       ],
       "steps": [
         "Deite em um banco inclinado a 45 graus, com um haltere em cada mão e os pés firmes no chão.",
@@ -120,8 +120,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/dumbbell-flys-1.png",
-        "_images/web/dumbbell-flys-2.png"
+        "_images/web/dumbbell-flys-1.webp",
+        "_images/web/dumbbell-flys-2.webp"
       ],
       "steps": [
         "Deite em um banco reto com um haltere em cada mão e os pés firmes no chão.",
@@ -158,8 +158,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/push-ups-1.png",
-        "_images/web/push-ups-2.png"
+        "_images/web/push-ups-1.webp",
+        "_images/web/push-ups-2.webp"
       ],
       "steps": [
         "Comece na flexão básica: deite de bruços no chão ou em um colchonete, com os pés juntos e levemente flexionados, apoiando-se na ponta dos pés.",
@@ -199,8 +199,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/decline-barbell-bench-press-1.png",
-        "_images/web/decline-barbell-bench-press-2.png"
+        "_images/web/decline-barbell-bench-press-1.webp",
+        "_images/web/decline-barbell-bench-press-2.webp"
       ],
       "steps": [
         "Deite em um banco declinado, com a cabeça mais baixa que os pés.",
@@ -238,8 +238,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/incline-bench-press-1.png",
-        "_images/web/incline-bench-press-2.png"
+        "_images/web/incline-bench-press-1.webp",
+        "_images/web/incline-bench-press-2.webp"
       ],
       "steps": [
         "Deite em um banco inclinado a 45 graus, com os pés afastados na largura dos ombros.",
@@ -278,8 +278,8 @@
         "banco_inclinado"
       ],
       "frames": [
-        "_images/web/dumbbell-incline-bench-press-1.png",
-        "_images/web/dumbbell-incline-bench-press-2.png"
+        "_images/web/dumbbell-incline-bench-press-1.webp",
+        "_images/web/dumbbell-incline-bench-press-2.webp"
       ],
       "steps": [
         "Deite em um banco inclinado ajustado a 45 graus.",
@@ -316,8 +316,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/bench-press-1.png",
-        "_images/web/bench-press-2.png"
+        "_images/web/bench-press-1.webp",
+        "_images/web/bench-press-2.webp"
       ],
       "steps": [
         "Deite em um banco reto com os pés apoiados no chão e mantenha as costas apoiadas no banco.",
@@ -356,8 +356,8 @@
         "banco_reto"
       ],
       "frames": [
-        "_images/web/bench-press-dumbbell-1.png",
-        "_images/web/bench-press-dumbbell-2.png"
+        "_images/web/bench-press-dumbbell-1.webp",
+        "_images/web/bench-press-dumbbell-2.webp"
       ],
       "steps": [
         "Este é um exercício para fortalecimento do peitoral, do tríceps e dos ombros.",
@@ -394,8 +394,8 @@
         "maquina_voador"
       ],
       "frames": [
-        "_images/web/butterfly-machine-1.png",
-        "_images/web/butterfly-machine-2.png"
+        "_images/web/butterfly-machine-1.webp",
+        "_images/web/butterfly-machine-2.webp"
       ],
       "steps": [
         "Ajuste a máquina para que você fique sentado com as almofadas na altura do peito.",
@@ -433,8 +433,8 @@
         "barra_fixa"
       ],
       "frames": [
-        "_images/web/pull-ups-1.png",
-        "_images/web/pull-ups-2.png"
+        "_images/web/pull-ups-1.webp",
+        "_images/web/pull-ups-2.webp"
       ],
       "steps": [
         "Segure a barra fixa com as palmas voltadas para frente, usando a largura de pegada escolhida.",
@@ -474,8 +474,8 @@
         "barra_fixa"
       ],
       "frames": [
-        "_images/web/chin-ups-1.png",
-        "_images/web/chin-ups-2.png"
+        "_images/web/chin-ups-1.webp",
+        "_images/web/chin-ups-2.webp"
       ],
       "steps": [
         "Segure a barra com pegada supinada, ou seja, com as palmas voltadas para você.",
@@ -508,8 +508,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/barbell-shrugs-1.png",
-        "_images/web/barbell-shrugs-2.png"
+        "_images/web/barbell-shrugs-1.webp",
+        "_images/web/barbell-shrugs-2.webp"
       ],
       "steps": [
         "Fique em pé com o abdômen contraído e as costas retas.",
@@ -544,8 +544,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/shoulder-shrugs-1.png",
-        "_images/web/shoulder-shrugs-2.png"
+        "_images/web/shoulder-shrugs-1.webp",
+        "_images/web/shoulder-shrugs-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros e os joelhos levemente flexionados.",
@@ -582,8 +582,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/wide-grip-lat-pull-down-1.png",
-        "_images/web/wide-grip-lat-pull-down-2.png"
+        "_images/web/wide-grip-lat-pull-down-1.webp",
+        "_images/web/wide-grip-lat-pull-down-2.webp"
       ],
       "steps": [
         "Sente-se no pulley equipado com a barra longa.",
@@ -619,8 +619,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/underhand-pull-down-1.png",
-        "_images/web/underhand-pull-down-2.png"
+        "_images/web/underhand-pull-down-1.webp",
+        "_images/web/underhand-pull-down-2.webp"
       ],
       "steps": [
         "Sentado com o tronco ereto e o abdômen contraído, segure a barra do pulley com pegada supinada, na largura dos ombros.",
@@ -656,8 +656,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/v-bar-pull-down-1.png",
-        "_images/web/v-bar-pull-down-2.png"
+        "_images/web/v-bar-pull-down-1.webp",
+        "_images/web/v-bar-pull-down-2.webp"
       ],
       "steps": [
         "Prenda o triângulo na polia alta do aparelho de cabo.",
@@ -694,8 +694,8 @@
         "maquina_t_bar"
       ],
       "frames": [
-        "_images/web/t-bar-rows-1.png",
-        "_images/web/t-bar-rows-2.png"
+        "_images/web/t-bar-rows-1.webp",
+        "_images/web/t-bar-rows-2.webp"
       ],
       "steps": [
         "Posicione os pés um de cada lado da barra T.",
@@ -731,8 +731,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/reverse-grips-bent-over-barbell-rows-1.png",
-        "_images/web/reverse-grips-bent-over-barbell-rows-2.png"
+        "_images/web/reverse-grips-bent-over-barbell-rows-1.webp",
+        "_images/web/reverse-grips-bent-over-barbell-rows-2.webp"
       ],
       "steps": [
         "Incline o tronco sobre a barra, com os joelhos flexionados e as costas retas.",
@@ -769,8 +769,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/seated-cable-rows-1.png",
-        "_images/web/seated-cable-rows-2.png"
+        "_images/web/seated-cable-rows-1.webp",
+        "_images/web/seated-cable-rows-2.webp"
       ],
       "steps": [
         "Sente-se no aparelho de polia baixa com os pés apoiados no suporte e os joelhos levemente flexionados.",
@@ -806,8 +806,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/arnold-press-1.png",
-        "_images/web/arnold-press-2.png"
+        "_images/web/arnold-press-1.webp",
+        "_images/web/arnold-press-2.webp"
       ],
       "steps": [
         "Sente-se em um banco reto, com os pés apontados para frente e o abdômen contraído.",
@@ -845,8 +845,8 @@
         "banco"
       ],
       "frames": [
-        "_images/web/seated-military-press-1.png",
-        "_images/web/seated-military-press-2.png"
+        "_images/web/seated-military-press-1.webp",
+        "_images/web/seated-military-press-2.webp"
       ],
       "steps": [
         "Sente-se no banco com os pés apontados para frente, as costas retas e o abdômen contraído.",
@@ -882,8 +882,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/barbell-shoulder-press-1.png",
-        "_images/web/barbell-shoulder-press-2.png"
+        "_images/web/barbell-shoulder-press-1.webp",
+        "_images/web/barbell-shoulder-press-2.webp"
       ],
       "steps": [
         "Sentado em um banco com suporte para barra, segure a barra com uma pegada de 8 a 10 cm mais aberta que a largura dos ombros.",
@@ -919,8 +919,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/dumbbell-shoulder-press-1.png",
-        "_images/web/dumbbell-shoulder-press-2.png"
+        "_images/web/dumbbell-shoulder-press-1.webp",
+        "_images/web/dumbbell-shoulder-press-2.webp"
       ],
       "steps": [
         "Sentado em um banco, com o abdômen contraído, segure um haltere em cada mão com as palmas voltadas para frente.",
@@ -957,8 +957,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/seated-shoulder-press-machine-1.png",
-        "_images/web/seated-shoulder-press-machine-2.png"
+        "_images/web/seated-shoulder-press-machine-1.webp",
+        "_images/web/seated-shoulder-press-machine-2.webp"
       ],
       "steps": [
         "Sente-se com o tronco ereto, as costas apoiadas no encosto e o abdômen contraído.",
@@ -993,8 +993,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/front-raises-1.png",
-        "_images/web/front-raises-2.png"
+        "_images/web/front-raises-1.webp",
+        "_images/web/front-raises-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros, o abdômen contraído e os joelhos levemente flexionados.",
@@ -1032,8 +1032,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/bent-over-lateral-cable-raises-1.png",
-        "_images/web/bent-over-lateral-cable-raises-2.png"
+        "_images/web/bent-over-lateral-cable-raises-1.webp",
+        "_images/web/bent-over-lateral-cable-raises-2.webp"
       ],
       "steps": [
         "Segure o pegador da polia baixa com a mão direita.",
@@ -1071,8 +1071,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/lateral-dumbbell-raises-1.png",
-        "_images/web/lateral-dumbbell-raises-2.png"
+        "_images/web/lateral-dumbbell-raises-1.webp",
+        "_images/web/lateral-dumbbell-raises-2.webp"
       ],
       "steps": [
         "Segure um haltere em cada mão, com as palmas voltadas para o corpo e os halteres ao lado do tronco.",
@@ -1111,8 +1111,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/rear-deltoid-row-dumbbell-1.png",
-        "_images/web/rear-deltoid-row-dumbbell-2.png"
+        "_images/web/rear-deltoid-row-dumbbell-1.webp",
+        "_images/web/rear-deltoid-row-dumbbell-2.webp"
       ],
       "steps": [
         "Apoie o pé direito no chão e o joelho e a mão esquerdos em um banco reto.",
@@ -1151,8 +1151,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/upright-barbell-rows-1.png",
-        "_images/web/upright-barbell-rows-2.png"
+        "_images/web/upright-barbell-rows-1.webp",
+        "_images/web/upright-barbell-rows-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros, o abdômen contraído e as costas retas.",
@@ -1189,8 +1189,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/alternating-biceps-curl-with-dumbbell-1.png",
-        "_images/web/alternating-biceps-curl-with-dumbbell-2.png"
+        "_images/web/alternating-biceps-curl-with-dumbbell-1.webp",
+        "_images/web/alternating-biceps-curl-with-dumbbell-2.webp"
       ],
       "steps": [
         "Passos",
@@ -1228,8 +1228,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/concentration-curls-with-dumbbell-1.png",
-        "_images/web/concentration-curls-with-dumbbell-2.png"
+        "_images/web/concentration-curls-with-dumbbell-1.webp",
+        "_images/web/concentration-curls-with-dumbbell-2.webp"
       ],
       "steps": [
         "Sente-se na extremidade de um banco plano com os pés apoiados no chão e as pernas afastadas.",
@@ -1267,8 +1267,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/biceps-curls-with-barbell-1.png",
-        "_images/web/biceps-curls-with-barbell-2.png"
+        "_images/web/biceps-curls-with-barbell-1.webp",
+        "_images/web/biceps-curls-with-barbell-2.webp"
       ],
       "steps": [
         "Este é um exercício básico para o bíceps (braços).",
@@ -1303,8 +1303,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/incline-inner-biceps-curl-with-dumbbell-2-1.png",
-        "_images/web/incline-inner-biceps-curl-with-dumbbell-2-2.png"
+        "_images/web/incline-inner-biceps-curl-with-dumbbell-2-1.webp",
+        "_images/web/incline-inner-biceps-curl-with-dumbbell-2-2.webp"
       ],
       "steps": [
         "Este exercício utiliza um banco inclinado e rotação para alterar a posição do seu corpo enquanto executa rosca direta de bíceps. O movimento é muito similar ao rosca Scott.",
@@ -1340,8 +1340,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/hammer-curls-with-rope-and-cable-1.png",
-        "_images/web/hammer-curls-with-rope-and-cable-2.png"
+        "_images/web/hammer-curls-with-rope-and-cable-1.webp",
+        "_images/web/hammer-curls-with-rope-and-cable-2.webp"
       ],
       "steps": [
         "Usar a corda com a máquina de cabo permite isolar o bíceps nesta versão do Rosca Martelo. Este é um bom exercício para iniciantes.",
@@ -1375,8 +1375,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/preacher-curl-with-barbell-1.png",
-        "_images/web/preacher-curl-with-barbell-2.png"
+        "_images/web/preacher-curl-with-barbell-1.webp",
+        "_images/web/preacher-curl-with-barbell-2.webp"
       ],
       "steps": [
         "Ajuste o assento do banco de modo que seus braços fiquem no nível do topo do banco.",
@@ -1413,8 +1413,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/ez-bar-curl-with-barbell-1.png",
-        "_images/web/ez-bar-curl-with-barbell-2.png"
+        "_images/web/ez-bar-curl-with-barbell-1.webp",
+        "_images/web/ez-bar-curl-with-barbell-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros e os joelhos ligeiramente flexionados.",
@@ -1450,8 +1450,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/biceps-curl-with-dumbbell-1.png",
-        "_images/web/biceps-curl-with-dumbbell-2.png"
+        "_images/web/biceps-curl-with-dumbbell-1.webp",
+        "_images/web/biceps-curl-with-dumbbell-2.webp"
       ],
       "steps": [
         "Posicione-se com os pés afastados na largura dos ombros, joelhos ligeiramente flexionados e abdominais contraídos.",
@@ -1488,8 +1488,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/seated-biceps-curl-with-dumbbell-1.png",
-        "_images/web/seated-biceps-curl-with-dumbbell-2.png"
+        "_images/web/seated-biceps-curl-with-dumbbell-1.webp",
+        "_images/web/seated-biceps-curl-with-dumbbell-2.webp"
       ],
       "steps": [
         "Sente-se no banco com os pés firmemente apoiados no chão e as costas retas.",
@@ -1526,8 +1526,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/standing-biceps-curl-with-cable-1.png",
-        "_images/web/standing-biceps-curl-with-cable-2.png"
+        "_images/web/standing-biceps-curl-with-cable-1.webp",
+        "_images/web/standing-biceps-curl-with-cable-2.webp"
       ],
       "steps": [
         "Prenda uma barra curta a uma polia de cabo na base da pilha de pesos.",
@@ -1562,8 +1562,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-1.png",
-        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-2.png"
+        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-1.webp",
+        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-2.webp"
       ],
       "steps": [
         "Sente-se na beira de um banco com os pés apoiados no chão.",
@@ -1597,8 +1597,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/standing-triceps-extension-1.png",
-        "_images/web/standing-triceps-extension-2.png"
+        "_images/web/standing-triceps-extension-1.webp",
+        "_images/web/standing-triceps-extension-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros, costas retas e abdômen contraído.",
@@ -1634,8 +1634,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/tricep-dips-1.png",
-        "_images/web/tricep-dips-2.png"
+        "_images/web/tricep-dips-1.webp",
+        "_images/web/tricep-dips-2.webp"
       ],
       "steps": [
         "Ajuste o assento do equipamento de forma que as pegadeiras fiquem alinhadas com seus cotovelos.",
@@ -1670,8 +1670,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/tricep-dips-using-body-weight-1.png",
-        "_images/web/tricep-dips-using-body-weight-2.png"
+        "_images/web/tricep-dips-using-body-weight-1.webp",
+        "_images/web/tricep-dips-using-body-weight-2.webp"
       ],
       "steps": [
         "Agarre as barras paralelas e impulsione-se até a posição inicial.",
@@ -1704,8 +1704,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/triceps-pushdown-with-rope-and-cable-1.png",
-        "_images/web/triceps-pushdown-with-rope-and-cable-2.png"
+        "_images/web/triceps-pushdown-with-rope-and-cable-1.webp",
+        "_images/web/triceps-pushdown-with-rope-and-cable-2.webp"
       ],
       "steps": [
         "Posicione-se à frente da máquina de cabo e acople uma corda a uma polia alta.",
@@ -1740,8 +1740,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/reverse-grip-triceps-pushdown-1.png",
-        "_images/web/reverse-grip-triceps-pushdown-2.png"
+        "_images/web/reverse-grip-triceps-pushdown-1.webp",
+        "_images/web/reverse-grip-triceps-pushdown-2.webp"
       ],
       "steps": [
         "Posicione-se em frente à máquina de cabo e acopla uma barra na polia alta.",
@@ -1775,8 +1775,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/triceps-pushdown-with-cable-1.png",
-        "_images/web/triceps-pushdown-with-cable-2.png"
+        "_images/web/triceps-pushdown-with-cable-1.webp",
+        "_images/web/triceps-pushdown-with-cable-2.webp"
       ],
       "steps": [
         "Posicione-se em frente a um cabo de musculação e fixe uma barra curta em uma polia alta.",
@@ -1813,8 +1813,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/decline-close-grip-bench-to-skull-crusher-1.png",
-        "_images/web/decline-close-grip-bench-to-skull-crusher-2.png"
+        "_images/web/decline-close-grip-bench-to-skull-crusher-1.webp",
+        "_images/web/decline-close-grip-bench-to-skull-crusher-2.webp"
       ],
       "steps": [
         "Deite-se com as costas em um banco plano.",
@@ -1849,8 +1849,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/tate-press-with-dumbbell-1.png",
-        "_images/web/tate-press-with-dumbbell-2.png"
+        "_images/web/tate-press-with-dumbbell-1.webp",
+        "_images/web/tate-press-with-dumbbell-2.webp"
       ],
       "steps": [
         "Deite-se em um banco com a cabeça em uma extremidade e os pés firmemente apoiados no chão.",
@@ -1883,8 +1883,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/triceps-kickback-with-dumbbell-1.png",
-        "_images/web/triceps-kickback-with-dumbbell-2.png"
+        "_images/web/triceps-kickback-with-dumbbell-1.webp",
+        "_images/web/triceps-kickback-with-dumbbell-2.webp"
       ],
       "steps": [
         "Em pé ao lado de um banco plano, flexione o joelho esquerdo e apoie-o no banco.",
@@ -1919,8 +1919,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/air-bike-1.png",
-        "_images/web/air-bike-2.png"
+        "_images/web/air-bike-1.webp",
+        "_images/web/air-bike-2.webp"
       ],
       "steps": [
         "Este exercício trabalha o abdômen levando os braços ao encontro das pernas. O movimento lembra o de pedalar uma bicicleta.",
@@ -1957,8 +1957,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/crunches-1.png",
-        "_images/web/crunches-2.png"
+        "_images/web/crunches-1.webp",
+        "_images/web/crunches-2.webp"
       ],
       "steps": [
         "Este é o exercício abdominal mais comum e, possivelmente, o mais executado de forma incorreta. Veja como fazê-lo corretamente.",
@@ -1993,8 +1993,8 @@
         "bola"
       ],
       "frames": [
-        "_images/web/crunches-with-legs-on-stability-ball-1.png",
-        "_images/web/crunches-with-legs-on-stability-ball-2.png"
+        "_images/web/crunches-with-legs-on-stability-ball-1.webp",
+        "_images/web/crunches-with-legs-on-stability-ball-2.webp"
       ],
       "steps": [
         "Deite de costas e apoie os pés sobre a bola.",
@@ -2028,8 +2028,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/seated-ab-crunch-with-cable-1.png",
-        "_images/web/seated-ab-crunch-with-cable-2.png"
+        "_images/web/seated-ab-crunch-with-cable-1.webp",
+        "_images/web/seated-ab-crunch-with-cable-2.webp"
       ],
       "steps": [
         "Prenda uma corda na polia alta do aparelho de cabo.",
@@ -2066,8 +2066,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/stationary-abdominal-draw-in-1.png",
-        "_images/web/stationary-abdominal-draw-in-2.png"
+        "_images/web/stationary-abdominal-draw-in-1.webp",
+        "_images/web/stationary-abdominal-draw-in-2.webp"
       ],
       "steps": [
         "Fique em quatro apoios sobre um colchonete, com as mãos e os joelhos no chão, formando um retângulo de quatro pontos.",
@@ -2101,8 +2101,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/flat-bench-leg-raises-1.png",
-        "_images/web/flat-bench-leg-raises-2.png"
+        "_images/web/flat-bench-leg-raises-1.webp",
+        "_images/web/flat-bench-leg-raises-2.webp"
       ],
       "steps": [
         "Deite em um banco reto com as mãos sob o quadril, apoiando a lombar.",
@@ -2137,8 +2137,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/bent-knee-hip-raise-1.png",
-        "_images/web/bent-knee-hip-raise-2.png"
+        "_images/web/bent-knee-hip-raise-1.webp",
+        "_images/web/bent-knee-hip-raise-2.webp"
       ],
       "steps": [
         "Deite de costas com os braços estendidos ao lado do corpo.",
@@ -2171,8 +2171,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/side-bend-with-dumbbell-1.png",
-        "_images/web/side-bend-with-dumbbell-2.png"
+        "_images/web/side-bend-with-dumbbell-1.webp",
+        "_images/web/side-bend-with-dumbbell-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros, os joelhos levemente flexionados e o abdômen contraído.",
@@ -2206,8 +2206,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/side-plank-1.png",
-        "_images/web/side-plank-2.png"
+        "_images/web/side-plank-1.webp",
+        "_images/web/side-plank-2.webp"
       ],
       "steps": [
         "Deite sobre um dos lados do corpo, com as pernas estendidas e o antebraço perpendicular ao corpo, à sua frente.",
@@ -2243,8 +2243,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/ab-rollout-on-knees-with-barbell-1.png",
-        "_images/web/ab-rollout-on-knees-with-barbell-2.png"
+        "_images/web/ab-rollout-on-knees-with-barbell-1.webp",
+        "_images/web/ab-rollout-on-knees-with-barbell-2.webp"
       ],
       "steps": [
         "Este exercício trabalha o abdômen e a lombar, e é a versão correta do movimento feito com a roda abdominal. Esta variação é executada de joelhos.",
@@ -2281,8 +2281,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/barbell-good-mornings-1.png",
-        "_images/web/barbell-good-mornings-2.png"
+        "_images/web/barbell-good-mornings-1.webp",
+        "_images/web/barbell-good-mornings-2.webp"
       ],
       "steps": [
         "Apoie uma barra sobre os ombros, atrás do pescoço.",
@@ -2317,8 +2317,8 @@
         "smith"
       ],
       "frames": [
-        "_images/web/smith-machine-good-mornings-1.png",
-        "_images/web/smith-machine-good-mornings-2.png"
+        "_images/web/smith-machine-good-mornings-1.webp",
+        "_images/web/smith-machine-good-mornings-2.webp"
       ],
       "steps": [
         "Apoie a barra do Smith sobre os ombros, atrás do pescoço.",
@@ -2354,8 +2354,8 @@
         "bola"
       ],
       "frames": [
-        "_images/web/back-extension-stability-ball-1.png",
-        "_images/web/back-extension-stability-ball-2.png"
+        "_images/web/back-extension-stability-ball-1.webp",
+        "_images/web/back-extension-stability-ball-2.webp"
       ],
       "steps": [
         "Deite de bruços sobre a bola, com as pontas dos pés firmes no chão para manter o equilíbrio.",
@@ -2391,8 +2391,8 @@
         "banco_romano"
       ],
       "frames": [
-        "_images/web/hyperextensions-1.png",
-        "_images/web/hyperextensions-2.png"
+        "_images/web/hyperextensions-1.webp",
+        "_images/web/hyperextensions-2.webp"
       ],
       "steps": [
         "Ajuste o banco romano de modo que seus tornozelos fiquem presos sob as almofadas e suas coxas apoiadas sobre a almofada superior.",
@@ -2428,8 +2428,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/barbell-dead-lifts-1.png",
-        "_images/web/barbell-dead-lifts-2.png"
+        "_images/web/barbell-dead-lifts-1.webp",
+        "_images/web/barbell-dead-lifts-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros, posicionados sob a barra.",
@@ -2466,8 +2466,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/dumbbell-dead-lifts-1.png",
-        "_images/web/dumbbell-dead-lifts-2.png"
+        "_images/web/dumbbell-dead-lifts-1.webp",
+        "_images/web/dumbbell-dead-lifts-2.webp"
       ],
       "steps": [
         "Segure dois halteres e fique em pé com os pés afastados na largura dos ombros.",
@@ -2506,8 +2506,8 @@
         "smith"
       ],
       "frames": [
-        "_images/web/smith-machine-dead-lifts-1.png",
-        "_images/web/smith-machine-dead-lifts-2.png"
+        "_images/web/smith-machine-dead-lifts-1.webp",
+        "_images/web/smith-machine-dead-lifts-2.webp"
       ],
       "steps": [
         "Fique em pé com os pés afastados na largura dos ombros, posicionados sob a barra.",
@@ -2543,8 +2543,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/supermans-1.png",
-        "_images/web/supermans-2.png"
+        "_images/web/supermans-1.webp",
+        "_images/web/supermans-2.webp"
       ],
       "steps": [
         "Deite de bruços com os braços estendidos à frente do corpo.",
@@ -2582,8 +2582,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/rear-lunges-with-dumbbell-1.png",
-        "_images/web/rear-lunges-with-dumbbell-2.png"
+        "_images/web/rear-lunges-with-dumbbell-1.webp",
+        "_images/web/rear-lunges-with-dumbbell-2.webp"
       ],
       "steps": [
         "Esta é uma versão avançada do afundo.",
@@ -2621,8 +2621,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/front-squat-with-barbell-1.png",
-        "_images/web/front-squat-with-barbell-2.png"
+        "_images/web/front-squat-with-barbell-1.webp",
+        "_images/web/front-squat-with-barbell-2.webp"
       ],
       "steps": [
         "O agachamento frontal trabalha os mesmos músculos do agachamento tradicional sem apoiar o peso da barra sobre os ombros, atrás do pescoço. Pode ser um bom substituto para quem tem lesões nas costas ou no pescoço.",
@@ -2660,8 +2660,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/hack-squat-machine-1.png",
-        "_images/web/hack-squat-machine-2.png"
+        "_images/web/hack-squat-machine-1.webp",
+        "_images/web/hack-squat-machine-2.webp"
       ],
       "steps": [
         "Este exercício é uma variação do agachamento feita em máquina, e pode ser a opção preferida por iniciantes.",
@@ -2699,8 +2699,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/barbell-squat-1.png",
-        "_images/web/barbell-squat-2.png"
+        "_images/web/barbell-squat-1.webp",
+        "_images/web/barbell-squat-2.webp"
       ],
       "steps": [
         "Este é um exercício para fortalecimento das pernas, principalmente do quadríceps.",
@@ -2738,8 +2738,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/squats-using-dumbbells-1.png",
-        "_images/web/squats-using-dumbbells-2.png"
+        "_images/web/squats-using-dumbbells-1.webp",
+        "_images/web/squats-using-dumbbells-2.webp"
       ],
       "steps": [
         "Este é um ótimo exercício geral para os membros inferiores, que usa halteres em vez de barra. Iniciantes podem achar esta versão mais fácil de executar.",
@@ -2779,8 +2779,8 @@
         "smith"
       ],
       "frames": [
-        "_images/web/smith-machine-squats-1.png",
-        "_images/web/smith-machine-squats-2.png"
+        "_images/web/smith-machine-squats-1.webp",
+        "_images/web/smith-machine-squats-2.webp"
       ],
       "steps": [
         "Este exercício usa o Smith para trabalhar quadríceps, isquiotibiais, panturrilhas e glúteos. É um ótimo exercício geral para os membros inferiores. Existem muitas variações do agachamento; esta é a versão tradicional feita no Smith, que oferece uma trajetória mais estável.",
@@ -2816,8 +2816,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/leg-extensions-1.png",
-        "_images/web/leg-extensions-2.png"
+        "_images/web/leg-extensions-1.webp",
+        "_images/web/leg-extensions-2.webp"
       ],
       "steps": [
         "Ajuste o assento de modo que os joelhos tenham amplitude completa de movimento e que a almofada fique sobre as pernas, logo acima dos tornozelos.",
@@ -2854,8 +2854,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/leg-press-1.png",
-        "_images/web/leg-press-2.png"
+        "_images/web/leg-press-1.webp",
+        "_images/web/leg-press-2.webp"
       ],
       "steps": [
         "Junto com o agachamento, este exercício é fundamental para construir e fortalecer as pernas.",
@@ -2892,8 +2892,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/narrow-stance-leg-press-1.png",
-        "_images/web/narrow-stance-leg-press-2.png"
+        "_images/web/narrow-stance-leg-press-1.webp",
+        "_images/web/narrow-stance-leg-press-2.webp"
       ],
       "steps": [
         "Esta é uma variação do leg press que recruta mais a porção externa das pernas, aproximando os pés um do outro.",
@@ -2931,9 +2931,9 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/step-ups-with-dumbbells-1.png",
-        "_images/web/step-ups-with-dumbbells-2.png",
-        "_images/web/step-ups-with-dumbbells-3.png"
+        "_images/web/step-ups-with-dumbbells-1.webp",
+        "_images/web/step-ups-with-dumbbells-2.webp",
+        "_images/web/step-ups-with-dumbbells-3.webp"
       ],
       "steps": [
         "Posicione um banco, caixa ou step à sua frente.",
@@ -2973,10 +2973,10 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/walking-lunges-1.png",
-        "_images/web/walking-lunges-2.png",
-        "_images/web/walking-lunges-3.png",
-        "_images/web/walking-lunges-4.png"
+        "_images/web/walking-lunges-1.webp",
+        "_images/web/walking-lunges-2.webp",
+        "_images/web/walking-lunges-3.webp",
+        "_images/web/walking-lunges-4.webp"
       ],
       "steps": [
         "Comece apoiando uma barra sobre a parte alta das costas ou segurando um haltere em cada mão.",
@@ -3015,8 +3015,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/barbell-lunges-1.png",
-        "_images/web/barbell-lunges-2.png"
+        "_images/web/barbell-lunges-1.webp",
+        "_images/web/barbell-lunges-2.webp"
       ],
       "steps": [
         "Comece apoiando uma barra sobre a parte alta das costas, com uma pegada um pouco mais aberta que a largura dos ombros.",
@@ -3055,8 +3055,8 @@
         "haltere"
       ],
       "frames": [
-        "_images/web/dumbbell-lunges-1.png",
-        "_images/web/dumbbell-lunges-2.png"
+        "_images/web/dumbbell-lunges-1.webp",
+        "_images/web/dumbbell-lunges-2.webp"
       ],
       "steps": [
         "Segure um haltere em cada mão.",
@@ -3091,8 +3091,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/jefferson-squats-with-barbell-1.png",
-        "_images/web/jefferson-squats-with-barbell-2.png"
+        "_images/web/jefferson-squats-with-barbell-1.webp",
+        "_images/web/jefferson-squats-with-barbell-2.webp"
       ],
       "steps": [
         "Este é um exercício pouco usado, mas sem dúvida um dos melhores para desenvolver e definir a parte interna das coxas.",
@@ -3126,8 +3126,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/seated-leg-curl-1.png",
-        "_images/web/seated-leg-curl-2.png"
+        "_images/web/seated-leg-curl-1.webp",
+        "_images/web/seated-leg-curl-2.webp"
       ],
       "steps": [
         "Ajuste a máquina de modo que a almofada fique logo acima dos calcanhares.",
@@ -3160,8 +3160,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/standing-leg-curls-1.png",
-        "_images/web/standing-leg-curls-2.png"
+        "_images/web/standing-leg-curls-1.webp",
+        "_images/web/standing-leg-curls-2.webp"
       ],
       "steps": [
         "Em pé na máquina flexora, ajuste a almofada traseira para que fique logo acima do tornozelo.",
@@ -3198,8 +3198,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/romanian-dead-lift-1.png",
-        "_images/web/romanian-dead-lift-2.png"
+        "_images/web/romanian-dead-lift-1.webp",
+        "_images/web/romanian-dead-lift-2.webp"
       ],
       "steps": [
         "Posicione uma barra no chão, à frente dos seus pés.",
@@ -3234,8 +3234,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/lying-leg-curl-machine-1.png",
-        "_images/web/lying-leg-curl-machine-2.png"
+        "_images/web/lying-leg-curl-machine-1.webp",
+        "_images/web/lying-leg-curl-machine-2.webp"
       ],
       "steps": [
         "Deite de bruços na mesa flexora e posicione os calcanhares sob o rolo.",
@@ -3270,8 +3270,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/thigh-abductor-1.png",
-        "_images/web/thigh-abductor-2.png"
+        "_images/web/thigh-abductor-1.webp",
+        "_images/web/thigh-abductor-2.webp"
       ],
       "steps": [
         "Sente-se na máquina e apoie os joelhos contra as almofadas.",
@@ -3306,8 +3306,8 @@
         "cabo"
       ],
       "frames": [
-        "_images/web/one-legged-cable-kickback-1.png",
-        "_images/web/one-legged-cable-kickback-2.png"
+        "_images/web/one-legged-cable-kickback-1.webp",
+        "_images/web/one-legged-cable-kickback-2.webp"
       ],
       "steps": [
         "Em pé junto ao aparelho de cabo, prenda uma caneleira na polia baixa.",
@@ -3342,8 +3342,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/bridging-1.png",
-        "_images/web/bridging-2.png"
+        "_images/web/bridging-1.webp",
+        "_images/web/bridging-2.webp"
       ],
       "steps": [
         "Deite de costas com os joelhos flexionados e os pés apoiados no chão.",
@@ -3376,8 +3376,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/body-leg-lifts-1.png",
-        "_images/web/body-leg-lifts-2.png"
+        "_images/web/body-leg-lifts-1.webp",
+        "_images/web/body-leg-lifts-2.webp"
       ],
       "steps": [
         "Usando um poste ou um banco alto para se equilibrar, fique em pé com o tronco ereto e o abdômen contraído.",
@@ -3410,8 +3410,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/rocking-standing-calf-raise-with-barbell-1.png",
-        "_images/web/rocking-standing-calf-raise-with-barbell-2.png"
+        "_images/web/rocking-standing-calf-raise-with-barbell-1.webp",
+        "_images/web/rocking-standing-calf-raise-with-barbell-2.webp"
       ],
       "steps": [
         "Fique em pé com uma barra apoiada sobre os ombros.",
@@ -3445,8 +3445,8 @@
         "peso_corporal"
       ],
       "frames": [
-        "_images/web/donkey-calf-raises-1.png",
-        "_images/web/donkey-calf-raises-2.png"
+        "_images/web/donkey-calf-raises-1.webp",
+        "_images/web/donkey-calf-raises-2.webp"
       ],
       "steps": [
         "Este é um exercício clássico de academia que exige a ajuda de outra pessoa. É um exercício avançado e não recomendado para iniciantes.",
@@ -3481,8 +3481,8 @@
         "smith"
       ],
       "frames": [
-        "_images/web/smith-machine-reverse-calf-raises-1.png",
-        "_images/web/smith-machine-reverse-calf-raises-2.png"
+        "_images/web/smith-machine-reverse-calf-raises-1.webp",
+        "_images/web/smith-machine-reverse-calf-raises-2.webp"
       ],
       "steps": [
         "Posicione um bloco ou caixa baixa sob a barra do Smith.",
@@ -3516,8 +3516,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/seated-calf-raise-with-barbell-1.png",
-        "_images/web/seated-calf-raise-with-barbell-2.png"
+        "_images/web/seated-calf-raise-with-barbell-1.webp",
+        "_images/web/seated-calf-raise-with-barbell-2.webp"
       ],
       "steps": [
         "Posicione um bloco no chão, cerca de 30 cm à frente de um banco.",
@@ -3549,8 +3549,8 @@
         "barra"
       ],
       "frames": [
-        "_images/web/standing-barbell-calf-raise-1.png",
-        "_images/web/standing-barbell-calf-raise-2.png"
+        "_images/web/standing-barbell-calf-raise-1.webp",
+        "_images/web/standing-barbell-calf-raise-2.webp"
       ],
       "steps": [
         "Posicione um bloco ou duas anilhas no chão.",
@@ -3583,8 +3583,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/standing-calf-raises-using-machine-1.png",
-        "_images/web/standing-calf-raises-using-machine-2.png"
+        "_images/web/standing-calf-raises-using-machine-1.webp",
+        "_images/web/standing-calf-raises-using-machine-2.webp"
       ],
       "steps": [
         "Este exercício usa uma máquina que favorece a execução correta do movimento.",
@@ -3617,8 +3617,8 @@
         "maquina"
       ],
       "frames": [
-        "_images/web/calves-press-on-leg-machine-1.png",
-        "_images/web/calves-press-on-leg-machine-2.png"
+        "_images/web/calves-press-on-leg-machine-1.webp",
+        "_images/web/calves-press-on-leg-machine-2.webp"
       ],
       "steps": [
         "Este exercício usa o leg press para trabalhar as panturrilhas. Você pode executá-lo junto com as séries de leg press.",

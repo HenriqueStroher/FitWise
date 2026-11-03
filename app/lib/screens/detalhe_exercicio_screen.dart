@@ -45,7 +45,7 @@ class _DetalheExercicioScreenState extends State<DetalheExercicioScreen>
 
   String _frameLocalPath(int index) {
     final slug = widget.exercicio.slug;
-    return 'assets/images/$slug-${index + 1}.png';
+    return 'assets/images/$slug-${index + 1}.webp';
   }
 
   String _capitalizar(String texto) {

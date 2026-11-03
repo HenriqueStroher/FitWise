@@ -207,7 +207,7 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen>
   }
 
   Widget _cardExercicio(Exercicio ex) {
-    final imagePath = 'assets/images/${ex.slug}-1.png';
+    final imagePath = 'assets/images/${ex.slug}-1.webp';
 
     return GestureDetector(
       onTap: () => Navigator.push(

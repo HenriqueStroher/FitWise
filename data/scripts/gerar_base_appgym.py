@@ -1524,12 +1524,17 @@ def montar_frames(ex):
     Alguns registros do Everkinetic vêm com `img` vazio mesmo tendo imagem
     publicada. Nesses casos o caminho é derivado do slug, que é o padrão de
     nomenclatura do dataset — o mesmo que a base beta v1 já usava.
+
+    A extensão vira .webp: os assets do app foram convertidos para esse
+    formato (ver converter_imagens_webp.py). O app monta o caminho a partir
+    do slug e usa `frames` só para contar os quadros, mas manter a extensão
+    certa evita que alguém use `frames[i]` e caia num arquivo inexistente.
     """
     img = ex.get("img") or []
-    if len(img) >= 2:
-        return img
-    slug = ex.get("name", "")
-    return [f"_images/web/{slug}-1.png", f"_images/web/{slug}-2.png"]
+    if len(img) < 2:
+        slug = ex.get("name", "")
+        img = [f"_images/web/{slug}-1.png", f"_images/web/{slug}-2.png"]
+    return [re.sub(r"\.png$", ".webp", caminho) for caminho in img]
 
 
 def limpar_steps(steps):

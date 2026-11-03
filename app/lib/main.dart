@@ -81,7 +81,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
-                  'assets/images/logo.png',
+                  'assets/images/logo.webp',
                   fit: BoxFit.contain,
                   errorBuilder: (_, __, ___) => const Icon(
                     Icons.fitness_center,

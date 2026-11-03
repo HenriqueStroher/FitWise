@@ -82,7 +82,7 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
 
   Widget _cardOrigem() {
     final ex = widget.exercicioOrigem;
-    final imagePath = 'assets/images/${ex.slug}-1.png';
+    final imagePath = 'assets/images/${ex.slug}-1.webp';
 
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
@@ -172,7 +172,7 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
   }
 
   Widget _cardSugestao(Exercicio ex, double score) {
-    final imagePath = 'assets/images/${ex.slug}-1.png';
+    final imagePath = 'assets/images/${ex.slug}-1.webp';
     final cor = _corScore(score);
     final label = _labelScore(score);
 
