@@ -1,3 +1,5 @@
+import 'dart:ui' show PointerDeviceKind;
+
 import 'package:flutter/material.dart';
 import '../models/exercicio.dart';
 import '../models/grupo_muscular.dart';
@@ -7,7 +9,7 @@ import '../theme/app_theme.dart';
 import '../widgets/comuns.dart';
 import '../widgets/treino_comuns.dart';
 
-typedef EscolhaExercicio = ({String nome, String? slug});
+typedef EscolhaExercicio = ({String nome, String? slug, TipoRegistro registro});
 
 /// Abre o seletor para trocar um exercício e devolve o escolhido (do
 /// catálogo, com slug, ou um nome livre, sem slug). Nulo se o usuário voltar
@@ -92,6 +94,20 @@ class _SeletorExercicioScreenState extends State<SeletorExercicioScreen> {
     }
   }
 
+  // Uma chave por chip, para centralizar o grupo tocado e revelar os
+  // vizinhos, como no filtro da lista de exercícios
+  final Map<String?, GlobalKey> _chavesGrupo = {
+    null: GlobalKey(),
+    for (final g in GrupoMuscular.todos) g.codigo: GlobalKey(),
+  };
+
+  void _mudarGrupo(String? grupo) {
+    setState(() => _grupo = grupo);
+    final contexto = _chavesGrupo[grupo]?.currentContext;
+    if (contexto == null) return;
+    Scrollable.ensureVisible(contexto, alignment: 0.5, duration: const Duration(milliseconds: 250));
+  }
+
   List<Exercicio> get _filtrados {
     final texto = _busca.text.trim().toLowerCase();
     return _catalogo
@@ -105,8 +121,8 @@ class _SeletorExercicioScreenState extends State<SeletorExercicioScreen> {
   List<MapEntry<String, EscolhaExercicio>> get _personalizadosMarcados =>
       _selecionados.entries.where((e) => e.value.slug == null).toList();
 
-  void _tocar(String nome, String? slug) {
-    final escolha = (nome: nome.trim(), slug: slug);
+  void _tocar(String nome, String? slug, [TipoRegistro registro = TipoRegistro.forca]) {
+    final escolha = (nome: nome.trim(), slug: slug, registro: registro);
     if (!widget.multiplo) {
       Navigator.pop<List<EscolhaExercicio>>(context, [escolha]);
       return;
@@ -187,20 +203,31 @@ class _SeletorExercicioScreenState extends State<SeletorExercicioScreen> {
               const SizedBox(height: 12),
               SizedBox(
                 height: 38,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    ChipOpcao(texto: 'Todos', selecionado: _grupo == null, onTap: () => setState(() => _grupo = null)),
-                    for (final g in GrupoMuscular.todos)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: ChipOpcao(
-                          texto: g.label,
-                          selecionado: _grupo == g.codigo,
-                          onTap: () => setState(() => _grupo = g.codigo),
-                        ),
+                // Na web o Flutter só arrasta listas com toque; aqui o mouse
+                // também arrasta, para alcançar os grupos fora da tela
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(dragDevices: PointerDeviceKind.values.toSet()),
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      ChipOpcao(
+                        key: _chavesGrupo[null],
+                        texto: 'Todos',
+                        selecionado: _grupo == null,
+                        onTap: () => _mudarGrupo(null),
                       ),
-                  ],
+                      for (final g in GrupoMuscular.todos)
+                        Padding(
+                          key: _chavesGrupo[g.codigo],
+                          padding: const EdgeInsets.only(left: 8),
+                          child: ChipOpcao(
+                            texto: g.label,
+                            selecionado: _grupo == g.codigo,
+                            onTap: () => _mudarGrupo(g.codigo),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -259,7 +286,7 @@ class _SeletorExercicioScreenState extends State<SeletorExercicioScreen> {
                           ].join('  ·  '),
                           miniatura: MiniaturaExercicio(slug: ex.slug, nome: ex.nome),
                           ordem: widget.multiplo ? _ordem(ExercicioTreino.chaveDe(ex.nome, ex.slug)) : null,
-                          onTap: () => _tocar(ex.nome, ex.slug),
+                          onTap: () => _tocar(ex.nome, ex.slug, TipoRegistro.de(ex.registro)),
                         ),
                   ],
                 ),

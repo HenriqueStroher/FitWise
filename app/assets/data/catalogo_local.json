@@ -1,0 +1,467 @@
+{
+  "descricao": "Exercícios que ficam dentro do app (não no Firestore): Corrida e Alongamentos. Mesmo formato dos documentos da coleção 'exercicios', mais o campo 'registro', que define o que se anota no treino do dia: 'distancia' (km e tempo), 'intervalado' (vários tiros de km e tempo) ou 'tempo' (segundos por série). Ilustrações geradas por data/scripts/gerar_ilustracoes_extra.py.",
+  "exercicios": [
+    {
+      "id": "local-corrida",
+      "slug": "corrida",
+      "nome": "Corrida",
+      "descricao": "Corrida contínua em ritmo moderado, a base do condicionamento aeróbico.",
+      "musculoPrimario": "CORRIDA",
+      "registro": "distancia",
+      "tipo": "continuo",
+      "musculoSecundario": ["quadriceps", "posterior_coxa", "panturrilha", "gluteos", "core"],
+      "equipamento": [],
+      "frames": ["corrida-1.webp", "corrida-2.webp"],
+      "steps": [
+        "Aqueça com 5 a 10 minutos de caminhada ou trote leve.",
+        "Mantenha o tronco ereto, levemente inclinado à frente, e o olhar no horizonte.",
+        "Corra num ritmo em que ainda consiga conversar em frases curtas.",
+        "Deixe os braços balançarem junto ao corpo, com os cotovelos dobrados em cerca de 90 graus.",
+        "Termine com 5 minutos de caminhada para desacelerar."
+      ],
+      "cuidados": [
+        "Pise com o pé abaixo do corpo, sem esticar demais a passada",
+        "Aumente a distância semanal aos poucos (cerca de 10% por semana)",
+        "Use um tênis adequado e hidrate-se"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.7,
+      "escoreRiscoLesao": 0.25
+    },
+    {
+      "id": "local-tiro",
+      "slug": "tiro",
+      "nome": "Tiro (Intervalado)",
+      "descricao": "Séries de corrida em ritmo forte intercaladas com recuperação, para ganhar velocidade.",
+      "musculoPrimario": "CORRIDA",
+      "registro": "intervalado",
+      "tipo": "intervalado",
+      "musculoSecundario": ["quadriceps", "posterior_coxa", "panturrilha", "gluteos", "core"],
+      "equipamento": [],
+      "frames": ["tiro-1.webp", "tiro-2.webp"],
+      "steps": [
+        "Aqueça com 10 minutos de trote leve e alguns educativos de corrida.",
+        "Corra a distância do tiro (ex.: 400 m) em ritmo forte, mas sustentável até o fim.",
+        "Recupere caminhando ou trotando devagar por 1 a 2 minutos.",
+        "Repita o número de tiros planejado, tentando manter o mesmo pace em todos.",
+        "Desacelere com 5 a 10 minutos de trote leve."
+      ],
+      "cuidados": [
+        "Não comece o primeiro tiro rápido demais",
+        "Respeite a recuperação entre os tiros",
+        "Evite fazer tiros em dias seguidos"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.35
+    },
+    {
+      "id": "local-longao",
+      "slug": "longao",
+      "nome": "Longão",
+      "descricao": "A corrida mais longa da semana, em ritmo confortável, para construir resistência.",
+      "musculoPrimario": "CORRIDA",
+      "registro": "distancia",
+      "tipo": "continuo",
+      "musculoSecundario": ["quadriceps", "posterior_coxa", "panturrilha", "gluteos", "core"],
+      "equipamento": [],
+      "frames": ["longao-1.webp", "longao-2.webp"],
+      "steps": [
+        "Planeje uma distância maior que a das outras corridas da semana.",
+        "Comece devagar: o ritmo deve ser mais lento que o da corrida normal.",
+        "Mantenha um ritmo constante, em que consiga conversar.",
+        "Em longões acima de uma hora, leve água e reponha energia.",
+        "Termine caminhando alguns minutos."
+      ],
+      "cuidados": [
+        "O objetivo é a distância, não a velocidade",
+        "Aumente a distância do longão de forma gradual",
+        "Descanse ou corra leve no dia seguinte"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.65,
+      "escoreRiscoLesao": 0.2
+    },
+    {
+      "id": "local-alongamento-quadriceps-em-pe",
+      "slug": "alongamento-quadriceps-em-pe",
+      "nome": "Alongamento de Quadríceps em Pé",
+      "descricao": "Leva o calcanhar em direção ao glúteo para alongar a parte da frente da coxa.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["quadriceps", "flexores_quadril"],
+      "equipamento": [],
+      "frames": ["alongamento-quadriceps-em-pe-1.webp", "alongamento-quadriceps-em-pe-2.webp"],
+      "steps": [
+        "Fique em pé, apoiado numa parede ou com o outro braço à frente para equilibrar.",
+        "Dobre um joelho e segure o tornozelo com a mão do mesmo lado.",
+        "Puxe o calcanhar em direção ao glúteo, mantendo os joelhos alinhados.",
+        "Mantenha a posição de 20 a 30 segundos e troque de perna."
+      ],
+      "cuidados": [
+        "Não arqueie a lombar",
+        "Mantenha o joelho apontado para o chão",
+        "Sinta o alongamento, não dor"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.3,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-isquiotibiais-em-pe",
+      "slug": "alongamento-isquiotibiais-em-pe",
+      "nome": "Alongamento de Posterior em Pé",
+      "descricao": "Flexão do tronco à frente com as pernas estendidas para alongar a parte de trás da coxa.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["posterior_coxa", "lombar", "panturrilha"],
+      "equipamento": [],
+      "frames": ["alongamento-isquiotibiais-em-pe-1.webp", "alongamento-isquiotibiais-em-pe-2.webp"],
+      "steps": [
+        "Fique em pé com os pés afastados na largura do quadril.",
+        "Incline o tronco à frente a partir do quadril, deixando os braços caírem.",
+        "Mantenha os joelhos estendidos ou levemente flexionados.",
+        "Fique de 20 a 30 segundos e suba devagar."
+      ],
+      "cuidados": [
+        "Não force o tronco com movimentos de balanço",
+        "Flexione um pouco os joelhos se sentir a lombar",
+        "Suba devagar para evitar tontura"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.3,
+      "escoreRiscoLesao": 0.1
+    },
+    {
+      "id": "local-alongamento-posterior-sentado",
+      "slug": "alongamento-posterior-sentado",
+      "nome": "Alongamento de Posterior Sentado",
+      "descricao": "Sentado com as pernas estendidas, leva o tronco em direção aos pés.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["posterior_coxa", "lombar", "panturrilha"],
+      "equipamento": [],
+      "frames": ["alongamento-posterior-sentado-1.webp", "alongamento-posterior-sentado-2.webp"],
+      "steps": [
+        "Sente-se no chão com as pernas estendidas e juntas.",
+        "Com a coluna alongada, incline o tronco à frente a partir do quadril.",
+        "Leve as mãos em direção aos pés até sentir o alongamento.",
+        "Mantenha de 20 a 30 segundos, respirando fundo."
+      ],
+      "cuidados": [
+        "Pense em levar o peito aos joelhos, não a cabeça",
+        "Não curve demais as costas",
+        "Evite movimentos de balanço"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.3,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-panturrilha-na-parede",
+      "slug": "alongamento-panturrilha-na-parede",
+      "nome": "Alongamento de Panturrilha na Parede",
+      "descricao": "Com as mãos na parede e uma perna atrás, alonga a panturrilha da perna de trás.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["panturrilha"],
+      "equipamento": ["parede"],
+      "frames": ["alongamento-panturrilha-na-parede-1.webp", "alongamento-panturrilha-na-parede-2.webp"],
+      "steps": [
+        "Fique de frente para a parede e apoie as mãos na altura dos ombros.",
+        "Leve uma perna para trás, com o calcanhar no chão e o joelho estendido.",
+        "Flexione o joelho da frente e incline o corpo em direção à parede.",
+        "Mantenha de 20 a 30 segundos e troque de perna."
+      ],
+      "cuidados": [
+        "Mantenha o calcanhar de trás sempre no chão",
+        "Pés apontados para a frente",
+        "Avance aos poucos até sentir o alongamento"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.3,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-flexor-quadril",
+      "slug": "alongamento-flexor-quadril",
+      "nome": "Alongamento de Flexores do Quadril",
+      "descricao": "Em posição de afundo com um joelho no chão, empurra o quadril à frente.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["flexores_quadril", "quadriceps"],
+      "equipamento": [],
+      "frames": ["alongamento-flexor-quadril-1.webp", "alongamento-flexor-quadril-2.webp"],
+      "steps": [
+        "Ajoelhe-se com uma perna à frente, joelho dobrado a 90 graus.",
+        "Mantenha o tronco ereto e contraia o glúteo da perna de trás.",
+        "Empurre o quadril suavemente à frente e eleve os braços.",
+        "Mantenha de 20 a 30 segundos e troque de lado."
+      ],
+      "cuidados": [
+        "Use um apoio macio sob o joelho",
+        "Não deixe o joelho da frente passar muito da ponta do pé",
+        "Evite arquear a lombar"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.3,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-gluteo-deitado",
+      "slug": "alongamento-gluteo-deitado",
+      "nome": "Alongamento de Glúteo Deitado",
+      "descricao": "Deitado de costas, puxa um joelho em direção ao peito para alongar glúteo e lombar.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["gluteos", "lombar"],
+      "equipamento": [],
+      "frames": ["alongamento-gluteo-deitado-1.webp", "alongamento-gluteo-deitado-2.webp"],
+      "steps": [
+        "Deite-se de costas com as pernas estendidas.",
+        "Dobre um joelho e abrace-o com as duas mãos.",
+        "Puxe o joelho em direção ao peito, mantendo a outra perna no chão.",
+        "Mantenha de 20 a 30 segundos e troque de perna."
+      ],
+      "cuidados": [
+        "Mantenha a cabeça e os ombros relaxados no chão",
+        "Puxe com suavidade",
+        "Respire fundo durante o alongamento"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.25,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-lombar-postura-crianca",
+      "slug": "alongamento-lombar-postura-crianca",
+      "nome": "Postura da Criança",
+      "descricao": "Sentado sobre os calcanhares, estende os braços à frente para alongar costas e lombar.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["lombar", "costas", "ombros"],
+      "equipamento": [],
+      "frames": ["alongamento-lombar-postura-crianca-1.webp", "alongamento-lombar-postura-crianca-2.webp"],
+      "steps": [
+        "Comece em quatro apoios, com as mãos sob os ombros e os joelhos sob o quadril.",
+        "Leve o quadril para trás até sentar sobre os calcanhares.",
+        "Estenda os braços à frente e apoie a testa no chão.",
+        "Relaxe e respire fundo por 30 a 60 segundos."
+      ],
+      "cuidados": [
+        "Afaste os joelhos se o abdômen ficar apertado",
+        "Não force se sentir dor nos joelhos",
+        "Deixe os ombros relaxarem"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.2,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-gato-vaca",
+      "slug": "alongamento-gato-vaca",
+      "nome": "Gato e Vaca",
+      "descricao": "Alterna arredondar e arquear as costas em quatro apoios para mobilizar a coluna.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "dinamico",
+      "musculoSecundario": ["lombar", "costas", "core"],
+      "equipamento": [],
+      "frames": ["alongamento-gato-vaca-1.webp", "alongamento-gato-vaca-2.webp"],
+      "steps": [
+        "Fique em quatro apoios, mãos sob os ombros e joelhos sob o quadril.",
+        "Gato: arredonde as costas para cima e leve o queixo ao peito, soltando o ar.",
+        "Vaca: deixe a barriga descer, arqueie as costas e olhe para a frente, puxando o ar.",
+        "Alterne entre as duas posições devagar por 30 a 60 segundos."
+      ],
+      "cuidados": [
+        "Movimento lento, acompanhando a respiração",
+        "Mantenha os braços estendidos",
+        "Não force a amplitude"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.25,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-peitoral",
+      "slug": "alongamento-peitoral",
+      "nome": "Alongamento de Peitoral",
+      "descricao": "Entrelaça as mãos atrás do corpo e eleva os braços para abrir o peito.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["peito", "ombros"],
+      "equipamento": [],
+      "frames": ["alongamento-peitoral-1.webp", "alongamento-peitoral-2.webp"],
+      "steps": [
+        "Fique em pé com os braços ao lado do corpo.",
+        "Entrelace as mãos atrás das costas.",
+        "Estenda os cotovelos e eleve as mãos, abrindo o peito e afastando os ombros das orelhas.",
+        "Mantenha de 20 a 30 segundos."
+      ],
+      "cuidados": [
+        "Não incline a cabeça para a frente",
+        "Mantenha o abdômen firme para não arquear a lombar",
+        "Suba os braços só até onde for confortável"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.25,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-ombro-cruzado",
+      "slug": "alongamento-ombro-cruzado",
+      "nome": "Alongamento de Ombro Cruzado",
+      "descricao": "Cruza um braço à frente do peito e o puxa com o outro para alongar o ombro.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["ombros", "costas"],
+      "equipamento": [],
+      "frames": ["alongamento-ombro-cruzado-1.webp", "alongamento-ombro-cruzado-2.webp"],
+      "steps": [
+        "Fique em pé ou sentado com a coluna ereta.",
+        "Leve um braço estendido à frente do peito, na altura do ombro.",
+        "Com o outro braço, puxe-o suavemente em direção ao corpo.",
+        "Mantenha de 20 a 30 segundos e troque de lado."
+      ],
+      "cuidados": [
+        "Não eleve o ombro que está sendo alongado",
+        "Puxe acima ou abaixo do cotovelo, não sobre ele",
+        "Mantenha o tronco de frente"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.2,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-triceps",
+      "slug": "alongamento-triceps",
+      "nome": "Alongamento de Tríceps",
+      "descricao": "Com o cotovelo apontado para cima, leva a mão às costas para alongar o tríceps.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["triceps", "ombros"],
+      "equipamento": [],
+      "frames": ["alongamento-triceps-1.webp", "alongamento-triceps-2.webp"],
+      "steps": [
+        "Eleve um braço e dobre o cotovelo, levando a mão às costas.",
+        "Com a outra mão, segure o cotovelo.",
+        "Puxe o cotovelo suavemente em direção à cabeça.",
+        "Mantenha de 20 a 30 segundos e troque de lado."
+      ],
+      "cuidados": [
+        "Mantenha a cabeça reta, sem empurrá-la para a frente",
+        "Não arqueie a lombar",
+        "Puxe com suavidade"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.2,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-lateral-tronco",
+      "slug": "alongamento-lateral-tronco",
+      "nome": "Alongamento Lateral do Tronco",
+      "descricao": "Inclina o tronco para o lado com um braço acima da cabeça para alongar a lateral do corpo.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["obliquos", "costas"],
+      "equipamento": [],
+      "frames": ["alongamento-lateral-tronco-1.webp", "alongamento-lateral-tronco-2.webp"],
+      "steps": [
+        "Fique em pé com os pés afastados na largura do quadril.",
+        "Eleve um braço acima da cabeça e apoie a outra mão na cintura.",
+        "Incline o tronco para o lado oposto ao braço elevado.",
+        "Mantenha de 20 a 30 segundos e troque de lado."
+      ],
+      "cuidados": [
+        "Incline para o lado, sem girar ou levar o tronco à frente",
+        "Mantenha o quadril parado",
+        "Respire fundo durante o alongamento"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.2,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-pescoco",
+      "slug": "alongamento-pescoco",
+      "nome": "Alongamento Lateral do Pescoço",
+      "descricao": "Inclina a cabeça para o lado com a ajuda da mão para aliviar a tensão do pescoço.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["pescoco", "trapezio"],
+      "equipamento": [],
+      "frames": ["alongamento-pescoco-1.webp", "alongamento-pescoco-2.webp"],
+      "steps": [
+        "Fique em pé ou sentado, com os ombros relaxados.",
+        "Incline a cabeça levando a orelha em direção ao ombro.",
+        "Apoie a mão do mesmo lado sobre a cabeça, sem fazer força.",
+        "Mantenha de 15 a 30 segundos e troque de lado."
+      ],
+      "cuidados": [
+        "Use só o peso da mão, sem puxar",
+        "Não eleve o ombro em direção à orelha",
+        "Pare se sentir formigamento ou tontura"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.15,
+      "escoreRiscoLesao": 0.05
+    },
+    {
+      "id": "local-alongamento-adutores-borboleta",
+      "slug": "alongamento-adutores-borboleta",
+      "nome": "Borboleta (Adutores)",
+      "descricao": "Sentado com as solas dos pés juntas, deixa os joelhos caírem para os lados.",
+      "musculoPrimario": "ALONGAMENTO",
+      "registro": "tempo",
+      "tipo": "estatico",
+      "musculoSecundario": ["adutores", "flexores_quadril"],
+      "equipamento": [],
+      "frames": ["alongamento-adutores-borboleta-1.webp", "alongamento-adutores-borboleta-2.webp"],
+      "steps": [
+        "Sente-se no chão com a coluna ereta.",
+        "Junte as solas dos pés e traga os calcanhares para perto do corpo.",
+        "Segure os pés e deixe os joelhos descerem em direção ao chão.",
+        "Mantenha de 20 a 30 segundos."
+      ],
+      "cuidados": [
+        "Não empurre os joelhos com força",
+        "Mantenha a coluna alongada",
+        "Afaste os pés do corpo se sentir desconforto nos joelhos"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.2,
+      "escoreRiscoLesao": 0.05
+    }
+  ]
+}

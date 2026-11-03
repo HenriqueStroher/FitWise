@@ -129,6 +129,7 @@ class _LinhaSemana extends StatelessWidget {
       '${dias.length} ${dias.length == 1 ? 'dia' : 'dias'}',
       '${semana.totalSeries} séries',
       if (semana.volume > 0) '${FormatoTreino.milhar(semana.volume)} kg de volume',
+      if (semana.distancia > 0) '${FormatoTreino.km(semana.distancia)} corridos',
     ].join('  ·  ');
 
     return Pressionavel(
@@ -233,6 +234,8 @@ class SemanaScreen extends StatelessWidget {
                   NumeroLegenda('${semana.diasTreinados.length}', 'dias treinados'),
                   NumeroLegenda('${semana.totalSeries}', 'séries'),
                   if (semana.volume > 0) NumeroLegenda(FormatoTreino.milhar(semana.volume), 'kg de volume'),
+                  if (semana.distancia > 0)
+                    NumeroLegenda(FormatoTreino.numero(double.parse(semana.distancia.toStringAsFixed(1))), 'km corridos'),
                 ],
               ),
               for (final dia in semana.diasTreinados) ...[
@@ -297,9 +300,50 @@ class _ExercicioRegistrado extends StatelessWidget {
 
   const _ExercicioRegistrado({required this.exercicio, required this.onTap});
 
+  /// Uma série no formato do tipo de registro: "Série 1 · 12 repetições ·
+  /// 20 kg", "Tiro 1 · 0,4 km · 1:40 · 4:10 /km", "Série 1 · 30 s".
+  Widget _linha(int i, SerieRegistro s) {
+    final destaque = AppTexto.titulo(15, peso: FontWeight.w700)
+        .copyWith(fontFeatures: const [FontFeature.tabularFigures()]);
+    final meio = AppTexto.item.copyWith(fontSize: 14, fontWeight: FontWeight.w500);
+
+    final (rotulo, centro, direita) = switch (exercicio.registro) {
+      TipoRegistro.forca => (
+          'Série ${i + 1}',
+          '${s.reps ?? '–'} repetições',
+          s.carga == null ? '– kg' : '${FormatoTreino.numero(s.carga!)} kg',
+        ),
+      TipoRegistro.tempo => ('Série ${i + 1}', '', s.tempo == null ? '– s' : '${s.tempo} s'),
+      TipoRegistro.distancia || TipoRegistro.intervalado => (
+          exercicio.registro == TipoRegistro.intervalado ? 'Tiro ${i + 1}' : 'Corrida',
+          [
+            s.distancia == null ? '– km' : FormatoTreino.km(s.distancia!),
+            s.tempo == null ? '–' : FormatoTreino.duracao(s.tempo!),
+          ].join('  ·  '),
+          s.pace == null ? '–' : FormatoTreino.pace(s.pace!),
+        ),
+    };
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Row(
+        children: [
+          SizedBox(width: 72, child: Text(rotulo, style: AppTexto.meta)),
+          Expanded(child: Text(centro, style: meio)),
+          Text(direita, style: destaque),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final series = exercicio.seriesPreenchidas;
+    final contagem = switch (exercicio.registro) {
+      TipoRegistro.intervalado => '${series.length} ${series.length == 1 ? 'tiro' : 'tiros'}',
+      TipoRegistro.distancia => '',
+      _ => '${series.length} ${series.length == 1 ? 'série' : 'séries'}',
+    };
     return Pressionavel(
       onTap: onTap,
       builder: (_, ativo) => Container(
@@ -318,33 +362,21 @@ class _ExercicioRegistrado extends StatelessWidget {
                 MiniaturaExercicio(slug: exercicio.slug, nome: exercicio.nome, tamanho: 40),
                 const SizedBox(width: 12),
                 Expanded(child: Text(exercicio.nome, style: AppTexto.item)),
-                Text('${series.length} ${series.length == 1 ? 'série' : 'séries'}', style: AppTexto.meta),
+                Text(contagem, style: AppTexto.meta),
                 const SizedBox(width: 6),
                 const Icon(Icons.show_chart_rounded, color: AppCores.textoApagado, size: 18),
               ],
             ),
             const SizedBox(height: 10),
             for (var i = 0; i < series.length; i++)
+              _linha(i, series[i]),
+            if (exercicio.registro == TipoRegistro.intervalado && exercicio.paceMedio != null)
               Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 72,
-                      child: Text('Série ${i + 1}', style: AppTexto.meta),
-                    ),
-                    Expanded(
-                      child: Text(
-                        '${series[i].reps ?? '–'} repetições',
-                        style: AppTexto.item.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Text(
-                      series[i].carga == null ? '– kg' : '${FormatoTreino.numero(series[i].carga!)} kg',
-                      style: AppTexto.titulo(15, peso: FontWeight.w700)
-                          .copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
-                    ),
-                  ],
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  'Total ${FormatoTreino.km(exercicio.distanciaTotal)}  ·  '
+                  'pace médio ${FormatoTreino.pace(exercicio.paceMedio!)}',
+                  style: AppTexto.meta.copyWith(fontSize: 12),
                 ),
               ),
           ],

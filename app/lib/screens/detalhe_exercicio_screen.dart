@@ -209,7 +209,14 @@ class _Informacoes extends StatelessWidget {
     final ficha = <(String, String)>[
       if (ex.equipamento.isNotEmpty) ('Equipamento', Rotulos.equipamentos(ex.equipamento)),
       if (ex.musculoSecundario.isNotEmpty)
-        ('Secundários', ex.musculoSecundario.map(Rotulos.musculo).join(', ')),
+        (
+          switch (ex.musculoPrimario) {
+            'ALONGAMENTO' => 'Alonga',
+            'CORRIDA' => 'Músculos',
+            _ => 'Secundários',
+          },
+          ex.musculoSecundario.map(Rotulos.musculo).join(', '),
+        ),
       if (ex.planoMovimento.isNotEmpty) ('Plano', Rotulos.plano(ex.planoMovimento)),
       if (ex.vetorForca.isNotEmpty) ('Vetor de força', Rotulos.vetor(ex.vetorForca)),
     ];

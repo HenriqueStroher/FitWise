@@ -15,6 +15,11 @@ class Exercicio {
   final double ativacaoMuscular;
   final double escoreRiscoLesao;
 
+  /// O que se anota ao colocar o exercício no treino do dia: 'forca'
+  /// (reps e carga), 'distancia' (km e tempo), 'intervalado' (vários tiros)
+  /// ou 'tempo' (segundos por série). Só o catálogo local define outro valor.
+  final String registro;
+
   Exercicio({
     required this.id,
     required this.slug,
@@ -31,6 +36,7 @@ class Exercicio {
     required this.planoMovimento,
     required this.ativacaoMuscular,
     required this.escoreRiscoLesao,
+    this.registro = 'forca',
   });
 
   factory Exercicio.fromFirestore(Map<String, dynamic> data) {
@@ -50,6 +56,7 @@ class Exercicio {
       planoMovimento: data['planoMovimento'] ?? '',
       ativacaoMuscular: (data['ativacaoMuscular'] ?? 0.0).toDouble(),
       escoreRiscoLesao: (data['escoreRiscoLesao'] ?? 0.0).toDouble(),
+      registro: data['registro'] ?? 'forca',
     );
   }
 }

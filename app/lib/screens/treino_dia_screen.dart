@@ -74,6 +74,7 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
       final registrados = {for (final e in semana?.dias[widget.dia] ?? <ExercicioTreino>[]) e.id: e};
       for (final e in plano) {
         e.series = registrados[e.id]?.series ?? [];
+        _preparar(e);
       }
 
       // Histórico vem do mais recente para o mais antigo: o primeiro
@@ -142,6 +143,13 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
   // AÇÕES
   // ─────────────────────────────────────────
 
+  /// Corrida e longão sempre mostram a linha de km e tempo, mesmo vazia.
+  /// Linha vazia não é gravada (ver ExercicioTreino.toRegistroMap).
+  ExercicioTreino _preparar(ExercicioTreino e) {
+    if (e.registro == TipoRegistro.distancia && e.series.isEmpty) e.series.add(SerieRegistro());
+    return e;
+  }
+
   Future<void> _adicionar() async {
     final escolhas = await escolherExercicios(
       context,
@@ -151,7 +159,8 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
     if (escolhas == null || escolhas.isEmpty) return;
     setState(() {
       _exercicios.addAll([
-        for (final e in escolhas) ExercicioTreino(id: ExercicioTreino.novoId(), nome: e.nome, slug: e.slug),
+        for (final e in escolhas)
+          _preparar(ExercicioTreino(id: ExercicioTreino.novoId(), nome: e.nome, slug: e.slug, registro: e.registro)),
       ]);
     });
     _estruturaAlterada();
@@ -161,8 +170,13 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
     final escolha = await escolherExercicio(context, titulo: 'Trocar exercício', nomeAtual: ex.nome);
     if (escolha == null) return;
     setState(() {
+      // Outro tipo de registro (ex.: musculação → corrida) não aproveita as
+      // séries anteriores
+      if (ex.registro != escolha.registro) ex.series = [];
       ex.nome = escolha.nome;
       ex.slug = escolha.slug;
+      ex.registro = escolha.registro;
+      _preparar(ex);
     });
     _estruturaAlterada();
   }
@@ -410,6 +424,11 @@ class _IndicadorSalvamento extends StatelessWidget {
 // CARD DO EXERCÍCIO
 // ─────────────────────────────────────────
 
+// Larguras fixas das colunas da tabela de séries
+const _larguraRotulo = 52.0;
+const _larguraPace = 76.0;
+const _larguraRemover = 40.0;
+
 class _CardExercicio extends StatelessWidget {
   final int indice;
   final ExercicioTreino exercicio;
@@ -430,6 +449,10 @@ class _CardExercicio extends StatelessWidget {
   });
 
   List<SerieRegistro> get _series => exercicio.series;
+  TipoRegistro get _registro => exercicio.registro;
+
+  /// Corrida e longão têm uma linha só, sem adicionar nem remover.
+  bool get _unica => _registro == TipoRegistro.distancia;
 
   void _adicionarSerie() {
     // Começa vazia (os campos mostram "–"); a referência da última vez fica
@@ -450,8 +473,58 @@ class _CardExercicio extends StatelessWidget {
     onSeriesAlteradas();
   }
 
+  Widget _cabecalhoTabela() {
+    Text rotulo(String t, {TextAlign alinhamento = TextAlign.center}) =>
+        Text(t, textAlign: alinhamento, style: AppTexto.rotulo.copyWith(fontSize: 10));
+
+    final colunas = switch (_registro) {
+      TipoRegistro.forca => [
+          SizedBox(width: _larguraRotulo, child: rotulo('SÉRIE', alinhamento: TextAlign.start)),
+          Expanded(child: rotulo('REPS')),
+          const SizedBox(width: 10),
+          Expanded(child: rotulo('CARGA (KG)')),
+          const SizedBox(width: _larguraRemover),
+        ],
+      TipoRegistro.tempo => [
+          SizedBox(width: _larguraRotulo, child: rotulo('SÉRIE', alinhamento: TextAlign.start)),
+          Expanded(child: rotulo('TEMPO (SEG)')),
+          const SizedBox(width: _larguraRemover),
+        ],
+      TipoRegistro.distancia || TipoRegistro.intervalado => [
+          if (!_unica) SizedBox(width: _larguraRotulo, child: rotulo('TIRO', alinhamento: TextAlign.start)),
+          Expanded(child: rotulo('KM')),
+          const SizedBox(width: 10),
+          Expanded(child: rotulo('TEMPO')),
+          SizedBox(width: _larguraPace, child: rotulo('PACE')),
+          if (!_unica) const SizedBox(width: _larguraRemover),
+        ],
+    };
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: Row(children: colunas),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final pace = exercicio.paceMedio;
+    final botoes = [
+      if (!_unica)
+        BotaoContorno(
+          texto: _registro == TipoRegistro.intervalado ? 'Adicionar tiro' : 'Adicionar série',
+          icone: Icons.add,
+          compacto: true,
+          onTap: _adicionarSerie,
+        ),
+      if (exercicio.seriesPreenchidas.isEmpty && anterior != null)
+        BotaoContorno(
+          texto: 'Repetir última vez',
+          icone: Icons.replay_rounded,
+          compacto: true,
+          onTap: _repetirUltimaVez,
+        ),
+    ];
+
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 14, 6, 14),
       decoration: BoxDecoration(
@@ -476,7 +549,7 @@ class _CardExercicio extends StatelessWidget {
                       anterior == null
                           ? 'Primeira vez registrando'
                           : 'Última vez (${FormatoTreino.data(anterior!.$1.inicio)}): '
-                              '${FormatoTreino.resumo(anterior!.$2.seriesPreenchidas)}',
+                              '${FormatoTreino.resumoExercicio(anterior!.$2)}',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppTexto.meta.copyWith(fontSize: 12),
@@ -499,46 +572,32 @@ class _CardExercicio extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           if (_series.isNotEmpty) ...[
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Row(
-                children: [
-                  SizedBox(width: 52, child: Text('SÉRIE', style: AppTexto.rotulo.copyWith(fontSize: 10))),
-                  Expanded(child: Text('REPS', textAlign: TextAlign.center, style: AppTexto.rotulo.copyWith(fontSize: 10))),
-                  const SizedBox(width: 10),
-                  Expanded(child: Text('CARGA (KG)', textAlign: TextAlign.center, style: AppTexto.rotulo.copyWith(fontSize: 10))),
-                  const SizedBox(width: 40),
-                ],
-              ),
-            ),
+            _cabecalhoTabela(),
             const SizedBox(height: 8),
             for (var i = 0; i < _series.length; i++)
               _LinhaSerie(
                 key: ObjectKey(_series[i]),
-                numero: i + 1,
+                registro: _registro,
+                numero: _unica ? null : i + 1,
                 serie: _series[i],
                 onAlterada: onSeriesAlteradas,
-                onRemover: () => _removerSerie(_series[i]),
+                onRemover: _unica ? null : () => _removerSerie(_series[i]),
+              ),
+            if (_registro == TipoRegistro.intervalado && pace != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 2, bottom: 8, right: 8),
+                child: Text(
+                  'Total ${FormatoTreino.km(exercicio.distanciaTotal)}  ·  pace médio ${FormatoTreino.pace(pace)}',
+                  style: AppTexto.meta.copyWith(fontSize: 12, color: AppCores.texto),
+                ),
               ),
             const SizedBox(height: 4),
           ],
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                BotaoContorno(texto: 'Adicionar série', icone: Icons.add, compacto: true, onTap: _adicionarSerie),
-                if (_series.isEmpty && anterior != null)
-                  BotaoContorno(
-                    texto: 'Repetir última vez',
-                    icone: Icons.replay_rounded,
-                    compacto: true,
-                    onTap: _repetirUltimaVez,
-                  ),
-              ],
+          if (botoes.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Wrap(spacing: 8, runSpacing: 8, children: botoes),
             ),
-          ),
         ],
       ),
     );
@@ -582,17 +641,23 @@ class _MenuExercicio extends StatelessWidget {
   }
 }
 
-/// Uma série: repetições e carga. Edita o [SerieRegistro] direto e avisa o
-/// card a cada mudança. Os controladores vivem aqui para o cursor não pular
-/// quando a tela reconstrói.
+/// Uma linha da tabela. Edita o [SerieRegistro] direto e avisa o card a cada
+/// mudança. Os campos dependem do tipo de registro: reps e carga (força),
+/// km e tempo com o pace calculado (corrida) ou só segundos (alongamento).
+/// Os controladores vivem aqui para o cursor não pular quando a tela
+/// reconstrói.
 class _LinhaSerie extends StatefulWidget {
-  final int numero;
+  final TipoRegistro registro;
+
+  /// Número da série; nulo na corrida de linha única.
+  final int? numero;
   final SerieRegistro serie;
   final VoidCallback onAlterada;
-  final VoidCallback onRemover;
+  final VoidCallback? onRemover;
 
   const _LinhaSerie({
     super.key,
+    required this.registro,
     required this.numero,
     required this.serie,
     required this.onAlterada,
@@ -604,33 +669,66 @@ class _LinhaSerie extends StatefulWidget {
 }
 
 class _LinhaSerieState extends State<_LinhaSerie> {
-  late final TextEditingController _reps =
-      TextEditingController(text: widget.serie.reps?.toString() ?? '');
-  late final TextEditingController _carga = TextEditingController(
-      text: widget.serie.carga == null ? '' : FormatoTreino.numero(widget.serie.carga!));
+  late final TextEditingController _primeiro;
+  late final TextEditingController _segundo;
+
+  SerieRegistro get _s => widget.serie;
+
+  @override
+  void initState() {
+    super.initState();
+    String num(double? v) => v == null ? '' : FormatoTreino.numero(v);
+    switch (widget.registro) {
+      case TipoRegistro.forca:
+        _primeiro = TextEditingController(text: _s.reps?.toString() ?? '');
+        _segundo = TextEditingController(text: num(_s.carga));
+      case TipoRegistro.tempo:
+        _primeiro = TextEditingController(text: _s.tempo?.toString() ?? '');
+        _segundo = TextEditingController();
+      case TipoRegistro.distancia:
+      case TipoRegistro.intervalado:
+        _primeiro = TextEditingController(text: num(_s.distancia));
+        _segundo = TextEditingController(text: _s.tempo == null ? '' : FormatoTreino.duracao(_s.tempo!));
+    }
+  }
 
   @override
   void dispose() {
-    _reps.dispose();
-    _carga.dispose();
+    _primeiro.dispose();
+    _segundo.dispose();
     super.dispose();
   }
 
-  Widget _campo(TextEditingController c, {required bool decimal, required ValueChanged<String> aoMudar}) {
+  void _alterar(VoidCallback mudanca) {
+    mudanca();
+    // Reconstrói esta linha para o pace acompanhar a digitação
+    if (widget.registro.corrida) setState(() {});
+    widget.onAlterada();
+  }
+
+  Widget _campo(
+    TextEditingController c, {
+    required RegExp permitido,
+    required int tamanho,
+    required ValueChanged<String> aoMudar,
+    bool decimal = false,
+    bool duracao = false,
+    String dica = '–',
+  }) {
     return TextField(
       controller: c,
       onChanged: aoMudar,
       // Seleciona tudo ao tocar, para trocar o valor sem apagar antes
       onTap: () => c.selection = TextSelection(baseOffset: 0, extentOffset: c.text.length),
-      keyboardType: TextInputType.numberWithOptions(decimal: decimal),
+      keyboardType: duracao ? TextInputType.datetime : TextInputType.numberWithOptions(decimal: decimal),
       inputFormatters: [
-        FilteringTextInputFormatter.allow(decimal ? RegExp(r'[0-9.,]') : RegExp(r'[0-9]')),
-        LengthLimitingTextInputFormatter(decimal ? 6 : 3),
+        FilteringTextInputFormatter.allow(permitido),
+        LengthLimitingTextInputFormatter(tamanho),
       ],
       textAlign: TextAlign.center,
       style: AppTexto.titulo(17, peso: FontWeight.w700)
           .copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
-      decoration: decoracaoCampo('–').copyWith(
+      decoration: decoracaoCampo(dica).copyWith(
         fillColor: AppCores.superficieAlta,
         contentPadding: const EdgeInsets.symmetric(vertical: 11),
       ),
@@ -639,35 +737,76 @@ class _LinhaSerieState extends State<_LinhaSerie> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 52,
-            child: Text(
-              widget.numero.toString().padLeft(2, '0'),
-              style: AppTexto.numero.copyWith(fontSize: 15, color: AppCores.destaque),
-            ),
-          ),
+    final inteiro = RegExp(r'[0-9]');
+    final decimal = RegExp(r'[0-9.,]');
+
+    final campos = switch (widget.registro) {
+      TipoRegistro.forca => [
           Expanded(
-            child: _campo(_reps, decimal: false, aoMudar: (t) {
-              widget.serie.reps = int.tryParse(t);
-              widget.onAlterada();
+            child: _campo(_primeiro, permitido: inteiro, tamanho: 3, aoMudar: (t) {
+              _alterar(() => _s.reps = int.tryParse(t));
             }),
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: _campo(_carga, decimal: true, aoMudar: (t) {
-              widget.serie.carga = FormatoTreino.lerNumero(t);
-              widget.onAlterada();
+            child: _campo(_segundo, permitido: decimal, tamanho: 6, decimal: true, aoMudar: (t) {
+              _alterar(() => _s.carga = FormatoTreino.lerNumero(t));
             }),
           ),
-          IconButton(
-            onPressed: widget.onRemover,
-            tooltip: 'Remover série',
-            icon: const Icon(Icons.close_rounded, color: AppCores.textoApagado, size: 18),
+        ],
+      TipoRegistro.tempo => [
+          Expanded(
+            child: _campo(_primeiro, permitido: inteiro, tamanho: 4, aoMudar: (t) {
+              _alterar(() => _s.tempo = int.tryParse(t));
+            }),
           ),
+        ],
+      TipoRegistro.distancia || TipoRegistro.intervalado => [
+          Expanded(
+            child: _campo(_primeiro, permitido: decimal, tamanho: 6, decimal: true, aoMudar: (t) {
+              _alterar(() => _s.distancia = FormatoTreino.lerNumero(t));
+            }),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: _campo(_segundo,
+                permitido: RegExp(r'[0-9:]'), tamanho: 8, duracao: true, dica: 'mm:ss', aoMudar: (t) {
+              _alterar(() => _s.tempo = FormatoTreino.lerDuracao(t));
+            }),
+          ),
+          SizedBox(
+            width: _larguraPace,
+            child: Text(
+              _s.pace == null ? '–' : FormatoTreino.duracao(_s.pace!.round()),
+              textAlign: TextAlign.center,
+              style: AppTexto.numero.copyWith(
+                fontSize: 15,
+                color: _s.pace == null ? AppCores.textoApagado : AppCores.texto,
+              ),
+            ),
+          ),
+        ],
+    };
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8, right: widget.onRemover == null ? 8 : 0),
+      child: Row(
+        children: [
+          if (widget.numero != null)
+            SizedBox(
+              width: _larguraRotulo,
+              child: Text(
+                widget.numero.toString().padLeft(2, '0'),
+                style: AppTexto.numero.copyWith(fontSize: 15, color: AppCores.destaque),
+              ),
+            ),
+          ...campos,
+          if (widget.onRemover != null)
+            IconButton(
+              onPressed: widget.onRemover,
+              tooltip: widget.registro == TipoRegistro.intervalado ? 'Remover tiro' : 'Remover série',
+              icon: const Icon(Icons.close_rounded, color: AppCores.textoApagado, size: 18),
+            ),
         ],
       ),
     );

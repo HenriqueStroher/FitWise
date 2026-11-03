@@ -9,6 +9,7 @@ import '../widgets/treino_comuns.dart';
 import 'historico_screen.dart';
 import 'login_screen.dart';
 import 'treino_dia_screen.dart';
+import 'verificacao_email_screen.dart';
 
 /// Aba "Meus Treinos". É a única parte do app que exige login: sem usuário,
 /// mostra a tela de entrada; com usuário, o painel da semana.
@@ -33,8 +34,18 @@ class _MeusTreinosScreenState extends State<MeusTreinosScreen> {
             child: CircularProgressIndicator(strokeWidth: 2, color: AppCores.destaque),
           );
         }
-        final usuario = snapshot.data;
-        if (usuario == null) return const LoginScreen();
+        if (snapshot.data == null) return const LoginScreen();
+        // currentUser reflete o reload() feito ao conferir a confirmação,
+        // mesmo que o stream ainda não tenha emitido
+        final usuario = _auth.usuarioAtual ?? snapshot.data!;
+        if (!usuario.emailVerified) {
+          return VerificacaoEmailScreen(
+            key: ValueKey(usuario.uid),
+            auth: _auth,
+            email: usuario.email ?? '',
+            onConfirmado: () => setState(() {}),
+          );
+        }
         // A chave recria o painel (e o serviço) se outro usuário entrar
         return _PainelSemana(key: ValueKey(usuario.uid), usuario: usuario, auth: _auth);
       },

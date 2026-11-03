@@ -39,16 +39,18 @@ class _ServicoFalso implements TreinoService {
   Future<List<SemanaTreino>> buscarHistorico({DateTime? antesDe, int? limite}) async => [];
 }
 
-Future<_ServicoFalso> _abrirTerca(WidgetTester tester) async {
-  tester.view.physicalSize = const Size(1100, 925);
+Future<_ServicoFalso> _abrirTerca(WidgetTester tester,
+    {List<ExercicioTreino>? exercicios, Size tela = const Size(1100, 1400)}) async {
+  tester.view.physicalSize = tela;
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
 
   final servico = _ServicoFalso({
-    2: [
-      ExercicioTreino(id: 'a', nome: 'Supino reto'),
-      ExercicioTreino(id: 'b', nome: 'Crucifixo'),
-    ],
+    2: exercicios ??
+        [
+          ExercicioTreino(id: 'a', nome: 'Supino reto'),
+          ExercicioTreino(id: 'b', nome: 'Crucifixo'),
+        ],
   });
 
   await tester.pumpWidget(MaterialApp(
@@ -60,6 +62,66 @@ Future<_ServicoFalso> _abrirTerca(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('tiros cabem numa tela de celular pequena', (tester) async {
+    await _abrirTerca(tester, tela: const Size(360, 1400), exercicios: [
+      ExercicioTreino(id: 'c', nome: 'Corrida', registro: TipoRegistro.distancia),
+      ExercicioTreino(id: 't', nome: 'Tiro (Intervalado)', registro: TipoRegistro.intervalado),
+    ]);
+    await tester.tap(find.text('Adicionar tiro'));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField).at(2), '0,4');
+    await tester.enterText(find.byType(TextField).at(3), '1:40');
+    await tester.pump();
+    // Um estouro de layout (RenderFlex overflow) faria o teste falhar
+    expect(find.text('4:10'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('corrida, tiro e alongamento mostram os campos certos e calculam o pace', (tester) async {
+    final servico = await _abrirTerca(tester, exercicios: [
+      ExercicioTreino(id: 'c', nome: 'Corrida', registro: TipoRegistro.distancia),
+      ExercicioTreino(id: 't', nome: 'Tiro (Intervalado)', registro: TipoRegistro.intervalado),
+      ExercicioTreino(id: 'a', nome: 'Borboleta', registro: TipoRegistro.tempo),
+    ]);
+
+    // Corrida já abre com a linha de km e tempo, sem "Adicionar série"
+    expect(find.text('KM'), findsOneWidget);
+    expect(find.text('PACE'), findsOneWidget);
+    expect(find.text('Adicionar tiro'), findsOneWidget);
+    expect(find.text('Adicionar série'), findsOneWidget); // só o alongamento
+
+    final campos = find.byType(TextField);
+    await tester.enterText(campos.at(0), '5');
+    await tester.enterText(campos.at(1), '25:30');
+    await tester.pump();
+    expect(find.text('5:06'), findsOneWidget);
+
+    // Dois tiros: aparecem numerados, com pace e o total
+    await tester.tap(find.text('Adicionar tiro'));
+    await tester.pump();
+    await tester.tap(find.text('Adicionar tiro'));
+    await tester.pump();
+    expect(find.text('TIRO'), findsOneWidget);
+    final tiros = find.byType(TextField);
+    await tester.enterText(tiros.at(2), '0,4');
+    await tester.enterText(tiros.at(3), '1:40');
+    await tester.enterText(tiros.at(4), '0,4');
+    await tester.enterText(tiros.at(5), '1:32');
+    await tester.pump();
+    expect(find.text('4:10'), findsOneWidget);
+    expect(find.text('3:50'), findsOneWidget);
+    expect(find.textContaining('pace médio 4:00 /km'), findsOneWidget);
+
+    // Alongamento: só segundos
+    await tester.tap(find.text('Adicionar série'));
+    await tester.pump();
+    expect(find.text('TEMPO (SEG)'), findsOneWidget);
+    expect(find.byType(TextField), findsNWidgets(7));
+
+    await tester.pump(const Duration(seconds: 1));
+    expect(servico.gravacoes, contains('semana'));
+  });
+
   testWidgets('limpar remove todos os exercícios do dia depois de confirmar', (tester) async {
     final servico = await _abrirTerca(tester);
 
@@ -91,7 +153,7 @@ void main() {
 
     // A barra inferior fica só com a altura do botão
     final barra = tester.getRect(find.text('Adicionar exercício'));
-    expect(barra.top, greaterThan(800));
+    expect(barra.top, greaterThan(1250));
 
     // Adicionar série grava o registro da semana (depois do atraso)
     await tester.tap(find.text('Adicionar série').first);

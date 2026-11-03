@@ -79,6 +79,89 @@ void main() {
     });
   });
 
+  group('Corrida e alongamento', () {
+    test('tempo: leitura e formatação', () {
+      expect(FormatoTreino.lerDuracao('25:30'), 1530);
+      expect(FormatoTreino.lerDuracao('1:05:30'), 3930);
+      expect(FormatoTreino.lerDuracao('25'), 1500); // só número = minutos
+      expect(FormatoTreino.lerDuracao(''), isNull);
+      expect(FormatoTreino.lerDuracao('25:'), isNull);
+      expect(FormatoTreino.duracao(1530), '25:30');
+      expect(FormatoTreino.duracao(3930), '1:05:30');
+      expect(FormatoTreino.duracao(65), '1:05');
+    });
+
+    test('pace da corrida', () {
+      final corrida = ExercicioTreino(
+        id: 'c',
+        nome: 'Corrida',
+        slug: 'corrida',
+        registro: TipoRegistro.distancia,
+        series: [SerieRegistro(distancia: 5, tempo: 1530)],
+      );
+      expect(corrida.paceMedio, 306); // 25:30 em 5 km = 5:06 /km
+      expect(FormatoTreino.pace(corrida.paceMedio!), '5:06 /km');
+      expect(FormatoTreino.resumoExercicio(corrida), '5 km  ·  25:30  ·  5:06 /km');
+    });
+
+    test('tiros: pace médio ponderado pela distância', () {
+      final tiro = ExercicioTreino(
+        id: 't',
+        nome: 'Tiro',
+        registro: TipoRegistro.intervalado,
+        series: [
+          SerieRegistro(distancia: 0.4, tempo: 100), // 4:10 /km
+          SerieRegistro(distancia: 0.4, tempo: 92), // 3:50 /km
+          SerieRegistro(distancia: 1, tempo: 270), // 4:30 /km
+          SerieRegistro(), // vazia não conta
+        ],
+      );
+      expect(tiro.series[0].pace, 250);
+      expect(tiro.distanciaTotal, closeTo(1.8, 1e-9));
+      expect(tiro.paceMedio, closeTo(462 / 1.8, 1e-9));
+      expect(FormatoTreino.resumoExercicio(tiro), '3 tiros  ·  1,8 km  ·  4:17 /km');
+    });
+
+    test('alongamento registra segundos', () {
+      final al = ExercicioTreino(
+        id: 'a',
+        nome: 'Borboleta',
+        registro: TipoRegistro.tempo,
+        series: [SerieRegistro(tempo: 30), SerieRegistro(tempo: 45)],
+      );
+      expect(al.tempoMaximo, 45);
+      expect(FormatoTreino.resumoExercicio(al), '30 s  ·  45 s');
+      expect(al.toRegistroMap()['series'], [
+        {'tempo': 30},
+        {'tempo': 45},
+      ]);
+    });
+
+    test('tipo de registro vai e volta do Firestore', () {
+      final ex = ExercicioTreino(id: 'x', nome: 'Tiro', slug: 'tiro', registro: TipoRegistro.intervalado);
+      expect(ExercicioTreino.fromMap(ex.toPlanoMap()).registro, TipoRegistro.intervalado);
+      // Dados antigos, gravados antes dos novos tipos, continuam como força
+      expect(ExercicioTreino.fromMap({'id': 'y', 'nome': 'Supino'}).registro, TipoRegistro.forca);
+      expect(TipoRegistro.de('qualquer'), TipoRegistro.forca);
+    });
+
+    test('semana soma os km corridos', () {
+      final s = SemanaTreino.fromFirestore('2026-11-02', {
+        'dias': {
+          '2': [
+            {'id': 'a', 'nome': 'Corrida', 'registro': 'distancia', 'series': [{'distancia': 5, 'tempo': 1500}]},
+            {'id': 'b', 'nome': 'Supino', 'series': [{'reps': 10, 'carga': 20}]},
+          ],
+          '4': [
+            {'id': 'c', 'nome': 'Tiro', 'registro': 'intervalado', 'series': [{'distancia': 0.4, 'tempo': 100}, {'distancia': 0.4, 'tempo': 98}]},
+          ],
+        },
+      });
+      expect(s.distancia, closeTo(5.8, 1e-9));
+      expect(s.volume, 200);
+    });
+  });
+
   group('FormatoTreino', () {
     test('números', () {
       expect(FormatoTreino.numero(20), '20');

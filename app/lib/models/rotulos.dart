@@ -17,6 +17,7 @@ class Rotulos {
     'bola': 'Bola suíça',
     'maquina_voador': 'Voador',
     'maquina_t_bar': 'Máquina T-bar',
+    'parede': 'Parede',
   };
 
   static const _musculo = {
@@ -33,12 +34,21 @@ class Rotulos {
     'posterior_coxa': 'Posterior de coxa',
     'gluteos': 'Glúteos',
     'panturrilha': 'Panturrilha',
+    'trapezio': 'Trapézio',
+    'pescoco': 'Pescoço',
+    'flexores_quadril': 'Flexores do quadril',
+    'adutores': 'Adutores',
+    'obliquos': 'Oblíquos',
   };
 
   static const _tipo = {
     'compound': 'Composto',
     'isolation': 'Isolado',
     'isometric': 'Isométrico',
+    'continuo': 'Contínuo',
+    'intervalado': 'Intervalado',
+    'estatico': 'Estático',
+    'dinamico': 'Dinâmico',
   };
 
   static const _plano = {

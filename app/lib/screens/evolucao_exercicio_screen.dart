@@ -8,8 +8,60 @@ import '../widgets/treino_comuns.dart';
 /// Um registro do exercício: em que semana e dia, e o que foi feito.
 typedef _Registro = ({SemanaTreino semana, int dia, ExercicioTreino exercicio});
 
-/// Evolução de um exercício ao longo das semanas: carga máxima de cada
-/// registro em gráfico e a lista completa, com a diferença para o anterior.
+/// O número acompanhado na evolução, conforme o tipo de registro.
+class _Metrica {
+  final String titulo;
+  final String legenda;
+  final double? Function(ExercicioTreino) valor;
+  final String Function(double) formatar;
+  final String Function(double) compacto;
+
+  /// Pace: quanto menor, melhor.
+  final bool menorMelhor;
+
+  const _Metrica({
+    required this.titulo,
+    required this.legenda,
+    required this.valor,
+    required this.formatar,
+    required this.compacto,
+    this.menorMelhor = false,
+  });
+
+  static _Metrica de(TipoRegistro registro) => switch (registro) {
+        TipoRegistro.forca => _Metrica(
+            titulo: 'CARGA MÁXIMA POR TREINO (KG)',
+            legenda: 'carga máxima',
+            valor: (e) => e.cargaMaxima,
+            formatar: (v) => '${FormatoTreino.numero(v)} kg',
+            compacto: FormatoTreino.numero,
+          ),
+        TipoRegistro.tempo => _Metrica(
+            titulo: 'MAIOR TEMPO POR TREINO (SEG)',
+            legenda: 'maior tempo',
+            valor: (e) => e.tempoMaximo?.toDouble(),
+            formatar: (v) => '${v.round()} s',
+            compacto: (v) => '${v.round()}',
+          ),
+        TipoRegistro.distancia || TipoRegistro.intervalado => _Metrica(
+            titulo: 'PACE MÉDIO POR TREINO (MIN/KM)',
+            legenda: 'melhor pace',
+            valor: (e) => e.paceMedio,
+            formatar: FormatoTreino.pace,
+            compacto: (v) => FormatoTreino.duracao(v.round()),
+            menorMelhor: true,
+          ),
+      };
+
+  double? melhor(Iterable<double> valores) {
+    if (valores.isEmpty) return null;
+    return valores.reduce((a, b) => (menorMelhor ? a < b : a > b) ? a : b);
+  }
+}
+
+/// Evolução de um exercício ao longo das semanas: a métrica de cada registro
+/// em gráfico (carga, pace ou tempo) e a lista completa, com a diferença
+/// para o registro anterior.
 class EvolucaoExercicioScreen extends StatefulWidget {
   final String chave;
   final String nome;
@@ -68,8 +120,11 @@ class _EvolucaoExercicioScreenState extends State<EvolucaoExercicioScreen> {
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.sizeOf(context).width;
-    final cargas = _registros.map((r) => r.exercicio.cargaMaxima).whereType<double>();
-    final recorde = cargas.isEmpty ? null : cargas.reduce((a, b) => a > b ? a : b);
+    final registro = _registros.isEmpty ? TipoRegistro.forca : _registros.last.exercicio.registro;
+    final metrica = _Metrica.de(registro);
+    final valores = _registros.map((r) => metrica.valor(r.exercicio)).whereType<double>();
+    final recorde = metrica.melhor(valores);
+    final kmTotal = _registros.fold<double>(0, (t, r) => t + r.exercicio.distanciaTotal);
 
     return Scaffold(
       body: SafeArea(
@@ -105,7 +160,7 @@ class _EvolucaoExercicioScreenState extends State<EvolucaoExercicioScreen> {
                 Text(_erro!, style: AppTexto.item.copyWith(color: AppCores.textoSuave))
               else if (_registros.isEmpty)
                 Text(
-                  'Ainda não há séries registradas deste exercício. Registre no treino do dia '
+                  'Ainda não há registros deste exercício. Registre no treino do dia '
                   'e a evolução aparece aqui semana a semana.',
                   style: AppTexto.corpo,
                 )
@@ -114,13 +169,15 @@ class _EvolucaoExercicioScreenState extends State<EvolucaoExercicioScreen> {
                   spacing: 32,
                   runSpacing: 8,
                   children: [
-                    NumeroLegenda(recorde == null ? '—' : '${FormatoTreino.numero(recorde)} kg', 'carga máxima'),
+                    NumeroLegenda(recorde == null ? '—' : metrica.formatar(recorde), metrica.legenda),
+                    if (registro.corrida && kmTotal > 0)
+                      NumeroLegenda(FormatoTreino.km(kmTotal), 'no total'),
                     NumeroLegenda('${_registros.length}', _registros.length == 1 ? 'registro' : 'registros'),
                   ],
                 ),
                 const SizedBox(height: 24),
-                if (cargas.length >= 2) ...[
-                  _GraficoCargas(registros: _registros),
+                if (valores.length >= 2) ...[
+                  _Grafico(registros: _registros, metrica: metrica),
                   const SizedBox(height: 32),
                 ],
                 Container(
@@ -134,6 +191,7 @@ class _EvolucaoExercicioScreenState extends State<EvolucaoExercicioScreen> {
                           registro: _registros[i],
                           anterior: i > 0 ? _registros[i - 1] : null,
                           recorde: recorde,
+                          metrica: metrica,
                         ),
                     ],
                   ),
@@ -147,18 +205,19 @@ class _EvolucaoExercicioScreenState extends State<EvolucaoExercicioScreen> {
   }
 }
 
-/// Barras com a carga máxima dos últimos registros (até 12).
-class _GraficoCargas extends StatelessWidget {
+/// Barras com a métrica dos últimos registros (até 12). Para pace, a altura
+/// é a velocidade, então a barra mais alta é sempre o melhor treino.
+class _Grafico extends StatelessWidget {
   final List<_Registro> registros;
+  final _Metrica metrica;
 
-  const _GraficoCargas({required this.registros});
+  const _Grafico({required this.registros, required this.metrica});
 
   @override
   Widget build(BuildContext context) {
     final ultimos = registros.length > 12 ? registros.sublist(registros.length - 12) : registros;
-    final maior = ultimos
-        .map((r) => r.exercicio.cargaMaxima ?? 0)
-        .fold<double>(0, (a, b) => a > b ? a : b);
+    double altura(double? v) => v == null || v <= 0 ? 0 : (metrica.menorMelhor ? 1 / v : v);
+    final maior = ultimos.map((r) => altura(metrica.valor(r.exercicio))).fold<double>(0, (a, b) => a > b ? a : b);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 16, 14, 12),
@@ -169,7 +228,7 @@ class _GraficoCargas extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('CARGA MÁXIMA POR TREINO (KG)', style: AppTexto.rotulo.copyWith(fontSize: 10)),
+          Text(metrica.titulo, style: AppTexto.rotulo.copyWith(fontSize: 10)),
           const SizedBox(height: 14),
           SizedBox(
             height: 150,
@@ -181,8 +240,10 @@ class _GraficoCargas extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 3),
                       child: _Barra(
-                        valor: ultimos[i].exercicio.cargaMaxima ?? 0,
-                        maior: maior,
+                        proporcao: maior <= 0 ? 0 : altura(metrica.valor(ultimos[i].exercicio)) / maior,
+                        valor: metrica.valor(ultimos[i].exercicio) == null
+                            ? '–'
+                            : metrica.compacto(metrica.valor(ultimos[i].exercicio)!),
                         rotulo: FormatoTreino.data(DateTime(
                           ultimos[i].semana.inicio.year,
                           ultimos[i].semana.inicio.month,
@@ -202,23 +263,22 @@ class _GraficoCargas extends StatelessWidget {
 }
 
 class _Barra extends StatelessWidget {
-  final double valor;
-  final double maior;
+  final double proporcao;
+  final String valor;
   final String rotulo;
   final bool destaque;
 
-  const _Barra({required this.valor, required this.maior, required this.rotulo, required this.destaque});
+  const _Barra({required this.proporcao, required this.valor, required this.rotulo, required this.destaque});
 
   @override
   Widget build(BuildContext context) {
-    final proporcao = maior <= 0 ? 0.0 : valor / maior;
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
-            FormatoTreino.numero(valor),
+            valor,
             style: AppTexto.numero.copyWith(
               fontSize: 11,
               color: destaque ? AppCores.destaque : AppCores.textoSuave,
@@ -251,15 +311,22 @@ class _LinhaRegistro extends StatelessWidget {
   final _Registro registro;
   final _Registro? anterior;
   final double? recorde;
+  final _Metrica metrica;
 
-  const _LinhaRegistro({required this.registro, required this.anterior, required this.recorde});
+  const _LinhaRegistro({
+    required this.registro,
+    required this.anterior,
+    required this.recorde,
+    required this.metrica,
+  });
 
   @override
   Widget build(BuildContext context) {
     final ex = registro.exercicio;
-    final carga = ex.cargaMaxima;
-    final cargaAnterior = anterior?.exercicio.cargaMaxima;
-    final diferenca = (carga != null && cargaAnterior != null) ? carga - cargaAnterior : null;
+    final valor = metrica.valor(ex);
+    final valorAnterior = anterior == null ? null : metrica.valor(anterior!.exercicio);
+    final diferenca = (valor != null && valorAnterior != null) ? valor - valorAnterior : null;
+    final melhorou = diferenca != null && (metrica.menorMelhor ? diferenca < 0 : diferenca > 0);
     final inicio = registro.semana.inicio;
     final data = DateTime(inicio.year, inicio.month, inicio.day + registro.dia - 1);
 
@@ -283,7 +350,7 @@ class _LinhaRegistro extends StatelessWidget {
                 Text('Semana ${FormatoTreino.periodo(registro.semana)}',
                     style: AppTexto.meta.copyWith(fontSize: 12, color: AppCores.textoApagado)),
                 const SizedBox(height: 6),
-                Text(FormatoTreino.resumo(ex.seriesPreenchidas), style: AppTexto.meta),
+                Text(FormatoTreino.resumoExercicio(ex), style: AppTexto.meta),
                 if (ex.volume > 0) ...[
                   const SizedBox(height: 3),
                   Text('Volume ${FormatoTreino.milhar(ex.volume)} kg',
@@ -297,19 +364,20 @@ class _LinhaRegistro extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                carga == null ? '–' : '${FormatoTreino.numero(carga)} kg',
+                valor == null ? '–' : metrica.formatar(valor),
                 style: AppTexto.titulo(18, peso: FontWeight.w700).copyWith(
                   fontFeatures: const [FontFeature.tabularFigures()],
-                  color: carga != null && carga == recorde ? AppCores.destaque : AppCores.texto,
+                  color: valor != null && valor == recorde ? AppCores.destaque : AppCores.texto,
                 ),
               ),
-              if (diferenca != null && diferenca != 0) ...[
+              // Pace com menos de meio segundo de diferença arredonda para 0:00
+              if (diferenca != null && diferenca.abs() >= (metrica.menorMelhor ? 0.5 : 0.001)) ...[
                 const SizedBox(height: 4),
                 Text(
-                  '${diferenca > 0 ? '+' : '−'}${FormatoTreino.numero(diferenca.abs())} kg',
+                  '${diferenca > 0 ? '+' : '−'}${metrica.formatar(diferenca.abs())}',
                   style: AppTexto.meta.copyWith(
                     fontSize: 12,
-                    color: diferenca > 0 ? AppCores.destaque : AppCores.textoSuave,
+                    color: melhorou ? AppCores.destaque : AppCores.textoSuave,
                   ),
                 ),
               ],

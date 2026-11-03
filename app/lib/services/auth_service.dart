@@ -29,6 +29,21 @@ class AuthService {
       'email': email.trim(),
       'criadoEm': FieldValue.serverTimestamp(),
     });
+    await user.sendEmailVerification();
+  }
+
+  Future<void> reenviarConfirmacao() => _auth.currentUser!.sendEmailVerification();
+
+  /// Recarrega o usuário para saber se o link de confirmação já foi aberto.
+  /// Quando sim, renova o token, que só então passa a dizer
+  /// `email_verified: true` para as regras do Firestore.
+  Future<bool> confirmouEmail() async {
+    final user = _auth.currentUser;
+    if (user == null) return false;
+    await user.reload();
+    final atual = _auth.currentUser!;
+    if (atual.emailVerified) await atual.getIdToken(true);
+    return atual.emailVerified;
   }
 
   Future<void> recuperarSenha(String email) async {
