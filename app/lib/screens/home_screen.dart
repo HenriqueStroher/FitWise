@@ -268,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Row(
           children: [
-            Icon(grupo.icone, color: Colors.white, size: 22),
+            const Icon(Icons.fitness_center, color: Colors.white, size: 22),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
