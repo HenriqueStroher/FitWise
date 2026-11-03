@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'screens/home_screen.dart';
 import 'screens/lista_exercicios_screen.dart';
+import 'screens/meus_treinos_screen.dart';
 import 'theme/app_theme.dart';
 import 'widgets/comuns.dart';
 
@@ -39,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ListaExerciciosScreenState> _listaKey = GlobalKey<ListaExerciciosScreenState>();
   int _aba = 0;
 
-  static const _abas = ['Grupos', 'Exercícios'];
+  static const _abas = ['Grupos', 'Exercícios', 'Meus Treinos'];
 
   void _navegarParaGrupo(String grupo) {
     setState(() => _aba = 1);
@@ -62,6 +63,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   HomeScreen(onNavegar: _navegarParaGrupo),
                   ListaExerciciosScreen(key: _listaKey),
+                  const MeusTreinosScreen(),
                 ],
               ),
             ),
@@ -124,7 +126,11 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _buildBarraInferior() {
-    const icones = [Icons.grid_view_rounded, Icons.format_list_bulleted_rounded];
+    const icones = [
+      Icons.grid_view_rounded,
+      Icons.format_list_bulleted_rounded,
+      Icons.fitness_center_rounded,
+    ];
     return Container(
       decoration: const BoxDecoration(
         color: AppCores.fundo,

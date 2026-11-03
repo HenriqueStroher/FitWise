@@ -12,6 +12,7 @@ class AppCores {
   static const textoApagado = Color(0xFF616167);
   static const destaque     = Color(0xFFD4FF3A);
   static const sobreDestaque = Color(0xFF0C0C0D);
+  static const erro         = Color(0xFFFF7A6B);
 
   /// Fundo dos painéis de ilustração. As imagens são traço preto sobre
   /// branco; com BlendMode.multiply o branco assume esta cor.
