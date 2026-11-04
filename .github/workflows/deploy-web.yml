@@ -1,0 +1,52 @@
+name: Deploy web (Firebase Hosting)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'firebase.json'
+      - '.github/workflows/deploy-web.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Se dois pushes chegarem em sequência, só o mais recente vai para o ar.
+concurrency:
+  group: deploy-web
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.9
+          cache: true
+
+      - name: Instalar dependências
+        working-directory: app
+        run: flutter pub get
+
+      # widget_test.dart fica de fora: é o teste de contador do modelo do Flutter
+      # e falha neste app. Ao removê-lo, troque esta linha por "flutter test".
+      - name: Rodar testes
+        working-directory: app
+        run: flutter test test/treino_test.dart test/treino_dia_test.dart test/catalogo_local_test.dart
+
+      - name: Gerar versão web
+        working-directory: app
+        run: flutter build web --release
+
+      - name: Publicar no Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_APPGYM_7F699 }}
+          channelId: live
+          projectId: appgym-7f699
