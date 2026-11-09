@@ -40,7 +40,10 @@ class _ServicoFalso implements TreinoService {
 }
 
 Future<_ServicoFalso> _abrirTerca(WidgetTester tester,
-    {List<ExercicioTreino>? exercicios, Size tela = const Size(1100, 1400)}) async {
+    {List<ExercicioTreino>? exercicios,
+    Size tela = const Size(1100, 1400),
+    ModoTreino modo = ModoTreino.completo,
+    String? nomeAluno}) async {
   tester.view.physicalSize = tela;
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
@@ -55,7 +58,7 @@ Future<_ServicoFalso> _abrirTerca(WidgetTester tester,
 
   await tester.pumpWidget(MaterialApp(
     theme: construirTema(),
-    home: TreinoDiaScreen(dia: 2, service: servico),
+    home: TreinoDiaScreen(dia: 2, service: servico, modo: modo, nomeAluno: nomeAluno),
   ));
   await tester.pumpAndSettle();
   return servico;
@@ -173,5 +176,42 @@ void main() {
     final novos = find.byType(TextField);
     expect(tester.widget<TextField>(novos.at(2)).controller!.text, '');
     expect(tester.widget<TextField>(novos.at(3)).controller!.text, '');
+  });
+
+  testWidgets('aluno de academia registra as séries, mas não mexe no treino do professor', (tester) async {
+    final servico = await _abrirTerca(tester, modo: ModoTreino.registro);
+
+    expect(find.text('Supino reto'), findsOneWidget);
+    expect(find.text('Adicionar exercício'), findsNothing);
+    expect(find.text('Limpar'), findsNothing);
+    expect(find.byIcon(Icons.drag_indicator_rounded), findsNothing);
+
+    await tester.tap(find.byTooltip('Opções').first);
+    await tester.pumpAndSettle();
+    expect(find.text('Ver evolução'), findsOneWidget);
+    expect(find.text('Remover do treino'), findsNothing);
+    expect(find.text('Trocar / editar exercício'), findsNothing);
+    await tester.tapAt(const Offset(5, 5)); // fecha o menu
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Adicionar série').first);
+    await tester.pump(const Duration(seconds: 1));
+    expect(servico.gravacoes, ['semana']);
+  });
+
+  testWidgets('professor monta o plano do aluno sem gravar a semana dele', (tester) async {
+    final servico = await _abrirTerca(tester, modo: ModoTreino.plano, nomeAluno: 'Bruna');
+
+    expect(find.textContaining('TREINO DE BRUNA'), findsOneWidget);
+    expect(find.text('Adicionar exercício'), findsOneWidget);
+    expect(find.text('Adicionar série'), findsNothing);
+    expect(find.byType(TextField), findsNothing);
+
+    await tester.tap(find.text('Limpar'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Limpar').last);
+    await tester.pumpAndSettle();
+    expect(servico.plano[2], isEmpty);
+    expect(servico.gravacoes, ['plano']);
   });
 }

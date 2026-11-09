@@ -37,11 +37,13 @@ jobs:
       # e falha neste app. Ao removê-lo, troque esta linha por "flutter test".
       - name: Rodar testes
         working-directory: app
-        run: flutter test test/treino_test.dart test/treino_dia_test.dart test/catalogo_local_test.dart test/catalogo_base_test.dart test/navegacao_test.dart
+        run: flutter test test/treino_test.dart test/treino_dia_test.dart test/catalogo_local_test.dart test/catalogo_base_test.dart test/navegacao_test.dart test/academia_test.dart
 
       - name: Gerar versão web
         working-directory: app
-        run: flutter build web --release
+        # ACADEMIAS liga o modo academia (Sessao.habilitada). Para o usuário
+        # comum o app não muda; sem a flag, o modo some para todo mundo.
+        run: flutter build web --release --dart-define=ACADEMIAS=true
 
       - name: Publicar no Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0

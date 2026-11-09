@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/treino.dart';
+import '../services/exercicio_service.dart';
 import '../services/treino_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/comuns.dart';
 import '../widgets/treino_comuns.dart';
+import 'detalhe_exercicio_screen.dart';
 import 'evolucao_exercicio_screen.dart';
 import 'seletor_exercicio_screen.dart';
 
@@ -19,11 +21,37 @@ import 'seletor_exercicio_screen.dart';
 class TreinoDiaScreen extends StatefulWidget {
   final int dia;
   final TreinoService service;
+  final ModoTreino modo;
 
-  const TreinoDiaScreen({super.key, required this.dia, required this.service});
+  /// Nome do aluno, quando é o professor quem monta o treino.
+  final String? nomeAluno;
+
+  const TreinoDiaScreen({
+    super.key,
+    required this.dia,
+    required this.service,
+    this.modo = ModoTreino.completo,
+    this.nomeAluno,
+  });
 
   @override
   State<TreinoDiaScreen> createState() => _TreinoDiaScreenState();
+}
+
+/// Quem usa a tela e o que pode fazer nela.
+enum ModoTreino {
+  /// Usuário comum: monta o próprio plano e registra as séries.
+  completo,
+
+  /// Aluno de academia: o plano é do professor; só registra as séries.
+  registro,
+
+  /// Professor montando o plano de um aluno: não registra séries, que são
+  /// do aluno, mas vê a última vez de cada exercício.
+  plano;
+
+  bool get editaEstrutura => this != registro;
+  bool get registraSeries => this != plano;
 }
 
 enum _Salvamento { salvo, pendente, salvando, erro }
@@ -121,9 +149,14 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
     }
   }
 
-  /// Lista mudou: grava plano e registro da semana juntos, sem atraso.
+  /// Lista mudou: grava plano e registro da semana juntos, sem atraso. O
+  /// professor só grava o plano: a semana é do aluno.
   void _estruturaAlterada() {
     _atraso?.cancel();
+    if (!widget.modo.registraSeries) {
+      _gravar(() => _service.salvarPlano(widget.dia, _exercicios));
+      return;
+    }
     _gravar(() => Future.wait([
           _service.salvarPlano(widget.dia, _exercicios),
           _service.salvarDiaDaSemana(_inicioSemana, widget.dia, _exercicios),
@@ -214,6 +247,16 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
     _estruturaAlterada();
   }
 
+  Future<void> _verExecucao(ExercicioTreino ex) async {
+    final exercicio = await ExercicioService().buscarPorSlug(ex.slug!);
+    if (!mounted) return;
+    if (exercicio == null) {
+      avisar(context, 'Este exercício não está mais no catálogo.');
+      return;
+    }
+    Navigator.push(context, MaterialPageRoute(builder: (_) => DetalheExercicioScreen(exercicio: exercicio)));
+  }
+
   void _verEvolucao(ExercicioTreino ex) {
     Navigator.push(
       context,
@@ -262,7 +305,7 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
                   : _buildLista(),
         ),
       ),
-      bottomNavigationBar: _carregando || _erroCarga != null
+      bottomNavigationBar: _carregando || _erroCarga != null || !widget.modo.editaEstrutura
           ? null
           : Container(
               decoration: const BoxDecoration(
@@ -308,10 +351,16 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
             indice: i,
             exercicio: ex,
             anterior: _anteriores[ex.chave],
+            modo: widget.modo,
             onSeriesAlteradas: _seriesAlteradas,
             onTrocar: () => _trocar(ex),
             onRemover: () => _remover(ex),
             onEvolucao: () => _verEvolucao(ex),
+            // Na academia, a execução abre direto do treino; para o usuário
+            // comum a tela segue como antes
+            onExecucao: widget.modo != ModoTreino.completo && (ex.slug ?? '').isNotEmpty
+                ? () => _verExecucao(ex)
+                : null,
           ),
         );
       },
@@ -336,8 +385,12 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
             ],
           ),
           const SizedBox(height: 24),
-          Text('TREINO  ·  ${FormatoTreino.dataCompleta(data)}',
-              style: AppTexto.rotulo.copyWith(color: AppCores.destaque)),
+          Text(
+            widget.nomeAluno == null
+                ? 'TREINO  ·  ${FormatoTreino.dataCompleta(data)}'
+                : 'TREINO DE ${widget.nomeAluno!.toUpperCase()}  ·  ${FormatoTreino.dataCompleta(data)}',
+            style: AppTexto.rotulo.copyWith(color: AppCores.destaque),
+          ),
           const SizedBox(height: 8),
           Text(DiaSemana.nome(widget.dia).toUpperCase(),
               style: AppTexto.display((largura * 0.08).clamp(28.0, 48.0))),
@@ -352,19 +405,21 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
                     style: AppTexto.meta,
                   ),
                 ),
-                const SizedBox(width: 12),
-                Pressionavel(
-                  onTap: _limparDia,
-                  builder: (_, ativo) => Row(
-                    children: [
-                      Icon(Icons.delete_sweep_outlined,
-                          size: 16, color: ativo ? AppCores.erro : AppCores.textoSuave),
-                      const SizedBox(width: 6),
-                      Text('Limpar',
-                          style: AppTexto.meta.copyWith(color: ativo ? AppCores.erro : AppCores.textoSuave)),
-                    ],
+                if (widget.modo.editaEstrutura) ...[
+                  const SizedBox(width: 12),
+                  Pressionavel(
+                    onTap: _limparDia,
+                    builder: (_, ativo) => Row(
+                      children: [
+                        Icon(Icons.delete_sweep_outlined,
+                            size: 16, color: ativo ? AppCores.erro : AppCores.textoSuave),
+                        const SizedBox(width: 6),
+                        Text('Limpar',
+                            style: AppTexto.meta.copyWith(color: ativo ? AppCores.erro : AppCores.textoSuave)),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ],
@@ -386,9 +441,18 @@ class _TreinoDiaScreenState extends State<TreinoDiaScreen> {
           Text('Nenhum exercício ainda', style: AppTexto.titulo(18)),
           const SizedBox(height: 8),
           Text(
-            'Adicione exercícios do catálogo ou com um nome seu. Eles ficam salvos '
-            'no treino de ${DiaSemana.nome(widget.dia).toLowerCase()} e aparecem toda semana '
-            'para você registrar as séries.',
+            switch (widget.modo) {
+              ModoTreino.completo =>
+                'Adicione exercícios do catálogo ou com um nome seu. Eles ficam salvos '
+                    'no treino de ${DiaSemana.nome(widget.dia).toLowerCase()} e aparecem toda semana '
+                    'para você registrar as séries.',
+              ModoTreino.registro =>
+                'Seu professor ainda não montou o treino de ${DiaSemana.nome(widget.dia).toLowerCase()}. '
+                    'Quando montar, os exercícios aparecem aqui para você registrar as séries.',
+              ModoTreino.plano =>
+                'Adicione os exercícios do treino de ${DiaSemana.nome(widget.dia).toLowerCase()}. '
+                    'O aluno vê o treino na hora e registra as séries e cargas de cada semana.',
+            },
             style: AppTexto.corpo,
           ),
         ],
@@ -433,19 +497,23 @@ class _CardExercicio extends StatelessWidget {
   final int indice;
   final ExercicioTreino exercicio;
   final (SemanaTreino, ExercicioTreino)? anterior;
+  final ModoTreino modo;
   final VoidCallback onSeriesAlteradas;
   final VoidCallback onTrocar;
   final VoidCallback onRemover;
   final VoidCallback onEvolucao;
+  final VoidCallback? onExecucao;
 
   const _CardExercicio({
     required this.indice,
     required this.exercicio,
     required this.anterior,
+    required this.modo,
     required this.onSeriesAlteradas,
     required this.onTrocar,
     required this.onRemover,
     required this.onEvolucao,
+    this.onExecucao,
   });
 
   List<SerieRegistro> get _series => exercicio.series;
@@ -508,7 +576,8 @@ class _CardExercicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pace = exercicio.paceMedio;
-    final botoes = [
+    // O professor não registra séries: a semana é do aluno
+    final botoes = !modo.registraSeries ? const <Widget>[] : [
       if (!_unica)
         BotaoContorno(
           texto: _registro == TipoRegistro.intervalado ? 'Adicionar tiro' : 'Adicionar série',
@@ -546,7 +615,11 @@ class _CardExercicio extends StatelessWidget {
                     Text(exercicio.nome, maxLines: 2, overflow: TextOverflow.ellipsis, style: AppTexto.item),
                     const SizedBox(height: 4),
                     Text(
-                      anterior == null
+                      // O professor não tem a tabela de séries: vê aqui o que
+                      // o aluno já registrou nesta semana
+                      !modo.registraSeries && exercicio.seriesPreenchidas.isNotEmpty
+                          ? 'Nesta semana: ${FormatoTreino.resumoExercicio(exercicio)}'
+                          : anterior == null
                           ? 'Primeira vez registrando'
                           : 'Última vez (${FormatoTreino.data(anterior!.$1.inicio)}): '
                               '${FormatoTreino.resumoExercicio(anterior!.$2)}',
@@ -557,21 +630,27 @@ class _CardExercicio extends StatelessWidget {
                   ],
                 ),
               ),
-              ReorderableDragStartListener(
-                index: indice,
-                child: const MouseRegion(
-                  cursor: SystemMouseCursors.grab,
-                  child: Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Icon(Icons.drag_indicator_rounded, color: AppCores.textoApagado, size: 22),
+              if (modo.editaEstrutura)
+                ReorderableDragStartListener(
+                  index: indice,
+                  child: const MouseRegion(
+                    cursor: SystemMouseCursors.grab,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Icon(Icons.drag_indicator_rounded, color: AppCores.textoApagado, size: 22),
+                    ),
                   ),
                 ),
+              _MenuExercicio(
+                onTrocar: modo.editaEstrutura ? onTrocar : null,
+                onEvolucao: onEvolucao,
+                onRemover: modo.editaEstrutura ? onRemover : null,
+                onExecucao: onExecucao,
               ),
-              _MenuExercicio(onTrocar: onTrocar, onEvolucao: onEvolucao, onRemover: onRemover),
             ],
           ),
-          const SizedBox(height: 14),
-          if (_series.isNotEmpty) ...[
+          if (modo.registraSeries) const SizedBox(height: 14),
+          if (modo.registraSeries && _series.isNotEmpty) ...[
             _cabecalhoTabela(),
             const SizedBox(height: 8),
             for (var i = 0; i < _series.length; i++)
@@ -604,12 +683,20 @@ class _CardExercicio extends StatelessWidget {
   }
 }
 
+/// Ações de um exercício. As nulas não aparecem (o aluno não troca nem
+/// remove o que o professor montou).
 class _MenuExercicio extends StatelessWidget {
-  final VoidCallback onTrocar;
+  final VoidCallback? onTrocar;
   final VoidCallback onEvolucao;
-  final VoidCallback onRemover;
+  final VoidCallback? onRemover;
+  final VoidCallback? onExecucao;
 
-  const _MenuExercicio({required this.onTrocar, required this.onEvolucao, required this.onRemover});
+  const _MenuExercicio({
+    required this.onTrocar,
+    required this.onEvolucao,
+    required this.onRemover,
+    this.onExecucao,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -633,9 +720,10 @@ class _MenuExercicio extends StatelessWidget {
       icon: const Icon(Icons.more_vert_rounded, color: AppCores.textoSuave, size: 20),
       onSelected: (acao) => acao(),
       itemBuilder: (_) => [
-        item('Trocar / editar exercício', Icons.edit_outlined, onTrocar),
+        if (onExecucao != null) item('Como executar', Icons.menu_book_outlined, onExecucao!),
+        if (onTrocar != null) item('Trocar / editar exercício', Icons.edit_outlined, onTrocar!),
         item('Ver evolução', Icons.show_chart_rounded, onEvolucao),
-        item('Remover do treino', Icons.delete_outline_rounded, onRemover, cor: AppCores.erro),
+        if (onRemover != null) item('Remover do treino', Icons.delete_outline_rounded, onRemover!, cor: AppCores.erro),
       ],
     );
   }

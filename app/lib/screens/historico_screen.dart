@@ -10,7 +10,10 @@ import 'evolucao_exercicio_screen.dart';
 class HistoricoScreen extends StatefulWidget {
   final TreinoService service;
 
-  const HistoricoScreen({super.key, required this.service});
+  /// Linha acima do título; o professor vê o nome do aluno.
+  final String rotulo;
+
+  const HistoricoScreen({super.key, required this.service, this.rotulo = 'MEUS TREINOS'});
 
   @override
   State<HistoricoScreen> createState() => _HistoricoScreenState();
@@ -62,7 +65,7 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
               const SizedBox(height: 12),
               const Align(alignment: Alignment.centerLeft, child: BotaoVoltar()),
               const SizedBox(height: 24),
-              Text('MEUS TREINOS', style: AppTexto.rotulo.copyWith(color: AppCores.destaque)),
+              Text(widget.rotulo, style: AppTexto.rotulo.copyWith(color: AppCores.destaque)),
               const SizedBox(height: 8),
               Text('HISTÓRICO', style: AppTexto.display((largura * 0.085).clamp(30.0, 56.0))),
               const SizedBox(height: 12),

@@ -8,6 +8,7 @@ class Navegacao {
   Navegacao._();
 
   static const abaInicio = 0;
+  static const abaTreinos = 2;
 
   /// Índice da aba ativa: 0 Grupos, 1 Exercícios, 2 Meus Treinos.
   static final aba = ValueNotifier<int>(abaInicio);

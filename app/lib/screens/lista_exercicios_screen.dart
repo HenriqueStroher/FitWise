@@ -3,6 +3,7 @@ import '../models/exercicio.dart';
 import '../models/grupo_muscular.dart';
 import '../models/rotulos.dart';
 import '../services/exercicio_service.dart';
+import '../services/sessao.dart';
 import '../theme/app_theme.dart';
 import '../widgets/comuns.dart';
 import 'detalhe_exercicio_screen.dart';
@@ -34,10 +35,13 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen> {
   void initState() {
     super.initState();
     _carregarExercicios();
+    // A lista muda quando a academia do usuário oculta exercícios
+    Sessao.academia.addListener(_carregarExercicios);
   }
 
   @override
   void dispose() {
+    Sessao.academia.removeListener(_carregarExercicios);
     _buscaController.dispose();
     _rolagem.dispose();
     super.dispose();

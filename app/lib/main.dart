@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -6,6 +7,7 @@ import 'navegacao.dart';
 import 'screens/home_screen.dart';
 import 'screens/lista_exercicios_screen.dart';
 import 'screens/meus_treinos_screen.dart';
+import 'services/sessao.dart';
 import 'theme/app_theme.dart';
 import 'widgets/comuns.dart';
 
@@ -14,12 +16,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // Com --dart-define=EMULADOR=true, o Firestore é o emulador local (porta
-  // 8080, ver firebase.json): dá para testar uma base nova sem publicá-la.
-  // O login continua sendo o de produção.
+  // Com --dart-define=EMULADOR=true, o Firestore e o login são os emuladores
+  // locais (portas 8080 e 9099, ver firebase.json): dá para testar uma base
+  // nova e o modo academia sem tocar em produção.
   if (const bool.fromEnvironment('EMULADOR')) {
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   }
+  Sessao.iniciar();
+  // Quem abre um link de convite cai direto na aba onde ele é respondido
+  if (Sessao.convitePendente.value != null) Navegacao.aba.value = Navegacao.abaTreinos;
   runApp(const MyApp());
 }
 

@@ -3,23 +3,181 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Catálogo de exercícios: leitura livre, sem login (como sempre foi).
-    // Escrita só pelo console / Admin SDK, que ignoram estas regras.
+    // ─────────────────────────────────────────
+    // FUNÇÕES
+    // ─────────────────────────────────────────
+
+    function logado() {
+      return request.auth != null;
+    }
+
+    function verificado() {
+      return logado() && request.auth.token.email_verified == true;
+    }
+
+    function usuario(uid) {
+      return get(/databases/$(database)/documents/usuarios/$(uid)).data;
+    }
+
+    // Perfil de quem faz a requisição
+    function eu() {
+      return usuario(request.auth.uid);
+    }
+
+    // Dono do software: existe admins/{uid} (criado só pelo console)
+    function admin() {
+      return verificado() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function membroDe(academiaId) {
+      return verificado() && eu().get('academiaId', null) == academiaId;
+    }
+
+    // Professor ou dono (que também dá aula) da academia
+    function ensinaEm(academiaId) {
+      return membroDe(academiaId) && eu().get('papel', '') in ['professor', 'dono'];
+    }
+
+    function donoDe(academiaId) {
+      return membroDe(academiaId) && eu().get('papel', '') == 'dono';
+    }
+
+    // Quem faz a requisição é o professor atual do aluno, e continua na
+    // mesma academia (um professor removido perde o acesso na hora)
+    function professorDe(uid) {
+      let aluno = usuario(uid);
+      return aluno.get('professorUid', null) == request.auth.uid
+          && ensinaEm(aluno.get('academiaId', null));
+    }
+
+    // Campos que ligam o usuário a uma academia
+    function camposVinculo() {
+      return ['papel', 'academiaId', 'professorUid', 'convite'];
+    }
+
+    function mexeNoVinculo() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasAny(camposVinculo());
+    }
+
+    function soMexeNoVinculo() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(camposVinculo());
+    }
+
+    // O documento fica sem vínculo nenhum: volta a ser usuário comum
+    function semVinculo() {
+      return !request.resource.data.keys().hasAny(camposVinculo());
+    }
+
+    // Entrada pelo convite: o convite existe, vale, e os campos novos batem
+    // com ele. Dono não troca de academia por convite.
+    function entraPorConvite() {
+      let novo = request.resource.data;
+      let c = get(/databases/$(database)/documents/convites/$(novo.convite)).data;
+      return verificado()
+          && resource.data.get('papel', 'usuario') in ['usuario', 'aluno']
+          && c.expiraEm > request.time
+          && novo.academiaId == c.academiaId
+          && ((c.tipo == 'aluno' && novo.papel == 'aluno' && novo.professorUid == c.autorUid)
+              || (c.tipo == 'professor' && novo.papel == 'professor' && !novo.keys().hasAny(['professorUid'])));
+    }
+
+    // ─────────────────────────────────────────
+    // CATÁLOGO
+    // ─────────────────────────────────────────
+
+    // Leitura livre, sem login (como sempre foi). Escrita só pelo console /
+    // Admin SDK, que ignoram estas regras.
     match /exercicios/{document=**} {
       allow read: if true;
       allow write: if false;
     }
 
-    // Dados de cada usuário: só o próprio dono lê e escreve.
+    // ─────────────────────────────────────────
+    // USUÁRIOS
+    // ─────────────────────────────────────────
+
     // O perfil é gravado no cadastro, antes de o e-mail ser confirmado; os
     // treinos (plano dos dias e registros semanais) exigem e-mail confirmado.
     match /usuarios/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
-
-      match /{documento=**} {
-        allow read, write: if request.auth != null && request.auth.uid == uid
-                           && request.auth.token.email_verified == true;
+      function proprio() {
+        return logado() && request.auth.uid == uid;
       }
+
+      allow read: if proprio()
+        || admin()
+        // Professor vê os próprios alunos (a consulta filtra academia e professor)
+        || (resource.data.professorUid == request.auth.uid && ensinaEm(resource.data.academiaId))
+        // Dono vê todo mundo da academia
+        || donoDe(resource.data.academiaId)
+        // Quem é da academia vê os professores dela (nome do professor do aluno)
+        || (resource.data.papel in ['professor', 'dono'] && membroDe(resource.data.academiaId));
+
+      // O cadastro não pode já vir com papel ou academia
+      allow create: if proprio() && !request.resource.data.keys().hasAny(camposVinculo());
+
+      allow update: if
+        // O próprio usuário: muda o que quiser, menos o vínculo, que só
+        // muda ao entrar por convite ou ao sair (o dono não sai sozinho)
+        (proprio() && (!mexeNoVinculo()
+                       || entraPorConvite()
+                       || (semVinculo() && resource.data.get('papel', '') in ['aluno', 'professor'])))
+        // Professor desvincula um aluno dele
+        || (professorDe(uid) && soMexeNoVinculo() && semVinculo())
+        // Dono remove alguém da academia, ou passa um aluno para si
+        || (!proprio() && donoDe(resource.data.get('academiaId', null)) && soMexeNoVinculo()
+            && (semVinculo()
+                || (resource.data.papel == 'aluno'
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['professorUid'])
+                    && request.resource.data.professorUid == request.auth.uid)))
+        // Dono do software cria donos de academia
+        || (admin() && soMexeNoVinculo());
+
+      allow delete: if proprio();
+
+      // Plano de cada dia: o aluno vinculado não edita, quem edita é o professor
+      match /plano/{dia} {
+        allow read: if (proprio() && verificado()) || professorDe(uid);
+        allow write: if (proprio() && verificado() && usuario(uid).get('professorUid', null) == null)
+                     || professorDe(uid);
+      }
+
+      // Registros semanais: só o próprio usuário grava; o professor lê
+      match /semanas/{semana} {
+        allow read: if (proprio() && verificado()) || professorDe(uid);
+        allow write: if proprio() && verificado();
+      }
+    }
+
+    // ─────────────────────────────────────────
+    // ACADEMIAS (modo em teste)
+    // ─────────────────────────────────────────
+
+    match /academias/{academiaId} {
+      allow read: if admin() || membroDe(academiaId);
+      allow create, delete: if admin();
+      // O dono só mexe no nome e no que a academia tem de equipamento
+      allow update: if admin()
+        || (donoDe(academiaId)
+            && request.resource.data.diff(resource.data).affectedKeys()
+                 .hasOnly(['nome', 'equipamentosIndisponiveis', 'exerciciosOcultos', 'atualizadoEm']));
+    }
+
+    // Convites: quem tem o código lê (é o que o link carrega); só o autor lista
+    match /convites/{codigo} {
+      allow get: if verificado();
+      allow list: if verificado() && resource.data.autorUid == request.auth.uid;
+      allow create: if verificado()
+        && request.resource.data.autorUid == request.auth.uid
+        && request.resource.data.expiraEm is timestamp
+        && ((request.resource.data.tipo == 'aluno' && ensinaEm(request.resource.data.academiaId))
+            || (request.resource.data.tipo == 'professor' && donoDe(request.resource.data.academiaId)));
+      allow delete: if verificado() && resource.data.autorUid == request.auth.uid;
+    }
+
+    // Donos do software: cada um só confere o próprio documento
+    match /admins/{uid} {
+      allow read: if logado() && request.auth.uid == uid;
+      allow write: if false;
     }
   }
 }

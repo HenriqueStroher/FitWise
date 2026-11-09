@@ -1,11 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../models/academia.dart';
 import '../models/treino.dart';
+import '../services/academia_service.dart';
 import '../services/auth_service.dart';
+import '../services/sessao.dart';
 import '../services/treino_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/comuns.dart';
 import '../widgets/treino_comuns.dart';
+import 'academia/convite_screen.dart';
+import 'academia/painel_professor_screen.dart';
+import 'academia/painel_software_screen.dart';
 import 'historico_screen.dart';
 import 'login_screen.dart';
 import 'treino_dia_screen.dart';
@@ -13,6 +19,10 @@ import 'verificacao_email_screen.dart';
 
 /// Aba "Meus Treinos". É a única parte do app que exige login: sem usuário,
 /// mostra a tela de entrada; com usuário, o painel da semana.
+///
+/// Com o modo academia ligado (Sessao.habilitada), o que aparece depende do
+/// papel: professor e dono veem os alunos, o aluno vê o treino montado pelo
+/// professor e o usuário comum segue como sempre.
 class MeusTreinosScreen extends StatefulWidget {
   const MeusTreinosScreen({super.key});
 
@@ -24,16 +34,16 @@ class _MeusTreinosScreenState extends State<MeusTreinosScreen> {
   final AuthService _auth = AuthService();
   late final Stream<User?> _usuario = _auth.usuario;
 
+  static const _carregando = Center(
+    child: CircularProgressIndicator(strokeWidth: 2, color: AppCores.destaque),
+  );
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
       stream: _usuario,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(strokeWidth: 2, color: AppCores.destaque),
-          );
-        }
+        if (snapshot.connectionState == ConnectionState.waiting) return _carregando;
         if (snapshot.data == null) return const LoginScreen();
         // currentUser reflete o reload() feito ao conferir a confirmação,
         // mesmo que o stream ainda não tenha emitido
@@ -46,25 +56,227 @@ class _MeusTreinosScreenState extends State<MeusTreinosScreen> {
             onConfirmado: () => setState(() {}),
           );
         }
-        // A chave recria o painel (e o serviço) se outro usuário entrar
-        return _PainelSemana(key: ValueKey(usuario.uid), usuario: usuario, auth: _auth);
+        if (!Sessao.habilitada) return _painelProprio(usuario, null);
+
+        return ListenableBuilder(
+          listenable: Listenable.merge([Sessao.perfil, Sessao.convitePendente]),
+          builder: (context, _) {
+            final perfil = Sessao.perfil.value;
+            if (perfil == null || perfil.uid != usuario.uid) return _carregando;
+
+            final convite = Sessao.convitePendente.value;
+            if (convite != null) {
+              return ConviteScreen(key: ValueKey(convite), codigo: convite, perfil: perfil);
+            }
+            if (perfil.papel.ensina) {
+              return PainelProfessorScreen(
+                key: ValueKey('${perfil.uid}-${perfil.papel.name}-${perfil.academiaId}'),
+                perfil: perfil,
+                topo: SaudacaoSair(usuario: usuario, auth: _auth),
+              );
+            }
+            return _painelProprio(usuario, perfil);
+          },
+        );
       },
+    );
+  }
+
+  /// Painel da semana do próprio usuário: comum (monta o treino) ou aluno
+  /// (registra o treino montado pelo professor).
+  Widget _painelProprio(User usuario, Perfil? perfil) {
+    final aluno = perfil?.papel == Papel.aluno;
+    return PainelSemana(
+      // A chave recria o painel (e o serviço) se outro usuário entrar ou se
+      // o papel mudar (entrou ou saiu da academia)
+      key: ValueKey('${usuario.uid}-${perfil?.papel.name}-${perfil?.professorUid}'),
+      service: TreinoService(uid: usuario.uid),
+      topo: SaudacaoSair(usuario: usuario, auth: _auth),
+      titulo: 'MEUS TREINOS',
+      modo: aluno ? ModoTreino.registro : ModoTreino.completo,
+      cabecalho: aluno ? _VinculoAluno(perfil: perfil!) : null,
+      rodape: [
+        if (perfil?.admin ?? false) const BotaoPainelSoftware(),
+        if (aluno) _BotaoSairDaAcademia(perfil: perfil!),
+      ],
     );
   }
 }
 
-class _PainelSemana extends StatefulWidget {
+/// Saudação com o nome e o botão de sair, no topo dos painéis.
+class SaudacaoSair extends StatelessWidget {
   final User usuario;
   final AuthService auth;
 
-  const _PainelSemana({super.key, required this.usuario, required this.auth});
+  const SaudacaoSair({super.key, required this.usuario, required this.auth});
+
+  Future<void> _sair(BuildContext context) async {
+    final ok = await confirmar(
+      context,
+      titulo: 'Sair da conta?',
+      mensagem: 'Seus treinos ficam salvos e voltam quando você entrar de novo.',
+      acao: 'Sair',
+    );
+    if (ok) await auth.sair();
+  }
 
   @override
-  State<_PainelSemana> createState() => _PainelSemanaState();
+  Widget build(BuildContext context) {
+    final nome = usuario.displayName?.trim();
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            (nome == null || nome.isEmpty ? usuario.email ?? '' : 'Olá, $nome').toUpperCase(),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTexto.rotulo.copyWith(color: AppCores.destaque),
+          ),
+        ),
+        Pressionavel(
+          onTap: () => _sair(context),
+          builder: (_, ativo) => Row(
+            children: [
+              Icon(Icons.logout_rounded, size: 16, color: ativo ? AppCores.texto : AppCores.textoSuave),
+              const SizedBox(width: 6),
+              Text('Sair', style: AppTexto.meta.copyWith(color: ativo ? AppCores.texto : AppCores.textoSuave)),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
 
-class _PainelSemanaState extends State<_PainelSemana> {
-  late final TreinoService _service = TreinoService(uid: widget.usuario.uid);
+/// Atalho para o painel do dono do software.
+class BotaoPainelSoftware extends StatelessWidget {
+  const BotaoPainelSoftware({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BotaoContorno(
+      texto: 'Painel do software',
+      icone: Icons.insights_rounded,
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PainelSoftwareScreen())),
+    );
+  }
+}
+
+/// "Academia X · professor Y", abaixo do título do aluno.
+class _VinculoAluno extends StatefulWidget {
+  final Perfil perfil;
+
+  const _VinculoAluno({required this.perfil});
+
+  @override
+  State<_VinculoAluno> createState() => _VinculoAlunoState();
+}
+
+class _VinculoAlunoState extends State<_VinculoAluno> {
+  String? _professor;
+
+  @override
+  void initState() {
+    super.initState();
+    final uid = widget.perfil.professorUid;
+    if (uid == null) return;
+    AcademiaService().buscarPerfil(uid).then((p) {
+      if (mounted) setState(() => _professor = p?.exibicao);
+    }).catchError((Object e) {
+      debugPrint('Meus Treinos: $e');
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<Academia?>(
+      valueListenable: Sessao.academia,
+      builder: (context, academia, _) => Row(
+        children: [
+          Icon(academia?.autonomo ?? false ? Icons.sports_rounded : Icons.storefront_outlined,
+              size: 16, color: AppCores.textoSuave),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              [
+                // O autônomo não tem academia: aparece só o professor
+                if (!(academia?.autonomo ?? false)) academia?.nome ?? 'Academia',
+                if (_professor != null) 'treino de $_professor',
+              ].join('  ·  '),
+              style: AppTexto.meta.copyWith(color: AppCores.texto),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BotaoSairDaAcademia extends StatelessWidget {
+  final Perfil perfil;
+
+  const _BotaoSairDaAcademia({required this.perfil});
+
+  Future<void> _sair(BuildContext context) async {
+    final ok = await confirmar(
+      context,
+      titulo: 'Sair da academia?',
+      mensagem: 'Seu professor deixa de ver e montar seu treino. O treino atual e o histórico '
+          'continuam com você, e você passa a montar o treino sozinho.',
+      acao: 'Sair',
+    );
+    if (!ok) return;
+    try {
+      await AcademiaService().desvincular(perfil.uid);
+    } catch (e) {
+      debugPrint('Meus Treinos: $e');
+      if (context.mounted) avisar(context, 'Não foi possível sair. Verifique sua conexão.');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BotaoContorno(texto: 'Sair da academia', icone: Icons.logout_rounded, onTap: () => _sair(context));
+  }
+}
+
+/// Painel de uma semana de treino: os sete dias, o que foi planejado e o que
+/// já foi registrado. Serve ao próprio usuário e ao professor que abre um
+/// aluno ([modo] diz o que cada um pode fazer ao abrir o dia).
+class PainelSemana extends StatefulWidget {
+  final TreinoService service;
+
+  /// Linha acima do título: saudação e sair, ou voltar.
+  final Widget topo;
+  final String titulo;
+
+  /// Linha opcional logo abaixo do título (ex.: academia do aluno).
+  final Widget? cabecalho;
+  final ModoTreino modo;
+
+  /// Nome do aluno, quando é o professor quem vê o painel.
+  final String? nomeAluno;
+
+  /// Botões extras abaixo do histórico.
+  final List<Widget> rodape;
+
+  const PainelSemana({
+    super.key,
+    required this.service,
+    required this.topo,
+    required this.titulo,
+    this.cabecalho,
+    this.modo = ModoTreino.completo,
+    this.nomeAluno,
+    this.rodape = const [],
+  });
+
+  @override
+  State<PainelSemana> createState() => _PainelSemanaState();
+}
+
+class _PainelSemanaState extends State<PainelSemana> {
+  TreinoService get _service => widget.service;
 
   Map<int, List<ExercicioTreino>> _plano = {};
   SemanaTreino? _semana;
@@ -97,7 +309,7 @@ class _PainelSemanaState extends State<_PainelSemana> {
       if (!mounted) return;
       setState(() {
         _carregando = false;
-        _erro = 'Não foi possível carregar seus treinos. Verifique sua conexão.';
+        _erro = 'Não foi possível carregar os treinos. Verifique sua conexão.';
       });
     }
   }
@@ -105,7 +317,9 @@ class _PainelSemanaState extends State<_PainelSemana> {
   Future<void> _abrirDia(int dia) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => TreinoDiaScreen(dia: dia, service: _service)),
+      MaterialPageRoute(
+        builder: (_) => TreinoDiaScreen(dia: dia, service: _service, modo: widget.modo, nomeAluno: widget.nomeAluno),
+      ),
     );
     _carregar();
   }
@@ -113,25 +327,19 @@ class _PainelSemanaState extends State<_PainelSemana> {
   void _abrirHistorico() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => HistoricoScreen(service: _service)),
+      MaterialPageRoute(
+        builder: (_) => HistoricoScreen(
+          service: _service,
+          rotulo: widget.nomeAluno == null ? 'MEUS TREINOS' : widget.nomeAluno!.toUpperCase(),
+        ),
+      ),
     );
-  }
-
-  Future<void> _sair() async {
-    final ok = await confirmar(
-      context,
-      titulo: 'Sair da conta?',
-      mensagem: 'Seus treinos ficam salvos e voltam quando você entrar de novo.',
-      acao: 'Sair',
-    );
-    if (ok) await widget.auth.sair();
   }
 
   @override
   Widget build(BuildContext context) {
     final largura = MediaQuery.sizeOf(context).width;
     final hoje = DateTime.now().weekday;
-    final nome = widget.usuario.displayName?.trim();
     final treinados = _semana?.diasTreinados ?? const <int>[];
 
     return RefreshIndicator(
@@ -146,34 +354,13 @@ class _PainelSemanaState extends State<_PainelSemana> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        (nome == null || nome.isEmpty ? widget.usuario.email ?? '' : 'Olá, $nome')
-                            .toUpperCase(),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTexto.rotulo.copyWith(color: AppCores.destaque),
-                      ),
-                    ),
-                    Pressionavel(
-                      onTap: _sair,
-                      builder: (_, ativo) => Row(
-                        children: [
-                          Icon(Icons.logout_rounded,
-                              size: 16, color: ativo ? AppCores.texto : AppCores.textoSuave),
-                          const SizedBox(width: 6),
-                          Text('Sair',
-                              style: AppTexto.meta
-                                  .copyWith(color: ativo ? AppCores.texto : AppCores.textoSuave)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                widget.topo,
                 const SizedBox(height: 10),
-                Text('MEUS TREINOS', style: AppTexto.display((largura * 0.085).clamp(30.0, 56.0))),
+                Text(widget.titulo, style: AppTexto.display((largura * 0.085).clamp(30.0, 56.0))),
+                if (widget.cabecalho != null) ...[
+                  const SizedBox(height: 14),
+                  widget.cabecalho!,
+                ],
                 const SizedBox(height: 14),
                 Text(
                   'Semana ${FormatoTreino.data(_inicioSemana)} até '
@@ -207,6 +394,7 @@ class _PainelSemanaState extends State<_PainelSemana> {
                               : _LinhaDia(
                                   dia: dia,
                                   hoje: dia == hoje,
+                                  montavel: widget.modo.editaEstrutura,
                                   planejados: (_plano[dia] ?? []).length,
                                   registrados: (_semana?.dias[dia] ?? [])
                                       .where((e) => e.seriesPreenchidas.isNotEmpty)
@@ -218,10 +406,14 @@ class _PainelSemanaState extends State<_PainelSemana> {
                   ),
                   const SizedBox(height: 28),
                   BotaoContorno(
-                    texto: 'Histórico de treinos',
+                    texto: widget.nomeAluno == null ? 'Histórico de treinos' : 'Histórico de cargas',
                     icone: Icons.history_rounded,
                     onTap: _abrirHistorico,
                   ),
+                  for (final botao in widget.rodape) ...[
+                    const SizedBox(height: 12),
+                    botao,
+                  ],
                 ],
               ],
             ),
@@ -235,6 +427,9 @@ class _PainelSemanaState extends State<_PainelSemana> {
 class _LinhaDia extends StatelessWidget {
   final int dia;
   final bool hoje;
+
+  /// Quem vê o painel pode montar o dia (o aluno não pode).
+  final bool montavel;
   final int planejados;
   final int registrados;
   final VoidCallback onTap;
@@ -242,13 +437,14 @@ class _LinhaDia extends StatelessWidget {
   const _LinhaDia({
     required this.dia,
     required this.hoje,
+    required this.montavel,
     required this.planejados,
     required this.registrados,
     required this.onTap,
   });
 
   String get _meta {
-    if (planejados == 0) return 'Descanso · toque para montar';
+    if (planejados == 0) return montavel ? 'Descanso · toque para montar' : 'Descanso';
     final ex = '$planejados ${planejados == 1 ? 'exercício' : 'exercícios'}';
     if (registrados == 0) return ex;
     return '$ex  ·  $registrados registrado${registrados == 1 ? '' : 's'}';

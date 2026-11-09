@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/grupo_muscular.dart';
 import '../services/exercicio_service.dart';
+import '../services/sessao.dart';
 import '../theme/app_theme.dart';
 import '../widgets/comuns.dart';
 
@@ -23,6 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _carregarContagem();
+    // A contagem muda quando a academia do usuário oculta exercícios
+    Sessao.academia.addListener(_carregarContagem);
+  }
+
+  @override
+  void dispose() {
+    Sessao.academia.removeListener(_carregarContagem);
+    super.dispose();
   }
 
   Future<void> _carregarContagem() async {
