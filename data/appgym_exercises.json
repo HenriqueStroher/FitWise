@@ -14,19 +14,19 @@
     "GLUTEOS",
     "PANTURRILHA"
   ],
-  "total": 97,
+  "total": 151,
   "totalPorGrupo": {
-    "PEITO": 10,
-    "COSTAS": 10,
-    "OMBROS": 10,
-    "BICEPS": 10,
-    "TRICEPS": 10,
-    "ABDOMEN": 10,
+    "PEITO": 19,
+    "COSTAS": 15,
+    "OMBROS": 17,
+    "BICEPS": 18,
+    "TRICEPS": 19,
+    "ABDOMEN": 19,
     "LOMBAR": 8,
-    "QUADRICEPS": 10,
+    "QUADRICEPS": 15,
     "POSTERIOR": 8,
-    "GLUTEOS": 4,
-    "PANTURRILHA": 7
+    "GLUTEOS": 5,
+    "PANTURRILHA": 8
   },
   "exercicios": [
     {
@@ -104,6 +104,43 @@
       "versao": "2.0.0"
     },
     {
+      "id": "287",
+      "slug": "incline-cable-flys",
+      "nome": "Crucifixo Inclinado no Cabo",
+      "descricao": "Crucifixo em banco inclinado entre duas polias, com foco na porção superior do peitoral.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "ombros"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "banco_inclinado",
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/incline-cable-flys-1.webp",
+        "_images/web/incline-cable-flys-2.webp"
+      ],
+      "steps": [
+        "Coloque um banco inclinado a 45 graus entre duas torres de cabo.",
+        "Segure uma polia em cada mão, com as palmas voltadas para cima.",
+        "Com os cotovelos levemente flexionados, contraia o peito e puxe os cabos em arco até as mãos se encontrarem acima do meio do peito.",
+        "Segure por um instante e volte devagar à posição inicial pelo mesmo arco."
+      ],
+      "cuidados": [
+        "Cotovelos levemente flexionados durante todo o arco",
+        "Una as mãos acima do peito sem bater as pegadas",
+        "Volte devagar pelo mesmo arco"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "270",
       "slug": "dumbbell-flys",
       "nome": "Crucifixo com Halteres",
@@ -139,6 +176,44 @@
       "planoMovimento": "transversal",
       "ativacaoMuscular": 0.84,
       "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "273",
+      "slug": "flat-bench-cable-flys",
+      "nome": "Crucifixo no Cabo",
+      "descricao": "Crucifixo deitado entre duas polias baixas, com tensão no peitoral em toda a amplitude.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "ombros"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "banco_reto",
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/flat-bench-cable-flys-1.webp",
+        "_images/web/flat-bench-cable-flys-2.webp"
+      ],
+      "steps": [
+        "Deite em um banco reto entre duas torres de cabo, com os pés firmes no chão.",
+        "Segure uma polia em cada mão, com as palmas voltadas para cima.",
+        "Com os cotovelos levemente flexionados, contraia o peito e una os cabos acima do meio do peito.",
+        "Segure por um instante e desça as mãos devagar até a altura do banco.",
+        "Mantenha costas e quadril em contato com o banco durante todo o exercício."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos levemente flexionados e fixos",
+        "Não desça os braços abaixo da linha do banco",
+        "Mantenha costas e quadril apoiados no banco"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.15,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -183,6 +258,85 @@
       "versao": "2.0.0"
     },
     {
+      "id": "263",
+      "slug": "chest-dips",
+      "nome": "Mergulho nas Paralelas",
+      "descricao": "Mergulho com o tronco inclinado à frente, que trabalha peitoral inferior, tríceps e ombros.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "triceps",
+        "ombros"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "peso_corporal",
+        "barras_paralelas"
+      ],
+      "frames": [
+        "_images/web/chest-dips-1.webp",
+        "_images/web/chest-dips-2.webp"
+      ],
+      "steps": [
+        "Fique entre as barras paralelas.",
+        "Segure as barras e suba o corpo até a posição inicial, com os braços estendidos.",
+        "Com os cotovelos próximos ao corpo e o quadril alinhado, desça flexionando os cotovelos e inclinando o tronco à frente, com o peito conduzindo a descida.",
+        "Suba de volta à posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Incline o tronco à frente para enfatizar o peitoral",
+        "Desça só até os ombros ficarem na altura dos cotovelos",
+        "Evite se sentir dor na frente do ombro"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.35,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "346",
+      "slug": "straight-arm-dumbbell-pullover",
+      "nome": "Pullover com Haltere",
+      "descricao": "Arco com o haltere por trás da cabeça, deitado no banco, que trabalha peitoral e dorsais.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "dorsais",
+        "triceps",
+        "ombros"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "banco_reto",
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/straight-arm-dumbbell-pullover-1.webp",
+        "_images/web/straight-arm-dumbbell-pullover-2.webp"
+      ],
+      "steps": [
+        "Deite em um banco reto com os pés apoiados no chão e a cabeça na ponta do banco.",
+        "Segure um haltere com as duas mãos e eleve-o acima do peito.",
+        "Mantendo os cotovelos o mais estendidos possível, desça o haltere em arco por trás da cabeça, até onde conseguir sem dor.",
+        "Retorne à posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos levemente flexionados e fixos",
+        "Desça atrás da cabeça só até onde o ombro permite sem dor",
+        "Segure o haltere com firmeza com as duas mãos"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.8,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "253",
       "slug": "decline-barbell-bench-press",
       "nome": "Supino Declinado com Barra",
@@ -219,6 +373,44 @@
       "planoMovimento": "transversal",
       "ativacaoMuscular": 0.85,
       "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "256",
+      "slug": "decline-dumbbell-bench-press",
+      "nome": "Supino Declinado com Halteres",
+      "descricao": "Supino com halteres em banco declinado, com ênfase na porção inferior do peitoral.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "triceps",
+        "ombros"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "haltere",
+        "banco_declinado"
+      ],
+      "frames": [
+        "_images/web/decline-dumbbell-bench-press-1.webp",
+        "_images/web/decline-dumbbell-bench-press-2.webp"
+      ],
+      "steps": [
+        "Segure os halteres e deite em um banco declinado, com a cabeça mais baixa que os pés.",
+        "Eleve os halteres acima do peito, com os cotovelos próximos; esta é a posição inicial.",
+        "Desça os halteres devagar e com controle até os lados da parte baixa do peito.",
+        "Suba os halteres de volta à posição inicial."
+      ],
+      "cuidados": [
+        "Prenda bem as pernas no apoio antes de pegar os halteres",
+        "Desça os halteres na linha da parte baixa do peito",
+        "Evite o exercício se sentir tontura de cabeça para baixo"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.25,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -296,6 +488,81 @@
       "vetorForca": "angular",
       "planoMovimento": "transversal",
       "ativacaoMuscular": 0.87,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "365",
+      "slug": "incline-chest-press",
+      "nome": "Supino Inclinado na Máquina",
+      "descricao": "Supino inclinado guiado na máquina, com foco na porção superior do peitoral.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "triceps",
+        "ombros"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "maquina_peito"
+      ],
+      "frames": [
+        "_images/web/incline-chest-press-1.webp",
+        "_images/web/incline-chest-press-2.webp"
+      ],
+      "steps": [
+        "Ajuste o banco da máquina para que as pegadas fiquem próximas à parte alta do peito.",
+        "Empurre as pegadas à frente devagar até estender os braços, sem travar os cotovelos.",
+        "Faça uma pausa e, com movimento controlado, volte as mãos à posição inicial."
+      ],
+      "cuidados": [
+        "Ajuste o banco para as pegadas ficarem na parte alta do peito",
+        "Não trave os cotovelos no final",
+        "Mantenha as escápulas apoiadas no encosto"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "355",
+      "slug": "smith-machine-incline-bench-press",
+      "nome": "Supino Inclinado no Smith",
+      "descricao": "Supino inclinado na barra guiada, com foco na porção superior do peitoral.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "ombros",
+        "triceps"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "smith",
+        "banco_inclinado"
+      ],
+      "frames": [
+        "_images/web/smith-machine-incline-bench-press-1.webp",
+        "_images/web/smith-machine-incline-bench-press-2.webp"
+      ],
+      "steps": [
+        "Coloque um banco inclinado a 45 graus no meio do Smith.",
+        "Alinhe o banco para que a barra fique sobre a parte alta do peito.",
+        "Segure a barra com as mãos na largura dos ombros.",
+        "Destrave a barra e desça o peso devagar até o peito, sem quicar a barra.",
+        "Com movimento lento e controlado, suba a barra até a posição inicial."
+      ],
+      "cuidados": [
+        "Posicione o banco para a barra descer na parte alta do peito",
+        "Use inclinação entre 30 e 45 graus",
+        "Ajuste as travas de segurança antes de começar"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.86,
       "escoreRiscoLesao": 0.2,
       "fonte": "everkinetic",
       "versao": "2.0.0"
@@ -382,9 +649,85 @@
       "versao": "2.0.0"
     },
     {
+      "id": "343",
+      "slug": "smith-machine-bench-press",
+      "nome": "Supino Reto no Smith",
+      "descricao": "Supino reto na barra guiada, que dispensa o equilíbrio da barra e facilita treinar sem parceiro.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "ombros",
+        "triceps"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "smith",
+        "banco_reto"
+      ],
+      "frames": [
+        "_images/web/smith-machine-bench-press-1.webp",
+        "_images/web/smith-machine-bench-press-2.webp"
+      ],
+      "steps": [
+        "Coloque um banco reto no meio do Smith, com a barra alinhada ao meio do peito.",
+        "Deitado no banco, segure a barra com as mãos na largura dos ombros.",
+        "Destrave a barra e desça-a devagar até o peito.",
+        "Estenda os braços por completo, subindo a barra até a posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Posicione o banco para a barra descer na linha do meio do peito",
+        "Ajuste as travas de segurança antes de começar",
+        "Não deixe a barra quicar no peito"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "305",
+      "slug": "machine-bench-press",
+      "nome": "Supino na Máquina",
+      "descricao": "Supino sentado na máquina, com trajetória guiada; bom para iniciantes e para treinar perto da falha com segurança.",
+      "musculoPrimario": "PEITO",
+      "musculoDetalhe": "peito",
+      "musculoSecundario": [
+        "triceps",
+        "ombros"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "maquina_supino"
+      ],
+      "frames": [
+        "_images/web/machine-bench-press-1.webp",
+        "_images/web/machine-bench-press-2.webp"
+      ],
+      "steps": [
+        "Ajuste a máquina para que, sentado, as pegadas fiquem na altura do peito.",
+        "Segure as pegadas e apoie os pés no apoio ou no chão.",
+        "Empurre à frente, estendendo os braços o máximo possível em um movimento contínuo.",
+        "Faça uma pausa e retorne devagar à posição inicial."
+      ],
+      "cuidados": [
+        "Ajuste o banco para as pegadas ficarem na linha do meio do peito",
+        "Mantenha as costas e a cabeça apoiadas no encosto",
+        "Não estenda os cotovelos de forma brusca no final"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "231",
       "slug": "butterfly-machine",
-      "nome": "Voador na Máquina",
+      "nome": "Voador (Peck Deck)",
       "descricao": "Isolamento do peitoral na máquina voador, com trajetória guiada e risco reduzido.",
       "musculoPrimario": "PEITO",
       "musculoDetalhe": "peito",
@@ -442,7 +785,6 @@
         "Puxe o tronco para cima até a barra chegar na parte alta do peito, levando os ombros e os braços para baixo e para trás. Expire durante esta fase do movimento.",
         "Após um segundo na posição contraída, inspire e desça lentamente o tronco até a posição inicial, com os braços totalmente estendidos e os dorsais bem alongados.",
         "Repita o movimento.",
-        "Dica",
         "Concentre-se em contrair os músculos das costas ao atingir a contração máxima. O tronco deve permanecer imóvel enquanto se desloca no espaço: apenas os braços devem se mover. Os antebraços não devem fazer outro trabalho além de segurar a barra."
       ],
       "cuidados": [
@@ -567,6 +909,43 @@
       "versao": "2.0.0"
     },
     {
+      "id": "389",
+      "slug": "straight-arm-push-down",
+      "nome": "Pulldown com Braços Estendidos",
+      "descricao": "Puxada no cabo com os braços quase retos, que isola o dorsal sem envolver o bíceps.",
+      "musculoPrimario": "COSTAS",
+      "musculoDetalhe": "dorsais",
+      "musculoSecundario": [
+        "triceps",
+        "core"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/straight-arm-push-down-1.webp",
+        "_images/web/straight-arm-push-down-2.webp"
+      ],
+      "steps": [
+        "Segure a barra de puxada com pegada aberta, com as mãos na parte curva da barra.",
+        "Fique em pé, com o tronco ereto e o abdômen contraído.",
+        "Mantendo os cotovelos levemente flexionados e os punhos firmes, puxe a barra para baixo até a frente das coxas.",
+        "Com movimento controlado, volte a barra à posição inicial."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos levemente flexionados e fixos",
+        "Leve a barra até as coxas sem inclinar o tronco à frente",
+        "Volte devagar até a altura dos olhos"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.82,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "404",
       "slug": "wide-grip-lat-pull-down",
       "nome": "Puxada Aberta no Pulley",
@@ -679,6 +1058,44 @@
       "versao": "2.0.0"
     },
     {
+      "id": "115",
+      "slug": "seated-cable-rows",
+      "nome": "Remada Baixa no Cabo",
+      "descricao": "Remada horizontal sentada, com tensão contínua e baixa sobrecarga na lombar.",
+      "musculoPrimario": "COSTAS",
+      "musculoDetalhe": "costas_media",
+      "musculoSecundario": [
+        "biceps",
+        "lombar"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/seated-cable-rows-1.webp",
+        "_images/web/seated-cable-rows-2.webp"
+      ],
+      "steps": [
+        "Sente-se no aparelho de polia baixa com os pés apoiados no suporte e os joelhos levemente flexionados.",
+        "Com o abdômen contraído e as costas retas, incline levemente o tronco à frente para segurar o pegador com as palmas voltadas para baixo.",
+        "Puxe o pegador lentamente em direção ao abdômen enquanto volta a sentar ereto, mantendo os cotovelos próximos ao tronco.",
+        "Faça uma pausa e retorne lentamente o pegador à posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Mantenha a coluna neutra — não curve as costas ao retornar",
+        "Puxe com as costas, não apenas com os braços",
+        "Evite inclinar muito o tronco para trás"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.89,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "130",
       "slug": "t-bar-rows",
       "nome": "Remada Cavalinho",
@@ -754,40 +1171,277 @@
       "versao": "2.0.0"
     },
     {
-      "id": "115",
-      "slug": "seated-cable-rows",
-      "nome": "Remada Sentada no Cabo",
-      "descricao": "Remada horizontal sentada, com tensão contínua e baixa sobrecarga na lombar.",
+      "id": "126",
+      "slug": "rear-deltoid-row-barbell",
+      "nome": "Remada Curvada com Barra",
+      "descricao": "Remada curvada com pegada pronada, um dos exercícios base para a espessura das costas.",
+      "musculoPrimario": "COSTAS",
+      "musculoDetalhe": "costas_media",
+      "musculoSecundario": [
+        "dorsais",
+        "deltoide_posterior",
+        "biceps"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "barra"
+      ],
+      "frames": [
+        "_images/web/rear-deltoid-row-barbell-1.webp",
+        "_images/web/rear-deltoid-row-barbell-2.webp"
+      ],
+      "steps": [
+        "Coloque uma barra com as anilhas no chão, à sua frente.",
+        "Com os joelhos flexionados e as costas retas, segure a barra com pegada pronada e aberta (palmas para baixo).",
+        "Mantenha o tronco firme e os braços perpendiculares ao peito.",
+        "Puxe a barra o mais alto que conseguir em direção ao peito.",
+        "Segure por um instante e desça a barra de forma controlada.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Mantenha a coluna neutra e o core contraído durante todo o movimento",
+        "Puxe a barra até a parte baixa do peito, sem dar tranco com o tronco",
+        "Reduza a carga se a lombar começar a arredondar"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.9,
+      "escoreRiscoLesao": 0.4,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "106",
+      "slug": "smith-machine-rear-deltoid-row",
+      "nome": "Remada Curvada no Smith",
+      "descricao": "Remada curvada na barra guiada, que dispensa o equilíbrio da barra livre.",
+      "musculoPrimario": "COSTAS",
+      "musculoDetalhe": "costas_media",
+      "musculoSecundario": [
+        "deltoide_posterior",
+        "biceps"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "smith"
+      ],
+      "frames": [
+        "_images/web/smith-machine-rear-deltoid-row-1.webp",
+        "_images/web/smith-machine-rear-deltoid-row-2.webp"
+      ],
+      "steps": [
+        "Exercício para deltoide posterior, ombros, bíceps e costas.",
+        "Coloque a barra do Smith na posição mais baixa.",
+        "Fique com os pés na largura dos ombros e os joelhos levemente flexionados.",
+        "Incline o tronco a partir do quadril, com as costas retas e o peito quase paralelo ao chão.",
+        "Segure a barra com pegada pronada, um pouco mais aberta que os ombros, com os braços estendidos e leve flexão nos cotovelos.",
+        "Puxe a barra de forma controlada até a parte baixa do peito, levando os cotovelos para trás e para cima.",
+        "Segure por um instante e desça até a posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Coloque a barra na altura mais baixa antes de se posicionar",
+        "Mantenha a coluna neutra com o tronco inclinado",
+        "Leve os cotovelos para trás e para cima, sem puxar com a lombar"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "371",
+      "slug": "body-row",
+      "nome": "Remada Invertida",
+      "descricao": "Remada no peso do corpo, deitado sob uma barra; boa porta de entrada para a barra fixa.",
       "musculoPrimario": "COSTAS",
       "musculoDetalhe": "costas_media",
       "musculoSecundario": [
         "biceps",
-        "lombar"
+        "core"
       ],
       "tipo": "compound",
+      "equipamento": [
+        "barra_fixa"
+      ],
+      "frames": [
+        "_images/web/body-row-1.webp",
+        "_images/web/body-row-2.webp"
+      ],
+      "steps": [
+        "Deite sob uma barra posicionada na altura do meio do peito, com os pés firmes no chão.",
+        "Contraia o abdômen e mantenha as costas retas.",
+        "Usando os braços, puxe o corpo em direção à barra.",
+        "Faça uma pausa e desça devagar até a posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Mantenha o corpo reto, sem deixar o quadril cair",
+        "Puxe o peito até a barra juntando as escápulas",
+        "Dobre os joelhos para facilitar, se precisar"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.8,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "112",
+      "slug": "rear-deltoid-row-dumbbell",
+      "nome": "Remada Unilateral com Haltere (Serrote)",
+      "descricao": "Remada com um braço de cada vez, com joelho e mão apoiados no banco; uma das remadas mais usadas para as costas.",
+      "musculoPrimario": "COSTAS",
+      "musculoDetalhe": "costas_media",
+      "musculoSecundario": [
+        "biceps",
+        "deltoide_posterior"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/rear-deltoid-row-dumbbell-1.webp",
+        "_images/web/rear-deltoid-row-dumbbell-2.webp"
+      ],
+      "steps": [
+        "Apoie o pé direito no chão e o joelho e a mão esquerdos em um banco reto.",
+        "Incline o tronco à frente, de modo que o peso do corpo fique apoiado no braço e no joelho esquerdos.",
+        "Mantendo as costas retas, abaixe-se e pegue o haltere com a mão direita.",
+        "Eleve o braço direito o mais próximo possível do peito, flexionando o cotovelo e levando-o para trás o máximo que conseguir.",
+        "Faça uma pausa no topo e desça o haltere de forma controlada até a posição inicial.",
+        "Troque de braço invertendo o posicionamento.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Mantenha a coluna neutra, com o tronco quase paralelo ao chão",
+        "Puxe o cotovelo para trás junto ao corpo, sem girar o tronco",
+        "Desça o haltere até estender o braço, de forma controlada"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.87,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "143",
+      "slug": "bent-over-rear-deltoid-raise-with-head-on-bench",
+      "nome": "Crucifixo Inverso Curvado com Halteres",
+      "descricao": "Abertura dos braços com o tronco inclinado e a testa apoiada no banco, isolando o deltoide posterior.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "deltoide_posterior",
+      "musculoSecundario": [
+        "trapezio",
+        "costas_media"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/bent-over-rear-deltoid-raise-with-head-on-bench-1.webp",
+        "_images/web/bent-over-rear-deltoid-raise-with-head-on-bench-2.webp"
+      ],
+      "steps": [
+        "Apoie a testa em um banco inclinado para estabilizar o corpo, com as costas paralelas ao chão e o abdômen contraído.",
+        "Segure os halteres com os braços estendidos e os cotovelos levemente flexionados, sem travar.",
+        "Eleve os halteres devagar até a altura dos ombros.",
+        "Faça uma pausa e volte à posição inicial.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Apoie a testa no banco para não usar impulso do tronco",
+        "Mantenha os cotovelos levemente flexionados",
+        "Suba só até a altura dos ombros, com carga leve"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "109",
+      "slug": "lying-rear-lateral-raise",
+      "nome": "Crucifixo Inverso Deitado com Halteres",
+      "descricao": "Crucifixo inverso deitado de bruços no banco, que elimina o balanço do tronco.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "deltoide_posterior",
+      "musculoSecundario": [
+        "trapezio",
+        "costas_media"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "banco_reto",
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/lying-rear-lateral-raise-1.webp",
+        "_images/web/lying-rear-lateral-raise-2.webp"
+      ],
+      "steps": [
+        "Deixe os halteres no chão, na frente do banco.",
+        "Deite de bruços em um banco alto o bastante para os braços se moverem livres embaixo dele.",
+        "Apoie as pontas dos pés no chão para se estabilizar.",
+        "Segure os halteres com os cotovelos flexionados em cerca de 30 graus; esta é a posição inicial.",
+        "Eleve os braços até a altura dos ombros, com movimento controlado.",
+        "Volte à posição inicial e repita."
+      ],
+      "cuidados": [
+        "Use um banco alto o bastante para os braços descerem livres",
+        "Mantenha os cotovelos com leve flexão fixa",
+        "Suba até a linha dos ombros, sem encolher o pescoço"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "152",
+      "slug": "seated-rear-lateral-cable-raise",
+      "nome": "Crucifixo Inverso no Cabo",
+      "descricao": "Crucifixo inverso sentado com os cabos cruzados, com tensão constante no deltoide posterior.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "deltoide_posterior",
+      "musculoSecundario": [
+        "trapezio",
+        "costas_media"
+      ],
+      "tipo": "isolation",
       "equipamento": [
         "cabo"
       ],
       "frames": [
-        "_images/web/seated-cable-rows-1.webp",
-        "_images/web/seated-cable-rows-2.webp"
+        "_images/web/seated-rear-lateral-cable-raise-1.webp",
+        "_images/web/seated-rear-lateral-cable-raise-2.webp"
       ],
       "steps": [
-        "Sente-se no aparelho de polia baixa com os pés apoiados no suporte e os joelhos levemente flexionados.",
-        "Com o abdômen contraído e as costas retas, incline levemente o tronco à frente para segurar o pegador com as palmas voltadas para baixo.",
-        "Puxe o pegador lentamente em direção ao abdômen enquanto volta a sentar ereto, mantendo os cotovelos próximos ao tronco.",
-        "Faça uma pausa e retorne lentamente o pegador à posição inicial.",
+        "Sente na ponta de um banco com os pés no chão à sua frente.",
+        "Apoie o peito nas coxas com as costas retas e segure cada polia com a mão do lado oposto.",
+        "Eleve os braços até a altura dos ombros e faça uma pausa no topo.",
+        "Desça os braços até a posição inicial com movimento controlado.",
         "Repita."
       ],
       "cuidados": [
-        "Mantenha a coluna neutra — não curve as costas ao retornar",
-        "Puxe com as costas, não apenas com os braços",
-        "Evite inclinar muito o tronco para trás"
+        "Segure cada cabo com a mão do lado oposto",
+        "Mantenha o peito apoiado nas coxas e a coluna reta",
+        "Controle a volta dos cabos"
       ],
-      "vetorForca": "horizontal",
-      "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.89,
-      "escoreRiscoLesao": 0.15,
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -869,8 +1523,8 @@
     {
       "id": "65",
       "slug": "barbell-shoulder-press",
-      "nome": "Desenvolvimento com Barra em Pé",
-      "descricao": "Empurrar vertical em pé com barra, exercício base para os ombros.",
+      "nome": "Desenvolvimento com Barra Sentado",
+      "descricao": "Desenvolvimento sentado em banco com suporte para a barra, exercício base para os ombros.",
       "musculoPrimario": "OMBROS",
       "musculoDetalhe": "ombros",
       "musculoSecundario": [
@@ -892,9 +1546,9 @@
         "Faça uma pausa e desça a barra até a posição inicial com um movimento controlado."
       ],
       "cuidados": [
-        "Contraia o core e evite arquear a lombar",
+        "Mantenha as costas apoiadas e o core contraído, sem arquear a lombar",
         "Não leve a barra atrás da cabeça",
-        "Exige boa mobilidade de ombro — progrida a carga devagar"
+        "Retire e devolva a barra ao suporte com os braços estendidos"
       ],
       "vetorForca": "vertical",
       "planoMovimento": "frontal",
@@ -978,6 +1632,43 @@
       "versao": "2.0.0"
     },
     {
+      "id": "53",
+      "slug": "front-barbell-raises",
+      "nome": "Elevação Frontal com Barra",
+      "descricao": "Elevação dos braços à frente segurando a barra, com foco no deltoide anterior.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "ombros",
+      "musculoSecundario": [
+        "peito",
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "barra"
+      ],
+      "frames": [
+        "_images/web/front-barbell-raises-1.webp",
+        "_images/web/front-barbell-raises-2.webp"
+      ],
+      "steps": [
+        "Segure uma barra com pegada pronada (palmas para baixo).",
+        "Fique em pé com os pés na largura dos ombros, os joelhos levemente flexionados e o abdômen contraído.",
+        "Com os braços estendidos, eleve a barra de forma controlada até a altura dos ombros.",
+        "Segure por um instante e desça a barra pelo mesmo caminho."
+      ],
+      "cuidados": [
+        "Suba apenas até a altura dos ombros",
+        "Não jogue o tronco para trás para subir a barra",
+        "Mantenha os joelhos levemente flexionados e o abdômen firme"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "62",
       "slug": "front-raises",
       "nome": "Elevação Frontal com Haltere",
@@ -1013,6 +1704,45 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.85,
       "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "56",
+      "slug": "front-cable-raises",
+      "nome": "Elevação Frontal no Cabo",
+      "descricao": "Elevação frontal unilateral com a polia baixa, com tensão em toda a amplitude.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "ombros",
+      "musculoSecundario": [
+        "peito",
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/front-cable-raises-1.webp",
+        "_images/web/front-cable-raises-2.webp"
+      ],
+      "steps": [
+        "Coloque a polia na posição logo acima do chão.",
+        "Fique em pé com os pés na largura dos ombros, o abdômen contraído e os joelhos levemente flexionados.",
+        "Partindo da altura da cintura, segure a pegada com a mão esquerda, palma para baixo, e eleve o braço estendido até a altura do ombro esquerdo.",
+        "Na altura do ombro, faça uma pausa.",
+        "Resistindo ao peso, desça o braço devagar até a cintura.",
+        "Repita o exercício com o braço direito."
+      ],
+      "cuidados": [
+        "Mantenha o braço estendido, com leve flexão no cotovelo",
+        "Suba até a altura do ombro e pause",
+        "Não gire o tronco para ajudar o braço"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.83,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -1095,44 +1825,42 @@
       "versao": "2.0.0"
     },
     {
-      "id": "112",
-      "slug": "rear-deltoid-row-dumbbell",
-      "nome": "Remada Aberta para Deltoide Posterior",
-      "descricao": "Remada aberta curvada com haltere, com foco no deltoide posterior e trapézio médio.",
+      "id": "face-pull",
+      "slug": "face-pull",
+      "nome": "Face Pull",
+      "descricao": "Puxada da corda na polia alta em direção ao rosto, com os cotovelos altos; trabalha deltoide posterior e a musculatura que estabiliza os ombros.",
       "musculoPrimario": "OMBROS",
       "musculoDetalhe": "deltoide_posterior",
       "musculoSecundario": [
-        "deltoide_medial",
-        "biceps",
-        "trapezio"
+        "trapezio",
+        "costas_media"
       ],
       "tipo": "isolation",
       "equipamento": [
-        "haltere"
+        "cabo",
+        "corda"
       ],
       "frames": [
-        "_images/web/rear-deltoid-row-dumbbell-1.webp",
-        "_images/web/rear-deltoid-row-dumbbell-2.webp"
+        "_images/web/face-pull-1.webp",
+        "_images/web/face-pull-2.webp"
       ],
       "steps": [
-        "Apoie o pé direito no chão e o joelho e a mão esquerdos em um banco reto.",
-        "Incline o tronco à frente, de modo que o peso do corpo fique apoiado no braço e no joelho esquerdos.",
-        "Mantendo as costas retas, abaixe-se e pegue o haltere com a mão direita.",
-        "Eleve o braço direito o mais próximo possível do peito, flexionando o cotovelo e levando-o para trás o máximo que conseguir.",
-        "Faça uma pausa no topo e desça o haltere de forma controlada até a posição inicial.",
-        "Troque de braço invertendo o posicionamento.",
-        "Repita."
+        "Ajuste a polia acima da altura da cabeça e prenda a corda.",
+        "Segure as pontas da corda com as palmas voltadas uma para a outra e dê um passo para trás, com os braços estendidos à frente.",
+        "Puxe a corda em direção ao rosto, abrindo as mãos e levando os cotovelos para os lados, na altura dos ombros.",
+        "No fim do movimento, aproxime as escápulas e faça uma pausa.",
+        "Volte devagar à posição inicial, sem deixar o peso puxar os braços."
       ],
       "cuidados": [
-        "Mantenha a coluna neutra com o tronco inclinado",
-        "Abra os cotovelos na linha dos ombros",
-        "Use carga leve — o deltoide posterior é um músculo pequeno"
+        "Mantenha os cotovelos na altura dos ombros ou acima",
+        "Use carga leve: o objetivo é controle, não força máxima",
+        "Não incline o tronco para trás para puxar"
       ],
-      "vetorForca": "horizontal",
+      "vetorForca": "angular",
       "planoMovimento": "transversal",
-      "ativacaoMuscular": 0.85,
-      "escoreRiscoLesao": 0.2,
-      "fonte": "everkinetic",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic-ilustracao",
       "versao": "2.0.0"
     },
     {
@@ -1175,6 +1903,84 @@
       "versao": "2.0.0"
     },
     {
+      "id": "83",
+      "slug": "dumbbell-upright-rows",
+      "nome": "Remada Alta com Halteres",
+      "descricao": "Remada alta com halteres, que trabalha deltoide medial e trapézio com trajetória mais livre que a barra.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "ombros",
+      "musculoSecundario": [
+        "biceps",
+        "costas_superior"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/dumbbell-upright-rows-1.webp",
+        "_images/web/dumbbell-upright-rows-2.webp"
+      ],
+      "steps": [
+        "Segure um haltere em cada mão com pegada pronada (palmas para baixo), na frente das coxas.",
+        "Fique com os pés na largura dos ombros, o abdômen contraído e as costas retas.",
+        "Partindo das coxas, suba os halteres devagar em direção aos ombros, flexionando os cotovelos.",
+        "Faça uma pausa no topo e aproxime as escápulas.",
+        "Desça os halteres de forma controlada até as coxas.",
+        "Repita."
+      ],
+      "cuidados": [
+        "Não suba os cotovelos acima da linha dos ombros",
+        "Mantenha os halteres próximos ao corpo",
+        "Evite o exercício se sentir pinçamento no ombro"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "79",
+      "slug": "upright-cable-row",
+      "nome": "Remada Alta no Cabo",
+      "descricao": "Remada alta com barra na polia baixa, com tensão constante em deltoide medial e trapézio.",
+      "musculoPrimario": "OMBROS",
+      "musculoDetalhe": "ombros",
+      "musculoSecundario": [
+        "costas_superior",
+        "biceps"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/upright-cable-row-1.webp",
+        "_images/web/upright-cable-row-2.webp"
+      ],
+      "steps": [
+        "Prenda uma barra reta na polia baixa.",
+        "Fique com os pés na largura dos ombros, o abdômen contraído e as costas retas.",
+        "Segure a barra com pegada pronada (palmas para baixo) e traga-a até a altura da cintura; esta é a posição inicial.",
+        "Suba a barra até a linha dos ombros.",
+        "Faça uma pausa no topo e aproxime as escápulas.",
+        "Desça a barra de forma controlada até a posição inicial."
+      ],
+      "cuidados": [
+        "Não suba os cotovelos acima da linha dos ombros",
+        "Mantenha a barra próxima ao corpo",
+        "Use pegada um pouco mais aberta que os ombros"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.83,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "973",
       "slug": "alternating-biceps-curl-with-dumbbell",
       "nome": "Rosca Alternada com Haltere",
@@ -1193,7 +1999,6 @@
         "_images/web/alternating-biceps-curl-with-dumbbell-2.webp"
       ],
       "steps": [
-        "Passos",
         "Fique em pé com os pés na largura dos ombros, joelhos ligeiramente flexionados e abdômen contraído.",
         "Segure um haltere em cada mão com as palmas voltadas para cima.",
         "Estenda os braços ao lado do corpo.",
@@ -1209,6 +2014,42 @@
       "vetorForca": "vertical",
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "1004",
+      "slug": "biceps-curl-with-machine",
+      "nome": "Rosca Bíceps na Máquina",
+      "descricao": "Rosca sentada na máquina, com os braços apoiados e trajetória guiada.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "maquina"
+      ],
+      "frames": [
+        "_images/web/biceps-curl-with-machine-1.webp",
+        "_images/web/biceps-curl-with-machine-2.webp"
+      ],
+      "steps": [
+        "Ajuste o banco da máquina para que os cotovelos fiquem alinhados com o eixo de giro.",
+        "Apoie os braços nas almofadas e mantenha-os parados durante todo o exercício.",
+        "Flexione os antebraços até o fim do movimento.",
+        "Desça os braços devagar até a posição inicial."
+      ],
+      "cuidados": [
+        "Alinhe o cotovelo com o eixo de giro da máquina",
+        "Mantenha os braços apoiados nas almofadas",
+        "Desça devagar, sem deixar o peso bater"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
       "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
@@ -1328,6 +2169,119 @@
       "versao": "2.0.0"
     },
     {
+      "id": "1008",
+      "slug": "biceps-curl-reverse-with-dumbbells",
+      "nome": "Rosca Inversa com Halteres",
+      "descricao": "Rosca com as palmas voltadas para baixo, que transfere boa parte do esforço para o braquiorradial e o antebraço.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "braquiorradial",
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/biceps-curl-reverse-with-dumbbells-1.webp",
+        "_images/web/biceps-curl-reverse-with-dumbbells-2.webp"
+      ],
+      "steps": [
+        "Fique com os pés na largura dos ombros, os joelhos levemente flexionados e o abdômen contraído.",
+        "Segure um haltere em cada mão com as palmas voltadas para baixo.",
+        "Com os braços ao lado do corpo e os cotovelos fixos, suba os halteres em direção aos ombros.",
+        "Faça uma pausa e volte à posição inicial."
+      ],
+      "cuidados": [
+        "Use carga menor que na rosca tradicional",
+        "Mantenha os punhos alinhados com os antebraços",
+        "Cotovelos fixos ao lado do corpo"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.8,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "971",
+      "slug": "cross-body-hammer-curl-with-dumbbell",
+      "nome": "Rosca Martelo Cruzada",
+      "descricao": "Rosca martelo levando o haltere em direção ao ombro oposto, com ênfase no braquial.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/cross-body-hammer-curl-with-dumbbell-1.webp",
+        "_images/web/cross-body-hammer-curl-with-dumbbell-2.webp"
+      ],
+      "steps": [
+        "Em pé, segure um haltere em cada mão com as palmas voltadas para o corpo.",
+        "Sem girar os punhos, suba o haltere em direção ao ombro oposto.",
+        "Leve a ponta do haltere até tocar o ombro.",
+        "Desça o haltere devagar e com controle até a posição inicial."
+      ],
+      "cuidados": [
+        "Não gire o punho: a palma fica voltada para o corpo",
+        "Mantenha o cotovelo próximo ao tronco",
+        "Alterne os braços sem balançar o corpo"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "977",
+      "slug": "biceps-hammer-curl-with-dumbbell",
+      "nome": "Rosca Martelo com Halteres",
+      "descricao": "Rosca com as palmas voltadas uma para a outra, que trabalha bíceps, braquial e antebraço.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "braquial",
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/bicep-hammer-curl-with-dumbbell-1.webp",
+        "_images/web/bicep-hammer-curl-with-dumbbell-2.webp"
+      ],
+      "steps": [
+        "Neste exercício, o haltere sobe e desce como um martelo, com a pegada neutra.",
+        "Fique com os pés na largura dos ombros, os joelhos levemente flexionados e o abdômen contraído.",
+        "Segure um haltere em cada mão, com as palmas voltadas uma para a outra.",
+        "Estenda os braços ao lado do corpo.",
+        "Mantendo os cotovelos fixos, suba os halteres em arco em direção aos ombros.",
+        "Desça os braços de forma lenta e controlada e repita.",
+        "Não gire os punhos durante o exercício."
+      ],
+      "cuidados": [
+        "Mantenha as palmas voltadas uma para a outra durante todo o movimento",
+        "Cotovelos fixos ao lado do corpo",
+        "Não balance o tronco para subir o peso"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "966",
       "slug": "hammer-curls-with-rope-and-cable",
       "nome": "Rosca Martelo no Cabo com Corda",
@@ -1357,6 +2311,46 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.83,
       "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "987",
+      "slug": "one-arm-preacher-curl-with-dumbbell",
+      "nome": "Rosca Scott Unilateral com Haltere",
+      "descricao": "Rosca Scott com um braço de cada vez, que permite corrigir diferenças de força entre os lados.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/one-arm-preacher-curl-with-dumbbell-1.webp",
+        "_images/web/one-arm-preacher-curl-with-dumbbell-2.webp"
+      ],
+      "steps": [
+        "A rosca Scott usa um apoio para os braços que isola o bíceps. Esta versão usa um haltere, um braço de cada vez, para maior controle.",
+        "Ajuste o banco para que o braço fique na altura do topo do apoio.",
+        "Segure um haltere com a palma voltada para cima.",
+        "Apoie o braço no banco e estenda-o por completo.",
+        "Mantendo o braço sempre apoiado, suba o haltere em direção à cabeça.",
+        "Faça uma pausa e desça o haltere até a posição inicial.",
+        "Troque de braço e repita.",
+        "Faça o exercício de forma lenta e controlada."
+      ],
+      "cuidados": [
+        "Mantenha o braço apoiado no banco durante toda a repetição",
+        "Não estenda totalmente o cotovelo com carga alta",
+        "Faça o mesmo número de repetições com os dois braços"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.91,
+      "escoreRiscoLesao": 0.2,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -1395,6 +2389,116 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.92,
       "escoreRiscoLesao": 0.25,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "986",
+      "slug": "preacher-curl-with-machine",
+      "nome": "Rosca Scott na Máquina",
+      "descricao": "Rosca Scott com trajetória guiada, boa para iniciantes e para isolar o bíceps com segurança.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "maquina"
+      ],
+      "frames": [
+        "_images/web/preacher-curl-with-machine-1.webp",
+        "_images/web/preacher-curl-with-machine-2.webp"
+      ],
+      "steps": [
+        "A rosca Scott usa um apoio para os braços que isola o bíceps. Esta é a versão na máquina, boa para iniciantes.",
+        "Ajuste o banco para que os braços fiquem na altura do topo do apoio. Apoie os braços estendidos, segure a barra com as palmas para cima e puxe-a em direção à cabeça. Faça uma pausa e volte a barra à posição inicial.",
+        "Faça o exercício de forma lenta e controlada e leia as instruções da máquina antes de começar."
+      ],
+      "cuidados": [
+        "Ajuste o banco para que as axilas fiquem apoiadas no topo do apoio",
+        "Não estenda o cotovelo de forma brusca no final da descida",
+        "Mantenha os braços apoiados o tempo todo"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.9,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "967",
+      "slug": "preacher-curl-with-cable",
+      "nome": "Rosca Scott no Cabo",
+      "descricao": "Rosca Scott com a polia baixa, que mantém tensão no bíceps também no fim da subida.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/preacher-curl-with-cable-1.webp",
+        "_images/web/preacher-curl-with-cable-2.webp"
+      ],
+      "steps": [
+        "Coloque um banco Scott na frente de uma polia.",
+        "Prenda uma barra curta na polia baixa.",
+        "Apoie os braços no banco e estenda-os por completo.",
+        "Com pegada fechada (cerca de 15 cm), segure a barra com as palmas para cima e puxe-a em direção à cabeça.",
+        "Faça uma pausa e desça a barra até a posição inicial.",
+        "Faça o exercício de forma lenta e controlada."
+      ],
+      "cuidados": [
+        "Posicione o banco Scott alinhado com a polia",
+        "Mantenha os braços apoiados no banco",
+        "Controle o retorno do cabo, sem deixar o peso bater"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.89,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "995",
+      "slug": "spider-curl-with-barbell",
+      "nome": "Rosca Spider com Barra",
+      "descricao": "Rosca feita com o peito apoiado no lado reto do banco Scott, com os braços na vertical.",
+      "musculoPrimario": "BICEPS",
+      "musculoDetalhe": "biceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "barra"
+      ],
+      "frames": [
+        "_images/web/spider-curl-with-barbell-1.webp",
+        "_images/web/spider-curl-with-barbell-2.webp"
+      ],
+      "steps": [
+        "Este exercício usa o lado reto do banco Scott para aumentar a amplitude da rosca.",
+        "Vire o banco Scott ao contrário e apoie o peito no lado inclinado.",
+        "Segure a barra com as palmas para cima e as mãos a cerca de 15 cm uma da outra.",
+        "Apoiado no banco, desça a barra ao longo do lado reto até estender os braços.",
+        "Suba a barra até o bíceps encostar no antebraço.",
+        "Desça a barra devagar até a posição inicial.",
+        "Use pouca carga até se acostumar com o movimento."
+      ],
+      "cuidados": [
+        "Comece com carga leve para se acostumar à posição",
+        "Mantenha o peito apoiado no banco",
+        "Não balance os braços para frente para subir a barra"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.9,
+      "escoreRiscoLesao": 0.15,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -1550,72 +2654,41 @@
       "versao": "2.0.0"
     },
     {
-      "id": "941",
-      "slug": "seated-two-arm-triceps-extension-with-dumbbell",
-      "nome": "Extensão de Tríceps Acima da Cabeça Sentado",
-      "descricao": "Extensão de tríceps com haltere acima da cabeça sentado, focando na cabeça longa do tríceps.",
+      "id": "937",
+      "slug": "close-triceps-pushup",
+      "nome": "Flexão Fechada (Tríceps)",
+      "descricao": "Flexão de braço com as mãos juntas, que enfatiza o tríceps.",
       "musculoPrimario": "TRICEPS",
       "musculoDetalhe": "triceps",
-      "musculoSecundario": [],
-      "tipo": "isolation",
+      "musculoSecundario": [
+        "peito",
+        "ombros",
+        "core"
+      ],
+      "tipo": "compound",
       "equipamento": [
-        "haltere"
+        "peso_corporal"
       ],
       "frames": [
-        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-1.webp",
-        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-2.webp"
+        "_images/web/close-triceps-pushup-1.webp",
+        "_images/web/close-triceps-pushup-2.webp"
       ],
       "steps": [
-        "Sente-se na beira de um banco com os pés apoiados no chão.",
-        "Segure uma barra.",
-        "Eleve os braços lateralmente até que a barra fique quase paralela ao peito, mantendo o antebraço vertical.",
-        "Estenda o braço para trás em um arco em direção às costas.",
-        "Retorne à posição inicial, repita e alterne os braços."
+        "Esta versão da flexão de braço enfatiza o tríceps (parte de trás do braço).",
+        "Ajoelhe no chão ou em um colchonete, coloque as mãos juntas, com os polegares se tocando, e apoie-se nas pontas dos pés.",
+        "Contraia o abdômen e mantenha costas e pescoço alinhados.",
+        "Desça o corpo devagar, flexionando os braços, até quase encostar no chão.",
+        "Suba de forma controlada até a posição inicial."
       ],
       "cuidados": [
-        "Mantenha os cotovelos apontados para cima e próximos à cabeça",
-        "Não arqueie excessivamente a lombar",
-        "Controle o peso na descida atrás da cabeça"
+        "Mantenha o corpo alinhado da cabeça aos pés",
+        "Cotovelos próximos ao tronco na descida",
+        "Apoie os joelhos no chão se não conseguir manter a postura"
       ],
-      "vetorForca": "vertical",
+      "vetorForca": "horizontal",
       "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.89,
-      "escoreRiscoLesao": 0.25,
-      "fonte": "everkinetic",
-      "versao": "2.0.0"
-    },
-    {
-      "id": "915",
-      "slug": "standing-triceps-extension",
-      "nome": "Extensão de Tríceps em Pé",
-      "descricao": "Extensão de tríceps realizada em pé com barra ou haltere acima da cabeça.",
-      "musculoPrimario": "TRICEPS",
-      "musculoDetalhe": "triceps",
-      "musculoSecundario": [],
-      "tipo": "isolation",
-      "equipamento": [
-        "haltere"
-      ],
-      "frames": [
-        "_images/web/standing-triceps-extension-1.webp",
-        "_images/web/standing-triceps-extension-2.webp"
-      ],
-      "steps": [
-        "Fique em pé com os pés afastados na largura dos ombros, costas retas e abdômen contraído.",
-        "Segure uma corda ou barra presas na polia com ambas as mãos, com as palmas voltadas para cima.",
-        "Levante acima da cabeça e abaixe-o lentamente em um arco atrás da cabeça.",
-        "Após a execução, retorne lentamente de volta à posição inicial.",
-        "Observação: Mantenha os cotovelos próximos à cabeça durante o exercício."
-      ],
-      "cuidados": [
-        "Mantenha os cotovelos apontados para cima próximos à cabeça",
-        "Não arqueie a lombar — contraia o core",
-        "Controle a descida do peso atrás da cabeça"
-      ],
-      "vetorForca": "vertical",
-      "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.87,
-      "escoreRiscoLesao": 0.2,
+      "ativacaoMuscular": 0.83,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -1692,109 +2765,42 @@
       "versao": "2.0.0"
     },
     {
-      "id": "955",
-      "slug": "triceps-pushdown-with-rope-and-cable",
-      "nome": "Pushdown de Tríceps com Corda no Cabo",
-      "descricao": "Variação do pushdown com corda que permite abertura no final do movimento, aumentando a contração.",
+      "id": "238",
+      "slug": "close-grip-barbell-bench-press",
+      "nome": "Supino Fechado",
+      "descricao": "Supino com a pegada na largura dos ombros, que desloca o esforço para o tríceps.",
       "musculoPrimario": "TRICEPS",
       "musculoDetalhe": "triceps",
-      "musculoSecundario": [],
-      "tipo": "isolation",
+      "musculoSecundario": [
+        "peito",
+        "ombros"
+      ],
+      "tipo": "compound",
       "equipamento": [
-        "cabo"
+        "barra",
+        "banco_reto"
       ],
       "frames": [
-        "_images/web/triceps-pushdown-with-rope-and-cable-1.webp",
-        "_images/web/triceps-pushdown-with-rope-and-cable-2.webp"
+        "_images/web/close-grip-barbell-bench-press-1.webp",
+        "_images/web/close-grip-barbell-bench-press-2.webp"
       ],
       "steps": [
-        "Posicione-se à frente da máquina de cabo e acople uma corda a uma polia alta.",
-        "Segure a corda com as palmas voltadas para baixo.",
-        "Contraia o abdômen e mantenha as costas retas.",
-        "Mantendo os cotovelos ao lado do corpo, empurre a corda em direção às coxas, se possível \"separe\" a corda na parte inferior.",
-        "Faça uma pausa e retorne à posição inicial.",
-        "Observação: Você pode posicionar um pé na frente do outro para uma melhor estabilidade."
+        "Deite em um banco reto com os pés apoiados no chão e as costas apoiadas no banco.",
+        "Segure a barra com pegada fechada, com as mãos a cerca de 35 cm uma da outra.",
+        "Tire a barra do suporte e leve-a acima do meio do peito; esta é a posição inicial.",
+        "Desça a barra até encostar de leve no peito.",
+        "Suba a barra até estender os braços por completo.",
+        "Retorne à posição inicial."
       ],
       "cuidados": [
-        "Abra a corda para os lados no final do movimento para máxima contração",
-        "Mantenha os cotovelos fixos ao lado do corpo",
-        "Não use o tronco para aumentar a carga"
+        "Não feche demais a pegada — na largura dos ombros já basta",
+        "Mantenha os cotovelos próximos ao tronco na descida",
+        "Use parceiro ou suporte de segurança em cargas altas"
       ],
-      "vetorForca": "vertical",
-      "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.9,
-      "escoreRiscoLesao": 0.15,
-      "fonte": "everkinetic",
-      "versao": "2.0.0"
-    },
-    {
-      "id": "938",
-      "slug": "reverse-grip-triceps-pushdown",
-      "nome": "Pushdown de Tríceps com Pegada Inversa",
-      "descricao": "Variação do pushdown com pegada supinada que ativa mais a cabeça medial do tríceps.",
-      "musculoPrimario": "TRICEPS",
-      "musculoDetalhe": "triceps",
-      "musculoSecundario": [],
-      "tipo": "isolation",
-      "equipamento": [
-        "cabo"
-      ],
-      "frames": [
-        "_images/web/reverse-grip-triceps-pushdown-1.webp",
-        "_images/web/reverse-grip-triceps-pushdown-2.webp"
-      ],
-      "steps": [
-        "Posicione-se em frente à máquina de cabo e acopla uma barra na polia alta.",
-        "Segure a alça com as palmas voltadas para cima.",
-        "Mantendo os cotovelos junto ao corpo, puxe a alça em direção às coxas.",
-        "Faça uma pausa e retorne à posição inicial.",
-        "Observação: Você pode escalonar um pé à frente do outro para melhor estabilidade."
-      ],
-      "cuidados": [
-        "Mantenha os pulsos retos durante o movimento",
-        "Cotovelos fixos ao lado do corpo",
-        "Use carga menor que no pushdown tradicional"
-      ],
-      "vetorForca": "vertical",
-      "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.86,
-      "escoreRiscoLesao": 0.15,
-      "fonte": "everkinetic",
-      "versao": "2.0.0"
-    },
-    {
-      "id": "954",
-      "slug": "triceps-pushdown-with-cable",
-      "nome": "Pushdown de Tríceps no Cabo",
-      "descricao": "Exercício fundamental de isolamento do tríceps utilizando cabo com barra reta.",
-      "musculoPrimario": "TRICEPS",
-      "musculoDetalhe": "triceps",
-      "musculoSecundario": [],
-      "tipo": "isolation",
-      "equipamento": [
-        "cabo"
-      ],
-      "frames": [
-        "_images/web/triceps-pushdown-with-cable-1.webp",
-        "_images/web/triceps-pushdown-with-cable-2.webp"
-      ],
-      "steps": [
-        "Posicione-se em frente a um cabo de musculação e fixe uma barra curta em uma polia alta.",
-        "Agarre o handle com as palmas viradas para baixo.",
-        "Contraia o abdômen e mantenha as costas retas.",
-        "Mantendo os cotovelos junto ao corpo, empurre o handle em direção às coxas.",
-        "Faça uma pausa e retorne à posição inicial.",
-        "Observação: Você pode posicionar um pé à frente do outro para uma melhor estabilidade."
-      ],
-      "cuidados": [
-        "Mantenha os cotovelos fixos e colados ao lado do corpo",
-        "Não incline o tronco para frente para usar mais carga",
-        "Controle o retorno do cabo — não deixe subir de forma descontrolada"
-      ],
-      "vetorForca": "vertical",
+      "vetorForca": "horizontal",
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.88,
-      "escoreRiscoLesao": 0.15,
+      "escoreRiscoLesao": 0.25,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -1871,6 +2877,46 @@
       "versao": "2.0.0"
     },
     {
+      "id": "910",
+      "slug": "bench-dips",
+      "nome": "Tríceps Banco",
+      "descricao": "Mergulho com as mãos em um banco atrás do corpo e os pés apoiados à frente, no peso do corpo.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [
+        "peito"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "peso_corporal",
+        "banco"
+      ],
+      "frames": [
+        "_images/web/bench-dips-1.webp",
+        "_images/web/bench-dips-2.webp"
+      ],
+      "steps": [
+        "Este é um dos exercícios mais simples e eficientes para o tríceps (parte de trás do braço).",
+        "Coloque dois bancos paralelos, a cerca de 1 metro um do outro.",
+        "Sente em um banco e apoie os calcanhares na borda do outro, com as pernas suspensas entre os dois.",
+        "Cruze os pés para ter mais apoio.",
+        "Apoie as mãos no banco e desça o corpo devagar em direção ao chão, flexionando os cotovelos.",
+        "Faça uma pausa e volte à posição inicial.",
+        "Não desça além de 90 graus no cotovelo, para não sobrecarregar os ombros."
+      ],
+      "cuidados": [
+        "Não desça além de 90 graus no cotovelo",
+        "Mantenha o quadril próximo ao banco",
+        "Evite se sentir dor na frente do ombro"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.82,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "953",
       "slug": "triceps-kickback-with-dumbbell",
       "nome": "Tríceps Coice com Haltere",
@@ -1903,6 +2949,400 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.84,
       "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "955",
+      "slug": "triceps-pushdown-with-rope-and-cable",
+      "nome": "Tríceps Corda",
+      "descricao": "Variação do pushdown com corda que permite abertura no final do movimento, aumentando a contração.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/triceps-pushdown-with-rope-and-cable-1.webp",
+        "_images/web/triceps-pushdown-with-rope-and-cable-2.webp"
+      ],
+      "steps": [
+        "Posicione-se à frente da máquina de cabo e acople uma corda a uma polia alta.",
+        "Segure a corda com as palmas voltadas para baixo.",
+        "Contraia o abdômen e mantenha as costas retas.",
+        "Mantendo os cotovelos ao lado do corpo, empurre a corda em direção às coxas, se possível \"separe\" a corda na parte inferior.",
+        "Faça uma pausa e retorne à posição inicial.",
+        "Observação: Você pode posicionar um pé na frente do outro para uma melhor estabilidade."
+      ],
+      "cuidados": [
+        "Abra a corda para os lados no final do movimento para máxima contração",
+        "Mantenha os cotovelos fixos ao lado do corpo",
+        "Não use o tronco para aumentar a carga"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.9,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "941",
+      "slug": "seated-two-arm-triceps-extension-with-dumbbell",
+      "nome": "Tríceps Francês Sentado com Barra",
+      "descricao": "Extensão de tríceps sentado, com a barra descendo atrás da cabeça, focando na cabeça longa do tríceps.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "barra",
+        "banco"
+      ],
+      "frames": [
+        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-1.webp",
+        "_images/web/seated-two-arm-triceps-extension-with-dumbbell-2.webp"
+      ],
+      "steps": [
+        "Sente na ponta de um banco com os pés apoiados no chão.",
+        "Segure a barra com as duas mãos, com as palmas voltadas para a frente.",
+        "Eleve a barra acima da cabeça com os braços estendidos e os cotovelos apontados para cima.",
+        "Mantendo os braços parados, desça a barra em arco por trás da cabeça, flexionando só os cotovelos.",
+        "Estenda os cotovelos para voltar à posição inicial e repita."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos apontados para cima e próximos à cabeça",
+        "Não arqueie excessivamente a lombar",
+        "Controle o peso na descida atrás da cabeça"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.89,
+      "escoreRiscoLesao": 0.25,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "949",
+      "slug": "standing-one-arm-triceps-extension-with-dumbbell",
+      "nome": "Tríceps Francês Unilateral com Haltere",
+      "descricao": "Extensão de tríceps em pé com um braço de cada vez, com o haltere descendo atrás da cabeça.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/standing-one-arm-triceps-extension-with-dumbbell-1.webp",
+        "_images/web/standing-one-arm-triceps-extension-with-dumbbell-2.webp"
+      ],
+      "steps": [
+        "Fique com os pés na largura dos ombros, as costas retas e o abdômen contraído.",
+        "Segure um haltere com a mão direita.",
+        "Eleve o haltere acima da cabeça e desça-o devagar em arco por trás da cabeça, alinhado com a coluna.",
+        "Suba o haltere devagar até a posição inicial.",
+        "Troque de braço e repita.",
+        "Mantenha o cotovelo próximo à cabeça durante o exercício."
+      ],
+      "cuidados": [
+        "Mantenha o cotovelo apontado para cima e próximo à cabeça",
+        "Contraia o abdômen para não arquear a lombar",
+        "Use carga leve e faça o mesmo volume nos dois braços"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "915",
+      "slug": "standing-triceps-extension",
+      "nome": "Tríceps Francês com Haltere",
+      "descricao": "Extensão de tríceps em pé, com um haltere seguro pelas duas mãos atrás da cabeça.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/standing-triceps-extension-1.webp",
+        "_images/web/standing-triceps-extension-2.webp"
+      ],
+      "steps": [
+        "Fique em pé com os pés afastados na largura dos ombros, costas retas e abdômen contraído.",
+        "Segure uma corda ou barra presas na polia com ambas as mãos, com as palmas voltadas para cima.",
+        "Levante acima da cabeça e abaixe-o lentamente em um arco atrás da cabeça.",
+        "Após a execução, retorne lentamente de volta à posição inicial.",
+        "Observação: Mantenha os cotovelos próximos à cabeça durante o exercício."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos apontados para cima próximos à cabeça",
+        "Não arqueie a lombar — contraia o core",
+        "Controle a descida do peso atrás da cabeça"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.87,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "954",
+      "slug": "triceps-pushdown-with-cable",
+      "nome": "Tríceps Pulley com Barra",
+      "descricao": "Exercício fundamental de isolamento do tríceps utilizando cabo com barra reta.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/triceps-pushdown-with-cable-1.webp",
+        "_images/web/triceps-pushdown-with-cable-2.webp"
+      ],
+      "steps": [
+        "Posicione-se em frente a um cabo de musculação e fixe uma barra curta em uma polia alta.",
+        "Agarre o handle com as palmas viradas para baixo.",
+        "Contraia o abdômen e mantenha as costas retas.",
+        "Mantendo os cotovelos junto ao corpo, empurre o handle em direção às coxas.",
+        "Faça uma pausa e retorne à posição inicial.",
+        "Observação: Você pode posicionar um pé à frente do outro para uma melhor estabilidade."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos fixos e colados ao lado do corpo",
+        "Não incline o tronco para frente para usar mais carga",
+        "Controle o retorno do cabo — não deixe subir de forma descontrolada"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "956",
+      "slug": "triceps-pushdown-with-v-bar-and-cable",
+      "nome": "Tríceps Pulley com Barra V",
+      "descricao": "Tríceps no pulley com a barra em V, que deixa os punhos numa posição mais confortável que a barra reta.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo",
+        "barra_v"
+      ],
+      "frames": [
+        "_images/web/triceps-pushdown-with-v-bar-and-cable-1.webp",
+        "_images/web/triceps-pushdown-with-v-bar-and-cable-2.webp"
+      ],
+      "steps": [
+        "Esta variação do tríceps pulley usa uma barra em V, que muita gente acha mais confortável para os cotovelos.",
+        "Fique de frente para a polia e prenda a barra V na polia alta.",
+        "Segure a barra com as palmas para baixo.",
+        "Contraia o abdômen e mantenha as costas retas.",
+        "Com os cotovelos ao lado do corpo, empurre a barra para baixo até a frente das coxas.",
+        "Faça uma pausa e volte à posição inicial.",
+        "Se quiser mais estabilidade, coloque um pé um pouco à frente do outro."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos fixos ao lado do corpo",
+        "Estenda os braços por completo embaixo, sem inclinar o tronco",
+        "Controle a subida da barra"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "938",
+      "slug": "reverse-grip-triceps-pushdown",
+      "nome": "Tríceps Pulley com Pegada Inversa",
+      "descricao": "Variação do pushdown com pegada supinada que ativa mais a cabeça medial do tríceps.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/reverse-grip-triceps-pushdown-1.webp",
+        "_images/web/reverse-grip-triceps-pushdown-2.webp"
+      ],
+      "steps": [
+        "Posicione-se em frente à máquina de cabo e acopla uma barra na polia alta.",
+        "Segure a alça com as palmas voltadas para cima.",
+        "Mantendo os cotovelos junto ao corpo, puxe a alça em direção às coxas.",
+        "Faça uma pausa e retorne à posição inicial.",
+        "Observação: Você pode escalonar um pé à frente do outro para melhor estabilidade."
+      ],
+      "cuidados": [
+        "Mantenha os pulsos retos durante o movimento",
+        "Cotovelos fixos ao lado do corpo",
+        "Use carga menor que no pushdown tradicional"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "931",
+      "slug": "lying-triceps-press-with-barbell",
+      "nome": "Tríceps Testa com Barra",
+      "descricao": "Extensão de tríceps deitado, descendo a barra em direção à testa; um dos exercícios de tríceps mais usados.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [
+        "peito"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "barra"
+      ],
+      "frames": [
+        "_images/web/lying-triceps-press-with-barbell-1.webp",
+        "_images/web/lying-triceps-press-with-barbell-2.webp"
+      ],
+      "steps": [
+        "Deite em um banco reto com a cabeça em uma das pontas.",
+        "Segure a barra (reta ou W) com pegada pronada.",
+        "Eleve a barra acima dos ombros, mantendo os cotovelos próximos.",
+        "Desça a barra devagar, em arco, em direção à testa.",
+        "Suba a barra até a posição inicial.",
+        "Mantenha os braços parados durante todo o exercício, movendo apenas os cotovelos."
+      ],
+      "cuidados": [
+        "Mantenha os cotovelos apontados para o teto e próximos entre si",
+        "Desça a barra devagar — o erro de controle aqui vai em direção ao rosto",
+        "Prefira a barra W se sentir desconforto nos punhos"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.9,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "929",
+      "slug": "lying-triceps-extension-with-dumbbells",
+      "nome": "Tríceps Testa com Haltere",
+      "descricao": "Extensão de tríceps deitado com um haltere seguro pelas duas mãos, descendo atrás da cabeça.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/lying-triceps-extension-with-dumbbells-1.webp",
+        "_images/web/lying-triceps-extension-with-dumbbells-2.webp"
+      ],
+      "steps": [
+        "Deite em um banco reto com a cabeça em uma das pontas e os pés firmes no chão.",
+        "Segure um haltere com as duas mãos.",
+        "Eleve o haltere acima do corpo, com os braços apontados para o teto.",
+        "Mantendo braços e cotovelos parados, desça o haltere em arco por trás da cabeça.",
+        "Suba o haltere devagar até a posição inicial."
+      ],
+      "cuidados": [
+        "Segure o haltere com firmeza pela anilha de cima",
+        "Mexa só os cotovelos; os braços ficam parados",
+        "Não desça além do ponto em que mantém o controle"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.25,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "914",
+      "slug": "one-arm-tricep-extension-with-cable",
+      "nome": "Tríceps Unilateral no Cabo",
+      "descricao": "Tríceps no pulley com um braço e pegada supinada, que ajuda a equilibrar a força entre os lados.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/one-arm-tricep-extension-with-cable-1.webp",
+        "_images/web/one-arm-tricep-extension-with-cable-2.webp"
+      ],
+      "steps": [
+        "Coloque a polia na posição mais alta e prenda uma pegada simples.",
+        "Fique de frente para a máquina e segure a pegada com a palma voltada para cima.",
+        "Mantenha as costas retas, o abdômen contraído e os joelhos levemente flexionados.",
+        "Partindo do alto, empurre o braço para baixo até estendê-lo, sentindo a contração do tríceps.",
+        "Volte devagar à posição inicial.",
+        "Mantenha o cotovelo junto ao corpo durante o exercício."
+      ],
+      "cuidados": [
+        "Mantenha o cotovelo colado ao corpo",
+        "Não gire o tronco para ajudar o braço",
+        "Use carga leve — o movimento é unilateral"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "960",
+      "slug": "triceps-extensions-using-machine",
+      "nome": "Tríceps na Máquina",
+      "descricao": "Extensão de tríceps sentado na máquina, com os braços apoiados e trajetória guiada.",
+      "musculoPrimario": "TRICEPS",
+      "musculoDetalhe": "triceps",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "maquina"
+      ],
+      "frames": [
+        "_images/web/triceps-extensions-using-machine-1.webp",
+        "_images/web/triceps-extensions-using-machine-2.webp"
+      ],
+      "steps": [
+        "A máquina garante a amplitude correta do movimento; é um bom exercício para iniciantes e para quem está voltando de lesão.",
+        "Ajuste o banco para que os braços e os cotovelos fiquem apoiados na almofada. Contraia o abdômen e sente com as costas retas. Segure as pegadas e estenda os braços. Segure por um instante e volte devagar à posição inicial.",
+        "Fique sentado com os pés firmes no chão durante todo o exercício."
+      ],
+      "cuidados": [
+        "Ajuste o banco para os braços ficarem apoiados por inteiro na almofada",
+        "Mantenha as costas retas e os pés no chão",
+        "Volte devagar, sem deixar o peso bater"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.85,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -1941,6 +3381,113 @@
       "planoMovimento": "transversal",
       "ativacaoMuscular": 0.87,
       "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "1044",
+      "slug": "decline-crunch",
+      "nome": "Abdominal Declinado",
+      "descricao": "Abdominal no banco declinado, com amplitude e carga maiores que o abdominal no solo.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "banco_declinado"
+      ],
+      "frames": [
+        "_images/web/decline-crunch-1.webp",
+        "_images/web/decline-crunch-2.webp"
+      ],
+      "steps": [
+        "Deite de barriga para cima em um banco declinado.",
+        "Prenda os pés com firmeza sob os apoios.",
+        "Cruze as mãos sobre o peito ou coloque-as ao lado da cabeça.",
+        "Deite por completo e suba devagar, contraindo o abdômen.",
+        "Faça uma pausa e volte à posição inicial.",
+        "Use toda a amplitude do movimento para melhores resultados."
+      ],
+      "cuidados": [
+        "Prenda bem os pés nos apoios",
+        "Não puxe o pescoço com as mãos",
+        "Desça devagar, sem cair no banco"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "1039",
+      "slug": "bent-knee-hip-raise",
+      "nome": "Abdominal Infra",
+      "descricao": "Elevação do quadril deitado, com os joelhos flexionados, que trabalha o abdômen inferior com menor estresse lombar.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [],
+      "tipo": "compound",
+      "equipamento": [
+        "peso_corporal"
+      ],
+      "frames": [
+        "_images/web/bent-knee-hip-raise-1.webp",
+        "_images/web/bent-knee-hip-raise-2.webp"
+      ],
+      "steps": [
+        "Deite de costas com os braços estendidos ao lado do corpo.",
+        "Flexione os joelhos a cerca de 60 graus e mantenha os pés ligeiramente acima do chão.",
+        "Mantendo as costas e os braços apoiados, eleve o quadril do chão até os joelhos ficarem sobre o peito.",
+        "Contraia o abdômen por um instante e retorne à posição inicial."
+      ],
+      "cuidados": [
+        "Eleve o quadril com o abdômen, sem impulso de pernas",
+        "Mantenha a lombar neutra",
+        "Faça o movimento curto e controlado"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "1041",
+      "slug": "cross-body-crunch",
+      "nome": "Abdominal Oblíquo Cruzado",
+      "descricao": "Abdominal levando o cotovelo em direção ao joelho oposto, com foco nos oblíquos.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [
+        "obliquos"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "peso_corporal"
+      ],
+      "frames": [
+        "_images/web/cross-body-crunch-1.webp",
+        "_images/web/cross-body-crunch-2.webp"
+      ],
+      "steps": [
+        "Deite de costas com os joelhos flexionados e os pés apoiados no chão.",
+        "Coloque as mãos ao lado da cabeça.",
+        "Suba levando o cotovelo direito em direção ao joelho esquerdo, até se encontrarem acima do peito.",
+        "Volte à posição inicial e repita com o braço e a perna do outro lado.",
+        "Contraia o abdômen durante a rotação."
+      ],
+      "cuidados": [
+        "Faça a rotação com o tronco, não só com o cotovelo",
+        "Não puxe o pescoço com as mãos",
+        "Alterne os lados de forma controlada"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -2013,6 +3560,80 @@
       "ativacaoMuscular": 0.83,
       "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "1047",
+      "slug": "stability-ball-abdominal-crunch",
+      "nome": "Abdominal na Bola",
+      "descricao": "Abdominal com a lombar apoiada na bola suíça, que aumenta a amplitude do movimento.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "bola"
+      ],
+      "frames": [
+        "_images/web/stability-ball-abdominal-crunch-1.webp",
+        "_images/web/stability-ball-abdominal-crunch-2.webp"
+      ],
+      "steps": [
+        "Este abdominal usa a bola suíça, que se adapta à curva da coluna e permite mais amplitude.",
+        "Sente sobre a bola com os pés firmes no chão.",
+        "Posicione-se de modo que a lombar fique apoiada no meio da bola.",
+        "Deite para trás e cruze as mãos sobre o peito ou coloque-as ao lado da cabeça.",
+        "Eleve cabeça, peito e ombros contraindo o abdômen.",
+        "Faça uma pausa e volte à posição inicial.",
+        "Use toda a amplitude do movimento para melhores resultados."
+      ],
+      "cuidados": [
+        "Mantenha os pés afastados e firmes no chão para não rolar",
+        "Centralize a lombar no meio da bola",
+        "Não puxe a cabeça com as mãos"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "kneeling-cable-crunch",
+      "slug": "kneeling-cable-crunch",
+      "nome": "Abdominal na Polia Alta",
+      "descricao": "Flexão de tronco ajoelhado, puxando a corda da polia alta; permite aumentar a carga no abdômen.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [
+        "obliquos"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo",
+        "corda"
+      ],
+      "frames": [
+        "_images/web/kneeling-cable-crunch-1.webp",
+        "_images/web/kneeling-cable-crunch-2.webp"
+      ],
+      "steps": [
+        "Prenda a corda na polia alta e ajoelhe de frente para a máquina.",
+        "Segure a corda ao lado da cabeça, com os cotovelos dobrados.",
+        "Flexione o tronco levando os cotovelos em direção às coxas, contraindo o abdômen.",
+        "Volte devagar à posição inicial, sem deixar o peso puxar o tronco."
+      ],
+      "cuidados": [
+        "O movimento vem do abdômen, não dos braços nem do quadril",
+        "Mantenha o quadril parado durante a flexão",
+        "Controle a volta da carga"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.89,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic-ilustracao",
       "versao": "2.0.0"
     },
     {
@@ -2089,6 +3710,80 @@
       "versao": "2.0.0"
     },
     {
+      "id": "hanging-knee-raise",
+      "slug": "hanging-knee-raise",
+      "nome": "Elevação de Joelhos na Barra Fixa",
+      "descricao": "Elevação dos joelhos pendurado na barra, com foco no abdômen inferior.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen_inferior",
+      "musculoSecundario": [
+        "flexores_quadril",
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "barra_fixa"
+      ],
+      "frames": [
+        "_images/web/hanging-knee-raise-1.webp",
+        "_images/web/hanging-knee-raise-2.webp"
+      ],
+      "steps": [
+        "Segure a barra fixa com as mãos na largura dos ombros e fique pendurado, com as pernas estendidas.",
+        "Contraia o abdômen para estabilizar o corpo e evitar balanço.",
+        "Eleve os joelhos em direção ao peito, enrolando levemente o quadril.",
+        "Desça as pernas devagar até a posição inicial."
+      ],
+      "cuidados": [
+        "Não use balanço para subir as pernas",
+        "Desça controlando, sem soltar o corpo",
+        "Pare se a pegada falhar antes do abdômen"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic-ilustracao",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "hanging-leg-raise",
+      "slug": "hanging-leg-raise",
+      "nome": "Elevação de Pernas na Barra Fixa",
+      "descricao": "Elevação das pernas estendidas até a barra, pendurado; variação avançada da elevação de joelhos.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen_inferior",
+      "musculoSecundario": [
+        "flexores_quadril",
+        "antebraco"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "barra_fixa"
+      ],
+      "frames": [
+        "_images/web/hanging-leg-raise-1.webp",
+        "_images/web/hanging-leg-raise-2.webp"
+      ],
+      "steps": [
+        "Segure a barra fixa com as mãos na largura dos ombros e fique pendurado, com as pernas estendidas.",
+        "Contraia o abdômen para estabilizar o corpo.",
+        "Com as pernas estendidas, eleve os pés até perto da barra.",
+        "Desça as pernas devagar até a posição inicial."
+      ],
+      "cuidados": [
+        "Domine a elevação de joelhos antes desta versão",
+        "Não use balanço para subir as pernas",
+        "Desça de forma controlada"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.92,
+      "escoreRiscoLesao": 0.25,
+      "fonte": "everkinetic-ilustracao",
+      "versao": "2.0.0"
+    },
+    {
       "id": "99",
       "slug": "flat-bench-leg-raises",
       "nome": "Elevação de Pernas no Banco",
@@ -2121,40 +3816,6 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.86,
       "escoreRiscoLesao": 0.2,
-      "fonte": "everkinetic",
-      "versao": "2.0.0"
-    },
-    {
-      "id": "1039",
-      "slug": "bent-knee-hip-raise",
-      "nome": "Elevação de Quadril com Joelhos Flexionados",
-      "descricao": "Elevação de quadril deitado, que trabalha o abdômen inferior com menor estresse lombar.",
-      "musculoPrimario": "ABDOMEN",
-      "musculoDetalhe": "abdomen",
-      "musculoSecundario": [],
-      "tipo": "compound",
-      "equipamento": [
-        "peso_corporal"
-      ],
-      "frames": [
-        "_images/web/bent-knee-hip-raise-1.webp",
-        "_images/web/bent-knee-hip-raise-2.webp"
-      ],
-      "steps": [
-        "Deite de costas com os braços estendidos ao lado do corpo.",
-        "Flexione os joelhos a cerca de 60 graus e mantenha os pés ligeiramente acima do chão.",
-        "Mantendo as costas e os braços apoiados, eleve o quadril do chão até os joelhos ficarem sobre o peito.",
-        "Contraia o abdômen por um instante e retorne à posição inicial."
-      ],
-      "cuidados": [
-        "Eleve o quadril com o abdômen, sem impulso de pernas",
-        "Mantenha a lombar neutra",
-        "Faça o movimento curto e controlado"
-      ],
-      "vetorForca": "vertical",
-      "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.84,
-      "escoreRiscoLesao": 0.15,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -2194,6 +3855,81 @@
       "versao": "2.0.0"
     },
     {
+      "id": "cable-woodchop",
+      "slug": "cable-woodchop",
+      "nome": "Lenhador no Cabo",
+      "descricao": "Rotação do tronco puxando o cabo da polia alta na diagonal, com foco nos oblíquos.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "obliquos",
+      "musculoSecundario": [
+        "core",
+        "ombros"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/cable-woodchop-1.webp",
+        "_images/web/cable-woodchop-2.webp"
+      ],
+      "steps": [
+        "Ajuste a polia no alto e fique de lado para a máquina, com os pés afastados.",
+        "Segure a pegada com as duas mãos, acima do ombro do lado da máquina.",
+        "Puxe o cabo na diagonal, para baixo e através do corpo, girando o tronco até o quadril do lado oposto.",
+        "Volte devagar pelo mesmo caminho e, ao terminar a série, troque de lado."
+      ],
+      "cuidados": [
+        "A rotação vem do tronco; os braços só conduzem o cabo",
+        "Gire o pé de trás junto com o quadril",
+        "Use carga moderada e movimento controlado"
+      ],
+      "vetorForca": "angular",
+      "planoMovimento": "transversal",
+      "ativacaoMuscular": 0.84,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic-ilustracao",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "plank",
+      "slug": "plank",
+      "nome": "Prancha",
+      "descricao": "Isometria apoiada nos antebraços e nas pontas dos pés, base para a estabilidade do core.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [
+        "core",
+        "ombros",
+        "gluteos"
+      ],
+      "tipo": "isometric",
+      "equipamento": [
+        "peso_corporal"
+      ],
+      "frames": [
+        "_images/web/plank-1.webp"
+      ],
+      "steps": [
+        "Deite de bruços e apoie os antebraços no chão, com os cotovelos abaixo dos ombros.",
+        "Eleve o corpo apoiando-se nos antebraços e nas pontas dos pés.",
+        "Alinhe cabeça, tronco, quadril e pernas, contraindo o abdômen e os glúteos.",
+        "Mantenha a posição pelo tempo planejado, respirando normalmente."
+      ],
+      "cuidados": [
+        "Não deixe o quadril cair nem subir demais",
+        "Não prenda a respiração",
+        "Pare quando não conseguir mais manter o alinhamento"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.8,
+      "escoreRiscoLesao": 0.05,
+      "registro": "tempo",
+      "fonte": "everkinetic-ilustracao",
+      "versao": "2.0.0"
+    },
+    {
       "id": "456",
       "slug": "side-plank",
       "nome": "Prancha Lateral",
@@ -2224,7 +3960,46 @@
       "planoMovimento": "frontal",
       "ativacaoMuscular": 0.82,
       "escoreRiscoLesao": 0.1,
+      "registro": "tempo",
       "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "ab-wheel-rollout",
+      "slug": "ab-wheel-rollout",
+      "nome": "Roda Abdominal",
+      "descricao": "Rolamento de joelhos com a roda, um exercício anti-extensão de alta exigência para o core.",
+      "musculoPrimario": "ABDOMEN",
+      "musculoDetalhe": "abdomen",
+      "musculoSecundario": [
+        "core",
+        "ombros",
+        "dorsais"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "roda_abdominal"
+      ],
+      "frames": [
+        "_images/web/ab-wheel-rollout-1.webp",
+        "_images/web/ab-wheel-rollout-2.webp"
+      ],
+      "steps": [
+        "Ajoelhe no chão ou num colchonete e segure a roda com as duas mãos, abaixo dos ombros.",
+        "Contraia o abdômen e os glúteos, mantendo a lombar neutra.",
+        "Role a roda à frente devagar, estendendo o corpo até onde conseguir sem arquear a lombar.",
+        "Puxe a roda de volta com o abdômen até a posição inicial."
+      ],
+      "cuidados": [
+        "Não role além do ponto em que controla a lombar",
+        "Comece com amplitude curta e aumente aos poucos",
+        "Evite se tiver dor lombar"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.9,
+      "escoreRiscoLesao": 0.35,
+      "fonte": "everkinetic-ilustracao",
       "versao": "2.0.0"
     },
     {
@@ -2565,6 +4340,40 @@
       "versao": "2.0.0"
     },
     {
+      "id": "886",
+      "slug": "hip-adduction",
+      "nome": "Adução de Quadril no Cabo",
+      "descricao": "Adução em pé com a caneleira presa à polia baixa, uma perna de cada vez.",
+      "musculoPrimario": "QUADRICEPS",
+      "musculoDetalhe": "adutores",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "cabo"
+      ],
+      "frames": [
+        "_images/web/hip-adduction-1.webp",
+        "_images/web/hip-adduction-2.webp"
+      ],
+      "steps": [
+        "Fique ao lado da polia baixa e prenda a caneleira ao cabo e ao tornozelo.",
+        "Afaste-se da máquina, segurando nela para se apoiar.",
+        "Firme na perna livre, puxe devagar a perna presa ao cabo para a frente da perna de apoio.",
+        "Repita e troque de perna."
+      ],
+      "cuidados": [
+        "Segure na máquina para manter o equilíbrio",
+        "Leve a perna à frente da perna de apoio sem girar o quadril",
+        "Use carga leve e faça os dois lados"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.78,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "880",
       "slug": "rear-lunges-with-dumbbell",
       "nome": "Afundo para Trás com Halteres",
@@ -2606,6 +4415,49 @@
       "versao": "2.0.0"
     },
     {
+      "id": "898",
+      "slug": "one-leg-squat-with-barbell",
+      "nome": "Agachamento Búlgaro com Barra",
+      "descricao": "Agachamento unilateral com o pé de trás apoiado num banco, de alta exigência para quadríceps e glúteos.",
+      "musculoPrimario": "QUADRICEPS",
+      "musculoDetalhe": "quadriceps",
+      "musculoSecundario": [
+        "gluteos",
+        "posterior_coxa",
+        "panturrilha"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "barra"
+      ],
+      "frames": [
+        "_images/web/one-leg-squat-with-barbell-1.webp",
+        "_images/web/one-leg-squat-with-barbell-2.webp"
+      ],
+      "steps": [
+        "O agachamento búlgaro trabalha uma perna de cada vez e também é usado para recuperar força depois de lesões.",
+        "Coloque atrás de você um banco ou caixa de 30 a 45 cm de altura; quanto mais alto, mais difícil.",
+        "Tire a barra do suporte e apoie-a sobre os ombros.",
+        "Apoie um pé no banco e coloque o outro firme no chão, 60 a 90 cm à frente.",
+        "Com o abdômen contraído, desça devagar flexionando o joelho e o quadril da frente, como se fosse sentar.",
+        "Desça até onde conseguir controlar, sem deixar o corpo ir para a ponta do pé, o que tira o equilíbrio.",
+        "Faça uma pausa embaixo e suba devagar até a posição inicial.",
+        "Troque de perna e repita.",
+        "Uma proteção na barra ou uma toalha nos ombros reduz o desconforto. Pratique sem carga até se acostumar com o movimento."
+      ],
+      "cuidados": [
+        "Aprenda o movimento sem carga ou com halteres antes de usar a barra",
+        "Desça na vertical, sem deixar o joelho da frente cair para dentro",
+        "Apoie só o peito do pé de trás no banco"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.3,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "889",
       "slug": "front-squat-with-barbell",
       "nome": "Agachamento Frontal com Barra",
@@ -2642,6 +4494,43 @@
       "ativacaoMuscular": 0.92,
       "escoreRiscoLesao": 0.4,
       "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "kettlebell-goblet-squat",
+      "slug": "kettlebell-goblet-squat",
+      "nome": "Agachamento Goblet",
+      "descricao": "Agachamento segurando o kettlebell junto ao peito, que ajuda a manter o tronco ereto; bom para aprender o movimento.",
+      "musculoPrimario": "QUADRICEPS",
+      "musculoDetalhe": "quadriceps",
+      "musculoSecundario": [
+        "gluteos",
+        "core"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "kettlebell"
+      ],
+      "frames": [
+        "_images/web/kettlebell-goblet-squat-1.webp",
+        "_images/web/kettlebell-goblet-squat-2.webp"
+      ],
+      "steps": [
+        "Segure o kettlebell pelas alças, junto ao peito, com os cotovelos apontados para baixo.",
+        "Fique com os pés um pouco mais afastados que os ombros e as pontas levemente para fora.",
+        "Agache levando o quadril para trás e para baixo, com o tronco ereto e os cotovelos entre os joelhos.",
+        "Suba empurrando o chão até estender as pernas."
+      ],
+      "cuidados": [
+        "Mantenha o kettlebell encostado no peito",
+        "Joelhos na direção das pontas dos pés",
+        "Desça até onde mantém a lombar neutra"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic-ilustracao",
       "versao": "2.0.0"
     },
     {
@@ -2723,6 +4612,46 @@
       "versao": "2.0.0"
     },
     {
+      "id": "902",
+      "slug": "pile-squat-with-dumbbell",
+      "nome": "Agachamento Sumô com Haltere",
+      "descricao": "Agachamento com base larga e pontas dos pés para fora, segurando um haltere; enfatiza adutores e glúteos.",
+      "musculoPrimario": "QUADRICEPS",
+      "musculoDetalhe": "quadriceps",
+      "musculoSecundario": [
+        "adutores",
+        "gluteos",
+        "posterior_coxa"
+      ],
+      "tipo": "compound",
+      "equipamento": [
+        "haltere"
+      ],
+      "frames": [
+        "_images/web/pile-squat-with-dumbbell-1.webp",
+        "_images/web/pile-squat-with-dumbbell-2.webp"
+      ],
+      "steps": [
+        "Fique com os pés um pouco mais afastados que os ombros e as pontas dos pés para fora, a 45 graus.",
+        "Segure um haltere com as duas mãos, no centro do corpo.",
+        "Mantenha os joelhos levemente flexionados e as costas retas.",
+        "Agache como se fosse sentar em uma cadeira, até as coxas ficarem paralelas ao chão.",
+        "Volte à posição inicial de forma controlada.",
+        "Mantenha os pés firmes no chão durante todo o exercício."
+      ],
+      "cuidados": [
+        "Mantenha os joelhos na direção das pontas dos pés",
+        "Desça com o tronco ereto, sem curvar as costas",
+        "Mantenha os pés inteiros apoiados no chão"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.86,
+      "escoreRiscoLesao": 0.2,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "881",
       "slug": "squats-using-dumbbells",
       "nome": "Agachamento com Halteres",
@@ -2800,6 +4729,40 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.87,
       "escoreRiscoLesao": 0.25,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "906",
+      "slug": "thigh-adductor",
+      "nome": "Cadeira Adutora",
+      "descricao": "Adução de quadril na máquina: as pernas se fecham contra a resistência, trabalhando a parte interna da coxa.",
+      "musculoPrimario": "QUADRICEPS",
+      "musculoDetalhe": "adutores",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "maquina"
+      ],
+      "frames": [
+        "_images/web/thigh-adductor-1.webp",
+        "_images/web/thigh-adductor-2.webp"
+      ],
+      "steps": [
+        "Sente na máquina e apoie a parte interna dos joelhos nas almofadas.",
+        "Contraia o abdômen e feche as pernas contra a resistência.",
+        "Volte devagar à posição inicial e repita.",
+        "Mantenha a mesma resistência em todo o movimento para melhores resultados."
+      ],
+      "cuidados": [
+        "Ajuste a abertura inicial para uma amplitude confortável",
+        "Mantenha as costas apoiadas no encosto",
+        "Volte devagar, sem deixar as placas baterem"
+      ],
+      "vetorForca": "horizontal",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.82,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -3107,7 +5070,7 @@
         "Comece com carga leve para aprender o padrão de movimento"
       ],
       "vetorForca": "vertical",
-      "planoMovimento": "frontal",
+      "planoMovimento": "sagital",
       "ativacaoMuscular": 0.83,
       "escoreRiscoLesao": 0.4,
       "fonte": "everkinetic",
@@ -3185,7 +5148,7 @@
       "id": "471",
       "slug": "romanian-dead-lift",
       "nome": "Levantamento Terra Romeno",
-      "descricao": "Dobradiça de quadril que é o principal exercício de alongamento sob carga dos isquiotibiais.",
+      "descricao": "Dobradiça de quadril que é o principal exercício de alongamento sob carga dos isquiotibiais. Parecido com o stiff, que mantém os joelhos mais estendidos.",
       "musculoPrimario": "POSTERIOR",
       "musculoDetalhe": "posterior_coxa",
       "musculoSecundario": [
@@ -3256,12 +5219,48 @@
       "versao": "2.0.0"
     },
     {
+      "id": "side-lying-hip-abduction",
+      "slug": "side-lying-hip-abduction",
+      "nome": "Abdução de Quadril Deitado",
+      "descricao": "Elevação lateral da perna deitado de lado, que trabalha o glúteo médio sem equipamento.",
+      "musculoPrimario": "GLUTEOS",
+      "musculoDetalhe": "abdutores",
+      "musculoSecundario": [
+        "gluteos"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "peso_corporal"
+      ],
+      "frames": [
+        "_images/web/side-lying-hip-abduction-1.webp",
+        "_images/web/side-lying-hip-abduction-2.webp"
+      ],
+      "steps": [
+        "Deite de lado com as pernas estendidas e apoie a cabeça no braço de baixo.",
+        "Mantenha o quadril alinhado, sem rolar para trás.",
+        "Eleve a perna de cima, com o joelho estendido e a ponta do pé para a frente.",
+        "Desça devagar e, ao terminar a série, troque de lado."
+      ],
+      "cuidados": [
+        "Não gire a ponta do pé para cima",
+        "Suba só até onde o quadril não sai do lugar",
+        "Use caneleira para progredir a carga"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "frontal",
+      "ativacaoMuscular": 0.78,
+      "escoreRiscoLesao": 0.05,
+      "fonte": "everkinetic-ilustracao",
+      "versao": "2.0.0"
+    },
+    {
       "id": "905",
       "slug": "thigh-abductor",
       "nome": "Cadeira Abdutora",
       "descricao": "Abdução de quadril na máquina, com foco no glúteo médio.",
       "musculoPrimario": "GLUTEOS",
-      "musculoDetalhe": "quadriceps",
+      "musculoDetalhe": "abdutores",
       "musculoSecundario": [
         "posterior_coxa"
       ],
@@ -3328,9 +5327,45 @@
       "versao": "2.0.0"
     },
     {
+      "id": "450",
+      "slug": "body-leg-lifts",
+      "nome": "Coice em Pé no Peso Corporal",
+      "descricao": "Extensão de quadril em pé, sem carga, indicada para ativação dos glúteos e para iniciantes.",
+      "musculoPrimario": "GLUTEOS",
+      "musculoDetalhe": "gluteos",
+      "musculoSecundario": [
+        "posterior_coxa"
+      ],
+      "tipo": "isolation",
+      "equipamento": [
+        "peso_corporal"
+      ],
+      "frames": [
+        "_images/web/body-leg-lifts-1.webp",
+        "_images/web/body-leg-lifts-2.webp"
+      ],
+      "steps": [
+        "Usando um poste ou um banco alto para se equilibrar, fique em pé com o tronco ereto e o abdômen contraído.",
+        "Eleve uma perna para trás, mantendo o apoio na outra perna.",
+        "Desça lentamente a perna e eleve-a novamente, contraindo os glúteos.",
+        "Repita com a outra perna."
+      ],
+      "cuidados": [
+        "Segure em um apoio para manter o equilíbrio",
+        "Leve a perna para trás sem arquear a lombar",
+        "Contraia o glúteo no fim do movimento"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.78,
+      "escoreRiscoLesao": 0.1,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
       "id": "447",
       "slug": "bridging",
-      "nome": "Elevação de Pelve",
+      "nome": "Ponte de Glúteo",
       "descricao": "Extensão de quadril deitado, exercício base para ativação dos glúteos.",
       "musculoPrimario": "GLUTEOS",
       "musculoDetalhe": "gluteos",
@@ -3358,42 +5393,6 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.82,
       "escoreRiscoLesao": 0.05,
-      "fonte": "everkinetic",
-      "versao": "2.0.0"
-    },
-    {
-      "id": "450",
-      "slug": "body-leg-lifts",
-      "nome": "Elevação de Perna em Quatro Apoios",
-      "descricao": "Extensão de quadril no peso corporal, indicada para ativação e para iniciantes.",
-      "musculoPrimario": "GLUTEOS",
-      "musculoDetalhe": "gluteos",
-      "musculoSecundario": [
-        "posterior_coxa"
-      ],
-      "tipo": "isolation",
-      "equipamento": [
-        "peso_corporal"
-      ],
-      "frames": [
-        "_images/web/body-leg-lifts-1.webp",
-        "_images/web/body-leg-lifts-2.webp"
-      ],
-      "steps": [
-        "Usando um poste ou um banco alto para se equilibrar, fique em pé com o tronco ereto e o abdômen contraído.",
-        "Eleve uma perna para trás, mantendo o apoio na outra perna.",
-        "Desça lentamente a perna e eleve-a novamente, contraindo os glúteos.",
-        "Repita com a outra perna."
-      ],
-      "cuidados": [
-        "Mantenha o abdômen contraído e a lombar neutra",
-        "Eleve a perna sem rodar o quadril",
-        "Pare quando a lombar começar a arquear"
-      ],
-      "vetorForca": "vertical",
-      "planoMovimento": "sagital",
-      "ativacaoMuscular": 0.78,
-      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },
@@ -3533,6 +5532,42 @@
       "planoMovimento": "sagital",
       "ativacaoMuscular": 0.86,
       "escoreRiscoLesao": 0.15,
+      "fonte": "everkinetic",
+      "versao": "2.0.0"
+    },
+    {
+      "id": "1031",
+      "slug": "seated-calf-raise-using-machine",
+      "nome": "Panturrilha Sentado na Máquina",
+      "descricao": "Flexão plantar sentado na máquina, com os joelhos flexionados, que enfatiza o sóleo.",
+      "musculoPrimario": "PANTURRILHA",
+      "musculoDetalhe": "panturrilha",
+      "musculoSecundario": [],
+      "tipo": "isolation",
+      "equipamento": [
+        "maquina"
+      ],
+      "frames": [
+        "_images/web/seated-calf-raise-using-machine-1.webp",
+        "_images/web/seated-calf-raise-using-machine-2.webp"
+      ],
+      "steps": [
+        "Sente na máquina de panturrilha.",
+        "Apoie a parte da frente dos pés na plataforma.",
+        "Posicione as coxas sob o apoio, logo acima dos joelhos.",
+        "Destrave o apoio e suba os calcanhares o máximo possível.",
+        "Faça uma pausa e volte à posição inicial.",
+        "Faça o movimento de forma lenta e precisa."
+      ],
+      "cuidados": [
+        "Ajuste o apoio logo acima dos joelhos",
+        "Desça o calcanhar até sentir o alongamento",
+        "Faça o movimento lento, com pausa no topo"
+      ],
+      "vetorForca": "vertical",
+      "planoMovimento": "sagital",
+      "ativacaoMuscular": 0.88,
+      "escoreRiscoLesao": 0.1,
       "fonte": "everkinetic",
       "versao": "2.0.0"
     },

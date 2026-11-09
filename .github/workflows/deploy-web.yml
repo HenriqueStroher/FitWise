@@ -37,7 +37,7 @@ jobs:
       # e falha neste app. Ao removê-lo, troque esta linha por "flutter test".
       - name: Rodar testes
         working-directory: app
-        run: flutter test test/treino_test.dart test/treino_dia_test.dart test/catalogo_local_test.dart
+        run: flutter test test/treino_test.dart test/treino_dia_test.dart test/catalogo_local_test.dart test/catalogo_base_test.dart test/navegacao_test.dart
 
       - name: Gerar versão web
         working-directory: app

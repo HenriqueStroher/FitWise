@@ -1,2 +1,6 @@
 firebase-import/
 .claude/settings.local.json
+
+# Logs do emulador do Firebase e cache do Python
+*-debug.log
+__pycache__/

@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'navegacao.dart';
 import 'screens/home_screen.dart';
 import 'screens/lista_exercicios_screen.dart';
 import 'screens/meus_treinos_screen.dart';
@@ -12,6 +14,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // Com --dart-define=EMULADOR=true, o Firestore é o emulador local (porta
+  // 8080, ver firebase.json): dá para testar uma base nova sem publicá-la.
+  // O login continua sendo o de produção.
+  if (const bool.fromEnvironment('EMULADOR')) {
+    FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  }
   runApp(const MyApp());
 }
 
@@ -38,12 +46,28 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ListaExerciciosScreenState> _listaKey = GlobalKey<ListaExerciciosScreenState>();
-  int _aba = 0;
+  // A aba fica em Navegacao para que o botão de início das telas internas
+  // também possa trocá-la
+  int get _aba => Navegacao.aba.value;
+
+  @override
+  void initState() {
+    super.initState();
+    Navegacao.aba.addListener(_aoMudarAba);
+  }
+
+  @override
+  void dispose() {
+    Navegacao.aba.removeListener(_aoMudarAba);
+    super.dispose();
+  }
+
+  void _aoMudarAba() => setState(() {});
 
   static const _abas = ['Grupos', 'Exercícios', 'Meus Treinos'];
 
   void _navegarParaGrupo(String grupo) {
-    setState(() => _aba = 1);
+    Navegacao.aba.value = 1;
     _listaKey.currentState?.mudarGrupo(grupo);
   }
 
@@ -102,7 +126,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget _abaTopo(int i) {
     final ativa = _aba == i;
     return Pressionavel(
-      onTap: () => setState(() => _aba = i),
+      onTap: () => Navegacao.aba.value = i,
       builder: (_, hover) => Container(
         height: 56,
         alignment: Alignment.center,
@@ -145,7 +169,7 @@ class _MainScreenState extends State<MainScreen> {
               for (var i = 0; i < _abas.length; i++)
                 Expanded(
                   child: Pressionavel(
-                    onTap: () => setState(() => _aba = i),
+                    onTap: () => Navegacao.aba.value = i,
                     builder: (_, _) {
                       final ativa = _aba == i;
                       final cor = ativa ? AppCores.texto : AppCores.textoApagado;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../navegacao.dart';
 import '../theme/app_theme.dart';
 
 /// Ilustração de exercício sobre um fundo colorido. As imagens são traço
@@ -142,15 +143,16 @@ class Esqueleto extends StatelessWidget {
   }
 }
 
-/// Botão circular de voltar das telas internas.
-class BotaoVoltar extends StatelessWidget {
-  const BotaoVoltar({super.key});
+/// Botão circular com ícone das telas internas (voltar, início, anterior...).
+/// Sem [onTap], aparece apagado e não responde.
+class BotaoCircular extends StatelessWidget {
+  final IconData icone;
+  final String dica;
+  final VoidCallback? onTap;
 
-  @override
-  Widget build(BuildContext context) {
-    return Pressionavel(
-      onTap: () => Navigator.of(context).maybePop(),
-      builder: (_, ativo) => AnimatedContainer(
+  const BotaoCircular({super.key, required this.icone, required this.dica, this.onTap});
+
+  Widget _circulo(bool ativo) => AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         width: 40,
         height: 40,
@@ -159,8 +161,64 @@ class BotaoVoltar extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(color: AppCores.linha),
         ),
-        child: const Icon(Icons.arrow_back, color: AppCores.texto, size: 18),
+        child: Icon(icone, color: AppCores.texto, size: 18),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    final toque = onTap;
+    return Semantics(
+      button: true,
+      enabled: toque != null,
+      label: dica,
+      child: Tooltip(
+        message: dica,
+        child: toque == null
+            ? Opacity(opacity: 0.3, child: _circulo(false))
+            : Pressionavel(onTap: toque, builder: (_, ativo) => _circulo(ativo)),
       ),
+    );
+  }
+}
+
+/// Botão de voltar das telas internas.
+class BotaoVoltar extends StatelessWidget {
+  const BotaoVoltar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BotaoCircular(
+      icone: Icons.arrow_back,
+      dica: 'Voltar',
+      onTap: () => Navigator.of(context).maybePop(),
+    );
+  }
+}
+
+/// Volta direto à tela inicial, fechando todas as telas abertas por cima.
+/// Útil depois de encadear detalhe → variações → detalhe...
+class BotaoInicio extends StatelessWidget {
+  const BotaoInicio({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BotaoCircular(
+      icone: Icons.home_outlined,
+      dica: 'Início',
+      onTap: () => Navegacao.irParaInicio(context),
+    );
+  }
+}
+
+/// Voltar e início lado a lado, para o topo das telas internas.
+class BotoesTopo extends StatelessWidget {
+  const BotoesTopo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [BotaoVoltar(), SizedBox(width: 8), BotaoInicio()],
     );
   }
 }

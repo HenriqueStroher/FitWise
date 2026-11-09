@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../models/exercicio.dart';
 import '../models/grupo_muscular.dart';
 import '../models/rotulos.dart';
@@ -8,38 +9,108 @@ import '../theme/app_theme.dart';
 import '../widgets/comuns.dart';
 import 'sugestoes_screen.dart';
 
-class DetalheExercicioScreen extends StatelessWidget {
+class DetalheExercicioScreen extends StatefulWidget {
   final Exercicio exercicio;
 
-  const DetalheExercicioScreen({super.key, required this.exercicio});
+  /// A lista de onde o exercício foi aberto (o grupo filtrado ou as
+  /// variações). Com ela, a tela passa para o anterior e o próximo sem
+  /// voltar à lista; vazia, os botões não aparecem.
+  final List<Exercicio> sequencia;
 
-  void _abrirSugestoes(BuildContext context) {
+  const DetalheExercicioScreen({super.key, required this.exercicio, this.sequencia = const []});
+
+  @override
+  State<DetalheExercicioScreen> createState() => _DetalheExercicioScreenState();
+}
+
+class _DetalheExercicioScreenState extends State<DetalheExercicioScreen> {
+  final ScrollController _rolagem = ScrollController();
+  late Exercicio _exercicio = widget.exercicio;
+  late int _indice = widget.sequencia.indexWhere((e) => e.slug == widget.exercicio.slug);
+
+  List<Exercicio> get _sequencia => widget.sequencia;
+  bool get _temAnterior => _indice > 0;
+  bool get _temProximo => _indice >= 0 && _indice < _sequencia.length - 1;
+
+  @override
+  void dispose() {
+    _rolagem.dispose();
+    super.dispose();
+  }
+
+  // Troca o exercício na mesma tela, sem empilhar outra: "voltar" continua
+  // levando à lista de onde se veio
+  void _irPara(int indice) {
+    setState(() {
+      _indice = indice;
+      _exercicio = _sequencia[indice];
+    });
+    if (_rolagem.hasClients) _rolagem.jumpTo(0);
+  }
+
+  void _anterior() {
+    if (_temAnterior) _irPara(_indice - 1);
+  }
+
+  void _proximo() {
+    if (_temProximo) _irPara(_indice + 1);
+  }
+
+  void _abrirSugestoes() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => SugestoesScreen(exercicioOrigem: exercicio)),
+      MaterialPageRoute(builder: (_) => SugestoesScreen(exercicioOrigem: _exercicio)),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final largo = MediaQuery.sizeOf(context).width >= 900;
-    final hero = _HeroAnimado(exercicio: exercicio);
+    // A chave reinicia a animação dos quadros ao trocar de exercício
+    final hero = _HeroAnimado(key: ValueKey(_exercicio.slug), exercicio: _exercicio);
     final info = _Informacoes(
-      exercicio: exercicio,
-      botao: largo ? _BotaoVariacoes(onTap: () => _abrirSugestoes(context)) : null,
+      exercicio: _exercicio,
+      botao: largo ? _BotaoVariacoes(onTap: _abrirSugestoes) : null,
     );
 
+    // Setas do teclado (web/desktop) também passam de exercício
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(LogicalKeyboardKey.arrowLeft): _anterior,
+        const SingleActivator(LogicalKeyboardKey.arrowRight): _proximo,
+      },
+      child: Focus(
+        autofocus: true,
+        child: _buildTela(largo, hero, info),
+      ),
+    );
+  }
+
+  Widget _buildTela(bool largo, Widget hero, Widget info) {
     return Scaffold(
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
+          controller: _rolagem,
           padding: const EdgeInsets.only(bottom: 40),
           child: Conteudo(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 12),
-                const BotaoVoltar(),
+                Row(
+                  children: [
+                    const BotoesTopo(),
+                    const Spacer(),
+                    if (_sequencia.length > 1 && _indice >= 0)
+                      _Navegador(
+                        posicao: _indice + 1,
+                        total: _sequencia.length,
+                        onAnterior: _temAnterior ? _anterior : null,
+                        onProximo: _temProximo ? _proximo : null,
+                      ),
+                  ],
+                ),
                 const SizedBox(height: 16),
                 if (largo)
                   Row(
@@ -71,10 +142,39 @@ class DetalheExercicioScreen extends StatelessWidget {
                 top: false,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-                  child: _BotaoVariacoes(onTap: () => _abrirSugestoes(context)),
+                  child: _BotaoVariacoes(onTap: _abrirSugestoes),
                 ),
               ),
             ),
+    );
+  }
+}
+
+/// "‹  3 de 17  ›": posição na lista de origem e os botões de anterior e
+/// próximo, apagados nas pontas.
+class _Navegador extends StatelessWidget {
+  final int posicao;
+  final int total;
+  final VoidCallback? onAnterior;
+  final VoidCallback? onProximo;
+
+  const _Navegador({required this.posicao, required this.total, this.onAnterior, this.onProximo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BotaoCircular(icone: Icons.chevron_left, dica: 'Exercício anterior', onTap: onAnterior),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Text(
+            '$posicao de $total',
+            style: AppTexto.meta.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
+          ),
+        ),
+        BotaoCircular(icone: Icons.chevron_right, dica: 'Próximo exercício', onTap: onProximo),
+      ],
     );
   }
 }
@@ -83,7 +183,7 @@ class DetalheExercicioScreen extends StatelessWidget {
 class _HeroAnimado extends StatefulWidget {
   final Exercicio exercicio;
 
-  const _HeroAnimado({required this.exercicio});
+  const _HeroAnimado({super.key, required this.exercicio});
 
   @override
   State<_HeroAnimado> createState() => _HeroAnimadoState();

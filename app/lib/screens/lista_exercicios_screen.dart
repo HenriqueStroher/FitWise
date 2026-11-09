@@ -266,7 +266,8 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen> {
           mainAxisExtent: 97,
         ),
         itemCount: _exerciciosFiltrados.length,
-        itemBuilder: (_, i) => LinhaExercicio(exercicio: _exerciciosFiltrados[i]),
+        itemBuilder: (_, i) =>
+            LinhaExercicio(exercicio: _exerciciosFiltrados[i], sequencia: _exerciciosFiltrados),
       );
     }
 
@@ -274,18 +275,27 @@ class ListaExerciciosScreenState extends State<ListaExerciciosScreen> {
       controller: _rolagem,
       padding: padding,
       itemCount: _exerciciosFiltrados.length,
-      itemBuilder: (_, i) => LinhaExercicio(exercicio: _exerciciosFiltrados[i]),
+      itemBuilder: (_, i) =>
+          LinhaExercicio(exercicio: _exerciciosFiltrados[i], sequencia: _exerciciosFiltrados),
     );
   }
 }
 
 /// Linha de exercício usada na lista e nas sugestões: miniatura, nome e
 /// metadados. [trailing] ocupa a ponta direita (ex.: % de similaridade).
+/// [sequencia] é a lista em que a linha está, para o detalhe poder passar
+/// para o anterior e o próximo.
 class LinhaExercicio extends StatelessWidget {
   final Exercicio exercicio;
+  final List<Exercicio> sequencia;
   final Widget? trailing;
 
-  const LinhaExercicio({super.key, required this.exercicio, this.trailing});
+  const LinhaExercicio({
+    super.key,
+    required this.exercicio,
+    this.sequencia = const [],
+    this.trailing,
+  });
 
   String get _meta {
     final partes = [
@@ -300,7 +310,10 @@ class LinhaExercicio extends StatelessWidget {
     return Pressionavel(
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => DetalheExercicioScreen(exercicio: exercicio)),
+        MaterialPageRoute(
+          // Cópia: a lista filtrada muda se a busca mudar com o detalhe aberto
+          builder: (_) => DetalheExercicioScreen(exercicio: exercicio, sequencia: List.of(sequencia)),
+        ),
       ),
       builder: (_, ativo) => Container(
         padding: const EdgeInsets.symmetric(vertical: 12),

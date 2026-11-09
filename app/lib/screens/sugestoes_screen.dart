@@ -56,7 +56,7 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 12),
-              const Align(alignment: Alignment.centerLeft, child: BotaoVoltar()),
+              const Align(alignment: Alignment.centerLeft, child: BotoesTopo()),
               const SizedBox(height: 28),
               Text('VARIAÇÕES DE', style: AppTexto.rotulo),
               const SizedBox(height: 8),
@@ -116,6 +116,7 @@ class _SugestoesScreenState extends State<SugestoesScreen> {
         final entry = _sugestoes[index];
         return LinhaExercicio(
           exercicio: entry.key,
+          sequencia: [for (final s in _sugestoes) s.key],
           trailing: _Similaridade(score: entry.value),
         );
       },
